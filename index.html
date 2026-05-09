@@ -760,7 +760,8 @@
         /* Gallery thumbnails base class */
         .atlas-thumbnail,
         .obk-thumbnail,
-        .quarter-thumbnail {
+        .quarter-thumbnail,
+        .trp-thumbnail {
             width: 80px;
             height: 60px;
             flex-shrink: 0;
@@ -774,14 +775,16 @@
 
         .atlas-thumbnail:hover,
         .obk-thumbnail:hover,
-        .quarter-thumbnail:hover {
+        .quarter-thumbnail:hover,
+        .trp-thumbnail:hover {
             opacity: 0.8;
             border-color: var(--accent-gold);
         }
 
         .atlas-thumbnail.active,
         .obk-thumbnail.active,
-        .quarter-thumbnail.active {
+        .quarter-thumbnail.active,
+        .trp-thumbnail.active {
             opacity: 1;
             border-color: var(--accent-gold);
             box-shadow: 0 0 12px rgba(184, 146, 61, 0.5);
@@ -789,7 +792,8 @@
 
         .atlas-thumbnail img,
         .obk-thumbnail img,
-        .quarter-thumbnail img {
+        .quarter-thumbnail img,
+        .trp-thumbnail img {
             width: 100%;
             height: 100%;
             object-fit: cover;

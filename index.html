@@ -762,7 +762,7 @@
         .obk-thumbnail,
         .quarter-thumbnail,
         .trp-thumbnail {
-            width: 80px;
+            width: 60px;
             height: 60px;
             flex-shrink: 0;
             cursor: pointer;
@@ -808,7 +808,7 @@
         .kbh-thumbnail,
         .obkf-thumbnail,
         .pryd-thumbnail {
-            width: 80px;
+            width: 60px;
             height: 60px;
             flex-shrink: 0;
             cursor: pointer;
@@ -824,6 +824,52 @@
         .pryd-thumbnail:hover {
             opacity: 0.8;
             border-color: var(--accent-gold);
+        }
+
+        /* Additional thumbnail classes for remaining galleries */
+        .thaiOil-thumbnail,
+        .tempFactory-thumbnail,
+        .pierreRepair-thumbnail,
+        .kaoyai-thumbnail,
+        .boonNak-thumbnail {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .thaiOil-thumbnail:hover,
+        .tempFactory-thumbnail:hover,
+        .pierreRepair-thumbnail:hover,
+        .kaoyai-thumbnail:hover,
+        .boonNak-thumbnail:hover {
+            opacity: 0.8;
+            border-color: var(--accent-gold);
+        }
+
+        .thaiOil-thumbnail.active,
+        .tempFactory-thumbnail.active,
+        .pierreRepair-thumbnail.active,
+        .kaoyai-thumbnail.active,
+        .boonNak-thumbnail.active {
+            opacity: 1;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 12px rgba(184, 146, 61, 0.5);
+        }
+
+        .thaiOil-thumbnail img,
+        .tempFactory-thumbnail img,
+        .pierreRepair-thumbnail img,
+        .kaoyai-thumbnail img,
+        .boonNak-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* ============================================
@@ -934,6 +980,8 @@
             overflow-x: auto;
             padding-bottom: 0.5rem;
             align-items: center;
+            width: 100%;
+            max-width: 1200px;
         }
 
         /* Thumbnail container - STANDARDIZED */
@@ -946,6 +994,28 @@
             padding: 0;
             scrollbar-width: thin;
             max-height: 75px;
+        }
+
+        /* ============================================
+           GALLERY VARIANTS (for non-standard galleries)
+           ============================================ */
+
+        /* Smaller modal variant (900px instead of 1200px) */
+        .gallery-modal-inner-compact {
+            max-width: 900px;
+            height: 70vh;
+        }
+
+        /* Smaller close button variant (2rem instead of 40px) */
+        .gallery-modal-close-small {
+            width: 2rem;
+            height: 2rem;
+            top: -3rem;
+        }
+
+        /* Thumbnail strip without bottom padding */
+        .gallery-thumbnails-strip-no-pad {
+            padding-bottom: 0rem;
         }
     </style>
 </head>
@@ -1428,97 +1498,157 @@
     </div>
 
     <!-- ONE BANGKOK FORUM GALLERY MODAL -->
-    <div id="obkfModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
-        <div style="position: relative; width: 90%; max-width: 900px; height: 70vh; display: flex; flex-direction: column;">
-            <button style="position: absolute; top: -3rem; right: 0; background: var(--accent-gold); border: none; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; font-weight: 600; z-index: 2001;" onclick="closeObkfGallery()">×</button>
-            <img id="obkfGalleryImg" src="img/proj/OBKF/1.png" alt="One Bangkok Forum" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="obkfGalleryPrev()">← Previous</button>
-                <span id="obkfImageCounter" class="gallery-counter">1 / 3</span>
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="obkfGalleryNext()">Next →</button>
+    <div id="obkfModal" class="gallery-modal">
+        <div class="gallery-modal-inner gallery-modal-inner-compact">
+            <button onclick="closeObkfGallery()" aria-label="Close gallery" class="gallery-modal-close gallery-modal-close-small">×</button>
+
+            <!-- Image Container with Animation -->
+            <div id="obkfImageWrapper" class="gallery-image-wrapper">
+                <img id="obkfGalleryImg" src="" alt="One Bangkok Forum" class="gallery-image" />
             </div>
-            <div class="gallery-thumbnails-strip">
-                <div id="obkfThumbnailsContainer" class="gallery-thumbnails-container"></div>
+
+            <!-- Navigation Controls -->
+            <div class="gallery-controls">
+                <button onclick="obkfGalleryPrev()" class="gallery-btn">← Previous</button>
+                <span id="obkfImageCounter">1 / 3</span>
+                <button onclick="obkfGalleryNext()" class="gallery-btn">Next →</button>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div class="gallery-thumbnails-strip gallery-thumbnails-strip-no-pad">
+                <div id="obkfThumbnailsContainer" class="gallery-thumbnails-container">
+                    <!-- Thumbnails will be inserted here -->
+                </div>
             </div>
         </div>
     </div>
 
     <!-- THAI OIL GALLERY MODAL -->
-    <div id="thaiOilModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
-        <div style="position: relative; width: 90%; max-width: 900px; height: 70vh; display: flex; flex-direction: column;">
-            <button style="position: absolute; top: -3rem; right: 0; background: var(--accent-gold); border: none; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; font-weight: 600; z-index: 2001;" onclick="closeThaiOilGallery()">×</button>
-            <img id="thaiOilGalleryImg" src="img/proj/tocop/1.png" alt="Thai Oil" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="thaiOilGalleryPrev()">← Previous</button>
-                <span id="thaiOilImageCounter" class="gallery-counter">1 / 2</span>
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="thaiOilGalleryNext()">Next →</button>
+    <div id="thaiOilModal" class="gallery-modal">
+        <div class="gallery-modal-inner gallery-modal-inner-compact">
+            <button onclick="closeThaiOilGallery()" aria-label="Close gallery" class="gallery-modal-close gallery-modal-close-small">×</button>
+
+            <!-- Image Container with Animation -->
+            <div id="thaiOilImageWrapper" class="gallery-image-wrapper">
+                <img id="thaiOilGalleryImg" src="" alt="Thai Oil" class="gallery-image" />
             </div>
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
-                <div id="thaiOilThumbnailsContainer" class="gallery-thumbnails-container"></div>
+
+            <!-- Navigation Controls -->
+            <div class="gallery-controls">
+                <button onclick="thaiOilGalleryPrev()" class="gallery-btn">← Previous</button>
+                <span id="thaiOilImageCounter">1 / 2</span>
+                <button onclick="thaiOilGalleryNext()" class="gallery-btn">Next →</button>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div class="gallery-thumbnails-strip gallery-thumbnails-strip-no-pad">
+                <div id="thaiOilThumbnailsContainer" class="gallery-thumbnails-container">
+                    <!-- Thumbnails will be inserted here -->
+                </div>
             </div>
         </div>
     </div>
 
     <!-- TEMP FACTORY GALLERY MODAL -->
-    <div id="tempFactoryModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
-        <div style="position: relative; width: 90%; max-width: 900px; height: 70vh; display: flex; flex-direction: column;">
-            <button style="position: absolute; top: -3rem; right: 0; background: var(--accent-gold); border: none; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; font-weight: 600; z-index: 2001;" onclick="closeTempFactoryGallery()">×</button>
-            <img id="tempFactoryGalleryImg" src="img/proj/7000m2tempf/1.png" alt="Temp Factory" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="tempFactoryGalleryPrev()">← Previous</button>
-                <span id="tempFactoryImageCounter" class="gallery-counter">1 / 3</span>
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="tempFactoryGalleryNext()">Next →</button>
+    <div id="tempFactoryModal" class="gallery-modal">
+        <div class="gallery-modal-inner gallery-modal-inner-compact">
+            <button onclick="closeTempFactoryGallery()" aria-label="Close gallery" class="gallery-modal-close gallery-modal-close-small">×</button>
+
+            <!-- Image Container with Animation -->
+            <div id="tempFactoryImageWrapper" class="gallery-image-wrapper">
+                <img id="tempFactoryGalleryImg" src="" alt="Temp Factory" class="gallery-image" />
             </div>
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
-                <div id="tempFactoryThumbnailsContainer" class="gallery-thumbnails-container"></div>
+
+            <!-- Navigation Controls -->
+            <div class="gallery-controls">
+                <button onclick="tempFactoryGalleryPrev()" class="gallery-btn">← Previous</button>
+                <span id="tempFactoryImageCounter">1 / 3</span>
+                <button onclick="tempFactoryGalleryNext()" class="gallery-btn">Next →</button>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div class="gallery-thumbnails-strip gallery-thumbnails-strip-no-pad">
+                <div id="tempFactoryThumbnailsContainer" class="gallery-thumbnails-container">
+                    <!-- Thumbnails will be inserted here -->
+                </div>
             </div>
         </div>
     </div>
 
     <!-- PIERRE REPAIR GALLERY MODAL -->
-    <div id="pierreRepairModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
-        <div style="position: relative; width: 90%; max-width: 900px; height: 70vh; display: flex; flex-direction: column;">
-            <button style="position: absolute; top: -3rem; right: 0; background: var(--accent-gold); border: none; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; font-weight: 600; z-index: 2001;" onclick="closePierreRepairGallery()">×</button>
-            <img id="pierreRepairGalleryImg" src="img/proj/pierrepair/1.png" alt="Pierre Repair" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="pierreRepairGalleryPrev()">← Previous</button>
-                <span id="pierreRepairImageCounter" class="gallery-counter">1 / 1</span>
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="pierreRepairGalleryNext()">Next →</button>
+    <div id="pierreRepairModal" class="gallery-modal">
+        <div class="gallery-modal-inner gallery-modal-inner-compact">
+            <button onclick="closePierreRepairGallery()" aria-label="Close gallery" class="gallery-modal-close gallery-modal-close-small">×</button>
+
+            <!-- Image Container with Animation -->
+            <div id="pierreRepairImageWrapper" class="gallery-image-wrapper">
+                <img id="pierreRepairGalleryImg" src="" alt="Pierre Repair" class="gallery-image" />
             </div>
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
-                <div id="pierreRepairThumbnailsContainer" class="gallery-thumbnails-container"></div>
+
+            <!-- Navigation Controls -->
+            <div class="gallery-controls">
+                <button onclick="pierreRepairGalleryPrev()" class="gallery-btn">← Previous</button>
+                <span id="pierreRepairImageCounter">1 / 1</span>
+                <button onclick="pierreRepairGalleryNext()" class="gallery-btn">Next →</button>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div class="gallery-thumbnails-strip gallery-thumbnails-strip-no-pad">
+                <div id="pierreRepairThumbnailsContainer" class="gallery-thumbnails-container">
+                    <!-- Thumbnails will be inserted here -->
+                </div>
             </div>
         </div>
     </div>
 
     <!-- KAOYAI GALLERY MODAL -->
-    <div id="kaoyaiModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
-        <div style="position: relative; width: 90%; max-width: 900px; height: 70vh; display: flex; flex-direction: column;">
-            <button style="position: absolute; top: -3rem; right: 0; background: var(--accent-gold); border: none; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; font-weight: 600; z-index: 2001;" onclick="closeKaoyaiGallery()">×</button>
-            <img id="kaoyaiGalleryImg" src="img/proj/kaoyaires/1.png" alt="Kaoyai Residence" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="kaoyaiGalleryPrev()">← Previous</button>
-                <span id="kaoyaiImageCounter" class="gallery-counter">1 / 4</span>
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="kaoyaiGalleryNext()">Next →</button>
+    <div id="kaoyaiModal" class="gallery-modal">
+        <div class="gallery-modal-inner gallery-modal-inner-compact">
+            <button onclick="closeKaoyaiGallery()" aria-label="Close gallery" class="gallery-modal-close gallery-modal-close-small">×</button>
+
+            <!-- Image Container with Animation -->
+            <div id="kaoyaiImageWrapper" class="gallery-image-wrapper">
+                <img id="kaoyaiGalleryImg" src="" alt="Kaoyai Residence" class="gallery-image" />
             </div>
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
-                <div id="kaoyaiThumbnailsContainer" class="gallery-thumbnails-container"></div>
+
+            <!-- Navigation Controls -->
+            <div class="gallery-controls">
+                <button onclick="kaoyaiGalleryPrev()" class="gallery-btn">← Previous</button>
+                <span id="kaoyaiImageCounter">1 / 4</span>
+                <button onclick="kaoyaiGalleryNext()" class="gallery-btn">Next →</button>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div class="gallery-thumbnails-strip gallery-thumbnails-strip-no-pad">
+                <div id="kaoyaiThumbnailsContainer" class="gallery-thumbnails-container">
+                    <!-- Thumbnails will be inserted here -->
+                </div>
             </div>
         </div>
     </div>
 
     <!-- BOON NAK GALLERY MODAL -->
-    <div id="boonNakModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
-        <div style="position: relative; width: 90%; max-width: 900px; height: 70vh; display: flex; flex-direction: column;">
-            <button style="position: absolute; top: -3rem; right: 0; background: var(--accent-gold); border: none; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; font-weight: 600; z-index: 2001;" onclick="closeBoonNakGallery()">×</button>
-            <img id="boonNakGalleryImg" src="img/proj/boonnak/boonnakhero.jpg" alt="Boon Nak Residence" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="boonNakGalleryPrev()">← Previous</button>
-                <span id="boonNakImageCounter" class="gallery-counter">1 / 1</span>
-                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="boonNakGalleryNext()">Next →</button>
+    <div id="boonNakModal" class="gallery-modal">
+        <div class="gallery-modal-inner gallery-modal-inner-compact">
+            <button onclick="closeBoonNakGallery()" aria-label="Close gallery" class="gallery-modal-close gallery-modal-close-small">×</button>
+
+            <!-- Image Container with Animation -->
+            <div id="boonNakImageWrapper" class="gallery-image-wrapper">
+                <img id="boonNakGalleryImg" src="" alt="Boon Nak Residence" class="gallery-image" />
             </div>
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
-                <div id="boonNakThumbnailsContainer" class="gallery-thumbnails-container"></div>
+
+            <!-- Navigation Controls -->
+            <div class="gallery-controls">
+                <button onclick="boonNakGalleryPrev()" class="gallery-btn">← Previous</button>
+                <span id="boonNakImageCounter">1 / 1</span>
+                <button onclick="boonNakGalleryNext()" class="gallery-btn">Next →</button>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div class="gallery-thumbnails-strip gallery-thumbnails-strip-no-pad">
+                <div id="boonNakThumbnailsContainer" class="gallery-thumbnails-container">
+                    <!-- Thumbnails will be inserted here -->
+                </div>
             </div>
         </div>
     </div>
@@ -1707,61 +1837,10 @@
             './img/proj/atlas/PANO_20260505_140915.jpg'
         ];
         // Start with main image by finding index of IMG_20251219_201353.jpg
-        let atlasCurrentIndex = atlasImages.findIndex(img => img.includes('IMG_20251219_201353.jpg'));
-        if (atlasCurrentIndex === -1) atlasCurrentIndex = 0; // Fallback to first if not found
-
-        function openAtlasGallery() {
-            document.getElementById('atlasModal').style.display = 'flex';
-            generateAtlasThumbnails();
-            updateAtlasImage();
-            document.addEventListener('keydown', handleAtlasKeyboard);
-        }
-
-        function closeAtlasGallery() {
-            document.getElementById('atlasModal').style.display = 'none';
-            atlasCurrentIndex = atlasImages.findIndex(img => img.includes('IMG_20251219_201353.jpg'));
-            if (atlasCurrentIndex === -1) atlasCurrentIndex = 0;
-            document.removeEventListener('keydown', handleAtlasKeyboard);
-        }
-
-        function generateAtlasThumbnails() {
-            const container = document.getElementById('atlasThumbnailsContainer');
-            container.innerHTML = '';
-            atlasImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'atlas-thumbnail' + (index === atlasCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { atlasCurrentIndex = index; updateAtlasImage(); };
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
-                container.appendChild(thumb);
-            });
-        }
-
-        function atlasGalleryNext() { atlasCurrentIndex = (atlasCurrentIndex + 1) % atlasImages.length; updateAtlasImage(); }
-        function atlasGalleryPrev() { atlasCurrentIndex = (atlasCurrentIndex - 1 + atlasImages.length) % atlasImages.length; updateAtlasImage(); }
-
-        function updateAtlasImage() {
-            const img = document.getElementById('atlasGalleryImg');
-            img.src = atlasImages[atlasCurrentIndex];
-            document.getElementById('atlasImageCounter').textContent = (atlasCurrentIndex + 1) + ' / ' + atlasImages.length;
-            document.querySelectorAll('.atlas-thumbnail').forEach((thumb, idx) => {
-                if (idx === atlasCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handleAtlasKeyboard(e) {
-            if (e.key === 'ArrowRight') atlasGalleryNext();
-            if (e.key === 'ArrowLeft') atlasGalleryPrev();
-            if (e.key === 'Escape') closeAtlasGallery();
-        }
-
-        // Close modal on background click
-        document.getElementById('atlasModal')?.addEventListener('click', function(e) {
-            if (e.target === this) closeAtlasGallery();
-        });
+        function openAtlasGallery() { galleryState.atlas = atlasImages.findIndex(img => img.includes('IMG_20251219_201353.jpg')) || 0; openGallery('atlas'); }
+        function closeAtlasGallery() { closeGallery('atlas'); }
+        function atlasGalleryNext() { galleryState.atlas = (galleryState.atlas + 1) % atlasImages.length; updateGallery('atlas'); }
+        function atlasGalleryPrev() { galleryState.atlas = (galleryState.atlas - 1 + atlasImages.length) % atlasImages.length; updateGallery('atlas'); }
 
         // ============================================
         // QUARTER HOTEL GALLERY
@@ -1797,653 +1876,192 @@
             './img/proj/tqhe/render/wc-02.1.jpg',
             './img/proj/tqhe/render/cr=w_600,h_300.jpg'
         ];
-        let quarterCurrentIndex = 0;
-
         // Remove duplicate image from quarter array (last item matches first)
         if (quarterImages.length > 1 && quarterImages[quarterImages.length - 1] === quarterImages[0]) {
             quarterImages.pop();
         }
 
-        function openQuarterGallery() {
-            const modal = document.getElementById('quarterModal');
+        // IMAGE ARRAY DECLARATIONS (hoisted before registry to avoid TDZ)
+        const obkImages = ['./img/proj/OBK/rs=w_365,h_274,cg_true-1.jpg','./img/proj/OBK/1877192.jpg','./img/proj/OBK/41236.jpg','./img/proj/OBK/425973.jpg','./img/proj/OBK/64676.jpg','./img/proj/OBK/64678.jpg','./img/proj/OBK/L2M 471598.jpg','./img/proj/OBK/S__290668553.jpg','./img/proj/OBK/S__51519499.jpg','./img/proj/OBK/S__51519501.jpg','./img/proj/OBK/S__51519521.jpg','./img/proj/OBK/S__51519523.jpg','./img/proj/OBK/S__51519524.jpg','./img/proj/OBK/S__51519525.jpg','./img/proj/OBK/S__51519526.jpg','./img/proj/OBK/S__51519531.jpg','./img/proj/OBK/S__51519534.jpg','./img/proj/OBK/S__51519538.jpg','./img/proj/OBK/S__51519543.jpg','./img/proj/OBK/S__51519551.jpg','./img/proj/OBK/S__51961899.jpg'];
+        const trpImages = ['img/proj/trp/trphero.jpg','img/proj/trp/117142_0.jpg','img/proj/trp/117151_0.jpg','img/proj/trp/117156_0.jpg','img/proj/trp/117194_0.jpg','img/proj/trp/117196_0.jpg','img/proj/trp/17982_0.jpg','img/proj/trp/27_0.jpg','img/proj/trp/643411.jpg','img/proj/trp/643412.jpg','img/proj/trp/646762_0.jpg','img/proj/trp/647550_0.jpg','img/proj/trp/647552_0.jpg','img/proj/trp/S__17539212_0.jpg','img/proj/trp/S__67215380_0.jpg','img/proj/trp/S__67215383_0.jpg'];
+        const kbhImages = ['img/proj/KBH/1.png','img/proj/KBH/2.png','img/proj/KBH/3.png','img/proj/KBH/4.png'];
+        const prydImages = ['img/proj/pryd/1.png','img/proj/pryd/2.png','img/proj/pryd/3.png','img/proj/pryd/4.png','img/proj/pryd/5.png','img/proj/pryd/6.png','img/proj/pryd/7.png'];
+        const obkfImages = ['img/proj/OBKF/1.png','img/proj/OBKF/2.png','img/proj/OBKF/3.png'];
+        const thaiOilImages = ['img/proj/tocop/1.png','img/proj/tocop/2.png'];
+        const tempFactoryImages = ['img/proj/7000m2tempf/1.png','img/proj/7000m2tempf/2.png','img/proj/7000m2tempf/7000m2tempfhero.png'];
+        const pierreRepairImages = ['img/proj/pierrepair/1.png','img/proj/pierrepair/pierrepairhero.png'];
+        const kaoyaiImages = ['img/proj/kaoyaires/1.png','img/proj/kaoyaires/2.png','img/proj/kaoyaires/3.png','img/proj/kaoyaires/4.png','img/proj/kaoyaires/kaoyaireshero.png'];
+        const boonNakImages = ['img/proj/boonnak/boonnakhero.jpg'];
+
+        // ============================================
+        // UNIVERSAL GALLERY ENGINE
+        // ============================================
+
+        // Gallery Registry - Single source of truth for all 12 galleries
+        const GALLERIES = {
+            atlas:        { modal: 'atlasModal',        img: 'atlasGalleryImg',        counter: 'atlasImageCounter',        thumbs: 'atlasThumbnailsContainer',        thumbClass: 'atlas-thumbnail',        images: atlasImages,        startIdx: atlasImages.findIndex(img => img.includes('IMG_20251219_201353.jpg')) || 0 },
+            quarter:      { modal: 'quarterModal',      img: 'quarterGalleryImg',      counter: 'quarterImageCounter',      thumbs: 'quarterThumbnailsContainer',      thumbClass: 'quarter-thumbnail',      images: quarterImages,      startIdx: 0 },
+            obk:          { modal: 'obkModal',          img: 'obkGalleryImg',          counter: 'obkImageCounter',          thumbs: 'obkThumbnailsContainer',          thumbClass: 'obk-thumbnail',          images: obkImages,          startIdx: 0 },
+            trp:          { modal: 'trpModal',          img: 'trpGalleryImg',          counter: 'trpImageCounter',          thumbs: 'trpThumbnailsContainer',          thumbClass: 'trp-thumbnail',          images: trpImages,          startIdx: 0 },
+            kbh:          { modal: 'kbhModal',          img: 'kbhGalleryImg',          counter: 'kbhImageCounter',          thumbs: 'kbhThumbnailsContainer',          thumbClass: 'kbh-thumbnail',          images: kbhImages,          startIdx: 0 },
+            pryd:         { modal: 'prydModal',         img: 'prydGalleryImg',         counter: 'prydImageCounter',         thumbs: 'prydThumbnailsContainer',         thumbClass: 'pryd-thumbnail',         images: prydImages,         startIdx: 0 },
+            obkf:         { modal: 'obkfModal',         img: 'obkfGalleryImg',         counter: 'obkfImageCounter',         thumbs: 'obkfThumbnailsContainer',         thumbClass: 'obkf-thumbnail',         images: obkfImages,         startIdx: 0, compact: true },
+            thaiOil:      { modal: 'thaiOilModal',      img: 'thaiOilGalleryImg',      counter: 'thaiOilImageCounter',      thumbs: 'thaiOilThumbnailsContainer',      thumbClass: 'thaiOil-thumbnail',      images: thaiOilImages,      startIdx: 0, compact: true },
+            tempFactory:  { modal: 'tempFactoryModal',  img: 'tempFactoryGalleryImg',  counter: 'tempFactoryImageCounter',  thumbs: 'tempFactoryThumbnailsContainer',  thumbClass: 'tempFactory-thumbnail',  images: tempFactoryImages,  startIdx: 0, compact: true },
+            pierreRepair: { modal: 'pierreRepairModal', img: 'pierreRepairGalleryImg', counter: 'pierreRepairImageCounter', thumbs: 'pierreRepairThumbnailsContainer', thumbClass: 'pierreRepair-thumbnail', images: pierreRepairImages, startIdx: 0, compact: true },
+            kaoyai:       { modal: 'kaoyaiModal',       img: 'kaoyaiGalleryImg',       counter: 'kaoyaiImageCounter',       thumbs: 'kaoyaiThumbnailsContainer',       thumbClass: 'kaoyai-thumbnail',       images: kaoyaiImages,       startIdx: 0, compact: true },
+            boonNak:      { modal: 'boonNakModal',      img: 'boonNakGalleryImg',      counter: 'boonNakImageCounter',      thumbs: 'boonNakThumbnailsContainer',      thumbClass: 'boonNak-thumbnail',      images: boonNakImages,      startIdx: 0, compact: true }
+        };
+
+        // Gallery State - Tracks current index for each gallery
+        const galleryState = {};
+        Object.keys(GALLERIES).forEach(name => {
+            galleryState[name] = GALLERIES[name].startIdx;
+        });
+
+        // Core Engine Function 1: Open Gallery
+        function openGallery(name) {
+            const g = GALLERIES[name];
+            const modal = document.getElementById(g.modal);
             modal.style.display = 'flex';
-            generateQuarterThumbnails();
-            updateQuarterImage();
-            document.addEventListener('keydown', handleQuarterKeyboard);
+            if (g.compact) {
+                const inner = modal.querySelector('.gallery-modal-inner');
+                if (inner && !inner.classList.contains('gallery-modal-inner-compact')) inner.classList.add('gallery-modal-inner-compact');
+            }
+            renderThumbnails(name);
+            updateGallery(name);
+            modal._kbHandler = (e) => handleGalleryKeyboard(e, name);
+            document.addEventListener('keydown', modal._kbHandler);
+            modal.onclick = (e) => { if (e.target === modal) closeGallery(name); };
         }
 
-        function closeQuarterGallery() {
-            const modal = document.getElementById('quarterModal');
+        // Core Engine Function 2: Close Gallery
+        function closeGallery(name) {
+            const g = GALLERIES[name];
+            const modal = document.getElementById(g.modal);
             modal.style.display = 'none';
-            quarterCurrentIndex = 0;
-            document.removeEventListener('keydown', handleQuarterKeyboard);
+            if (modal._kbHandler) document.removeEventListener('keydown', modal._kbHandler);
         }
 
-        function generateQuarterThumbnails() {
-            const container = document.getElementById('quarterThumbnailsContainer');
+        // Core Engine Function 3: Render Thumbnails
+        function renderThumbnails(name) {
+            const g = GALLERIES[name];
+            const container = document.getElementById(g.thumbs);
             container.innerHTML = '';
-            quarterImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'quarter-thumbnail' + (index === quarterCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { quarterCurrentIndex = index; updateQuarterImage(); };
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
+            const currentIdx = galleryState[name];
+            g.images.forEach((src, idx) => {
+                const thumb = document.createElement('button');
+                thumb.className = g.thumbClass + (idx === currentIdx ? ' active' : '');
+                thumb.onclick = () => { galleryState[name] = idx; updateGallery(name); };
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Thumbnail ${idx + 1}`;
+                thumb.appendChild(img);
                 container.appendChild(thumb);
             });
         }
 
-
-        function quarterGalleryNext() {
-            quarterCurrentIndex = (quarterCurrentIndex + 1) % quarterImages.length;
-            updateQuarterImage();
-        }
-
-        function quarterGalleryPrev() {
-            quarterCurrentIndex = (quarterCurrentIndex - 1 + quarterImages.length) % quarterImages.length;
-            updateQuarterImage();
-        }
-
-        function updateQuarterImage() {
-            const img = document.getElementById('quarterGalleryImg');
-            const counter = document.getElementById('quarterImageCounter');
-            img.src = quarterImages[quarterCurrentIndex];
-            counter.textContent = (quarterCurrentIndex + 1) + ' / ' + quarterImages.length;
-
-            // Update active thumbnail
-            document.querySelectorAll('.quarter-thumbnail').forEach((thumb, idx) => {
-                if (idx === quarterCurrentIndex) {
-                    thumb.classList.add('active');
-                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                } else {
-                    thumb.classList.remove('active');
-                }
+        // Core Engine Function 4: Update Gallery Display
+        function updateGallery(name) {
+            const g = GALLERIES[name];
+            const idx = galleryState[name];
+            document.getElementById(g.img).src = g.images[idx];
+            document.getElementById(g.counter).textContent = (idx + 1) + ' / ' + g.images.length;
+            const container = document.getElementById(g.thumbs);
+            container.querySelectorAll('.gallery-thumb').forEach((t, i) => {
+                if (i === idx) { t.classList.add('active'); t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
+                else { t.classList.remove('active'); }
             });
         }
 
-        function handleQuarterKeyboard(e) {
-            if (e.key === 'ArrowRight') quarterGalleryNext();
-            if (e.key === 'ArrowLeft') quarterGalleryPrev();
-            if (e.key === 'Escape') closeQuarterGallery();
+        // Keyboard Navigation Handler
+        function handleGalleryKeyboard(e, name) {
+            const len = GALLERIES[name].images.length;
+            if (e.key === 'ArrowRight') { galleryState[name] = (galleryState[name] + 1) % len; updateGallery(name); }
+            if (e.key === 'ArrowLeft') { galleryState[name] = (galleryState[name] - 1 + len) % len; updateGallery(name); }
+            if (e.key === 'Escape') closeGallery(name);
         }
 
-        // Close modal on background click
-        document.getElementById('quarterModal')?.addEventListener('click', function(e) {
-            if (e.target === this) closeQuarterGallery();
-        });
+        // Public API: Next/Prev for each gallery
+        function openQuarterGallery() {
+            openGallery('quarter');
+        }
+
+        function closeQuarterGallery() { closeGallery('quarter'); }
+        function quarterGalleryNext() { const len = GALLERIES.quarter.images.length; galleryState.quarter = (galleryState.quarter + 1) % len; updateGallery('quarter'); }
+        function quarterGalleryPrev() { const len = GALLERIES.quarter.images.length; galleryState.quarter = (galleryState.quarter - 1 + len) % len; updateGallery('quarter'); }
 
         // ============================================
         // ONE BANGKOK GALLERY
         // ============================================
-        const obkImages = [
-            './img/proj/OBK/rs=w_365,h_274,cg_true-1.jpg',
-            './img/proj/OBK/1877192.jpg',
-            './img/proj/OBK/41236.jpg',
-            './img/proj/OBK/425973.jpg',
-            './img/proj/OBK/64676.jpg',
-            './img/proj/OBK/64678.jpg',
-            './img/proj/OBK/L2M 471598.jpg',
-            './img/proj/OBK/S__290668553.jpg',
-            './img/proj/OBK/S__51519499.jpg',
-            './img/proj/OBK/S__51519501.jpg',
-            './img/proj/OBK/S__51519521.jpg',
-            './img/proj/OBK/S__51519523.jpg',
-            './img/proj/OBK/S__51519524.jpg',
-            './img/proj/OBK/S__51519525.jpg',
-            './img/proj/OBK/S__51519526.jpg',
-            './img/proj/OBK/S__51519531.jpg',
-            './img/proj/OBK/S__51519534.jpg',
-            './img/proj/OBK/S__51519538.jpg',
-            './img/proj/OBK/S__51519543.jpg',
-            './img/proj/OBK/S__51519551.jpg',
-            './img/proj/OBK/S__51961899.jpg'
-        ];
-        let obkCurrentIndex = 0;
 
-        function openObkGallery() {
-            const modal = document.getElementById('obkModal');
-            modal.style.display = 'flex';
-            generateObkThumbnails();
-            updateObkImage();
-            document.addEventListener('keydown', handleObkKeyboard);
-        }
-
-        function closeObkGallery() {
-            const modal = document.getElementById('obkModal');
-            modal.style.display = 'none';
-            obkCurrentIndex = 0;
-            document.removeEventListener('keydown', handleObkKeyboard);
-        }
-
-        function generateObkThumbnails() {
-            const container = document.getElementById('obkThumbnailsContainer');
-            container.innerHTML = '';
-            obkImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'obk-thumbnail' + (index === obkCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { obkCurrentIndex = index; updateObkImage(); };
-                thumb.setAttribute('data-gallery', 'obk');
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
-                container.appendChild(thumb);
-            });
-        }
-
-        function obkGalleryNext() { obkCurrentIndex = (obkCurrentIndex + 1) % obkImages.length; updateObkImage(); }
-        function obkGalleryPrev() { obkCurrentIndex = (obkCurrentIndex - 1 + obkImages.length) % obkImages.length; updateObkImage(); }
-
-        function updateObkImage() {
-            const img = document.getElementById('obkGalleryImg');
-            img.src = obkImages[obkCurrentIndex];
-            document.getElementById('obkImageCounter').textContent = (obkCurrentIndex + 1) + ' / ' + obkImages.length;
-            document.querySelectorAll('.obk-thumbnail[data-gallery="obk"]').forEach((thumb, idx) => {
-                if (idx === obkCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handleObkKeyboard(e) {
-            if (e.key === 'ArrowRight') obkGalleryNext();
-            if (e.key === 'ArrowLeft') obkGalleryPrev();
-            if (e.key === 'Escape') closeObkGallery();
-        }
-
-        // Close modal on background click
-        document.getElementById('obkModal')?.addEventListener('click', function(e) {
-            if (e.target === this) closeObkGallery();
-        });
+        function openObkGallery() { galleryState.obk = 0; openGallery('obk'); }
+        function closeObkGallery() { closeGallery('obk'); }
+        function obkGalleryNext() { galleryState.obk = (galleryState.obk + 1) % obkImages.length; updateGallery('obk'); }
+        function obkGalleryPrev() { galleryState.obk = (galleryState.obk - 1 + obkImages.length) % obkImages.length; updateGallery('obk'); }
 
         // TEERAPORN GALLERY
-        const trpImages = [
-            'img/proj/trp/trphero.jpg',
-            'img/proj/trp/117142_0.jpg',
-            'img/proj/trp/117151_0.jpg',
-            'img/proj/trp/117156_0.jpg',
-            'img/proj/trp/117194_0.jpg',
-            'img/proj/trp/117196_0.jpg',
-            'img/proj/trp/17982_0.jpg',
-            'img/proj/trp/27_0.jpg',
-            'img/proj/trp/643411.jpg',
-            'img/proj/trp/643412.jpg',
-            'img/proj/trp/646762_0.jpg',
-            'img/proj/trp/647550_0.jpg',
-            'img/proj/trp/647552_0.jpg',
-            'img/proj/trp/S__17539212_0.jpg',
-            'img/proj/trp/S__67215380_0.jpg',
-            'img/proj/trp/S__67215383_0.jpg'
-        ];
-        let trpCurrentIndex = 0;
 
-        function openTrpGallery() {
-            document.getElementById('trpModal').style.display = 'flex';
-            trpCurrentIndex = 0;
-            loadTrpThumbnails();
-            updateTrpImage();
-            document.addEventListener('keydown', handleTrpKeyboard);
-        }
-
-        function closeTrpGallery() {
-            document.getElementById('trpModal').style.display = 'none';
-            trpCurrentIndex = 0;
-            document.removeEventListener('keydown', handleTrpKeyboard);
-        }
-
-        function loadTrpThumbnails() {
-            const container = document.getElementById('trpThumbnailsContainer');
-            container.innerHTML = '';
-            trpImages.forEach((src, idx) => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.className = 'trp-thumbnail' + (idx === trpCurrentIndex ? ' active' : '');
-                img.setAttribute('data-gallery', 'trp');
-                img.style.cursor = 'pointer';
-                img.onclick = (e) => { e.stopPropagation(); trpCurrentIndex = idx; updateTrpImage(); };
-                container.appendChild(img);
-            });
-        }
-
-        function trpGalleryNext() { trpCurrentIndex = (trpCurrentIndex + 1) % trpImages.length; updateTrpImage(); }
-        function trpGalleryPrev() { trpCurrentIndex = (trpCurrentIndex - 1 + trpImages.length) % trpImages.length; updateTrpImage(); }
-
-        function updateTrpImage() {
-            const img = document.getElementById('trpGalleryImg');
-            img.src = trpImages[trpCurrentIndex];
-            document.getElementById('trpImageCounter').textContent = (trpCurrentIndex + 1) + ' / ' + trpImages.length;
-            document.querySelectorAll('.trp-thumbnail[data-gallery="trp"]').forEach((thumb, idx) => {
-                if (idx === trpCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handleTrpKeyboard(e) {
-            if (e.key === 'ArrowRight') trpGalleryNext();
-            if (e.key === 'ArrowLeft') trpGalleryPrev();
-            if (e.key === 'Escape') closeTrpGallery();
-        }
-
-        // Close modal on background click
-        document.getElementById('trpModal')?.addEventListener('click', function(e) {
-            if (e.target === this) closeTrpGallery();
-        });
+        function openTrpGallery() { galleryState.trp = 0; openGallery('trp'); }
+        function closeTrpGallery() { closeGallery('trp'); }
+        function trpGalleryNext() { galleryState.trp = (galleryState.trp + 1) % trpImages.length; updateGallery('trp'); }
+        function trpGalleryPrev() { galleryState.trp = (galleryState.trp - 1 + trpImages.length) % trpImages.length; updateGallery('trp'); }
 
         // KB PRIVATE RESIDENCE GALLERY
-        const kbhImages = ['img/proj/KBH/1.png', 'img/proj/KBH/2.png', 'img/proj/KBH/3.png', 'img/proj/KBH/4.png'];
-        let kbhCurrentIndex = 0;
 
-        function openKbhGallery() {
-            document.getElementById('kbhModal').style.display = 'flex';
-            generateKbhThumbnails();
-            updateKbhImage();
-            document.addEventListener('keydown', handleKbhKeyboard);
-        }
-
-        function closeKbhGallery() {
-            document.getElementById('kbhModal').style.display = 'none';
-            document.removeEventListener('keydown', handleKbhKeyboard);
-        }
-
-        function generateKbhThumbnails() {
-            const container = document.getElementById('kbhThumbnailsContainer');
-            container.innerHTML = '';
-            kbhImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'kbh-thumbnail' + (index === kbhCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { kbhCurrentIndex = index; updateKbhImage(); };
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
-                container.appendChild(thumb);
-            });
-        }
-
-        function kbhGalleryNext() { kbhCurrentIndex = (kbhCurrentIndex + 1) % kbhImages.length; updateKbhImage(); }
-        function kbhGalleryPrev() { kbhCurrentIndex = (kbhCurrentIndex - 1 + kbhImages.length) % kbhImages.length; updateKbhImage(); }
-
-        function updateKbhImage() {
-            const img = document.getElementById('kbhGalleryImg');
-            img.src = kbhImages[kbhCurrentIndex];
-            document.getElementById('kbhImageCounter').textContent = (kbhCurrentIndex + 1) + ' / ' + kbhImages.length;
-            document.querySelectorAll('.kbh-thumbnail').forEach((thumb, idx) => {
-                if (idx === kbhCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handleKbhKeyboard(e) {
-            if (e.key === 'ArrowRight') kbhGalleryNext();
-            if (e.key === 'ArrowLeft') kbhGalleryPrev();
-            if (e.key === 'Escape') closeKbhGallery();
-        }
-
-        document.getElementById('kbhModal')?.addEventListener('click', function(e) { if (e.target === this) closeKbhGallery(); });
+        function openKbhGallery() { galleryState.kbh = 0; openGallery('kbh'); }
+        function closeKbhGallery() { closeGallery('kbh'); }
+        function kbhGalleryNext() { galleryState.kbh = (galleryState.kbh + 1) % kbhImages.length; updateGallery('kbh'); }
+        function kbhGalleryPrev() { galleryState.kbh = (galleryState.kbh - 1 + kbhImages.length) % kbhImages.length; updateGallery('kbh'); }
 
         // BAAN PARINYADA GALLERY
-        const prydImages = ['img/proj/pryd/1.png', 'img/proj/pryd/2.png', 'img/proj/pryd/3.png', 'img/proj/pryd/4.png', 'img/proj/pryd/5.png', 'img/proj/pryd/6.png', 'img/proj/pryd/7.png'];
-        let prydCurrentIndex = 0;
 
-        function openPrydGallery() {
-            document.getElementById('prydModal').style.display = 'flex';
-            generatePrydThumbnails();
-            updatePrydImage();
-            document.addEventListener('keydown', handlePrydKeyboard);
-        }
-
-        function closePrydGallery() {
-            document.getElementById('prydModal').style.display = 'none';
-            document.removeEventListener('keydown', handlePrydKeyboard);
-        }
-
-        function generatePrydThumbnails() {
-            const container = document.getElementById('prydThumbnailsContainer');
-            container.innerHTML = '';
-            prydImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'pryd-thumbnail' + (index === prydCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { prydCurrentIndex = index; updatePrydImage(); };
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
-                container.appendChild(thumb);
-            });
-        }
-
-        function prydGalleryNext() { prydCurrentIndex = (prydCurrentIndex + 1) % prydImages.length; updatePrydImage(); }
-        function prydGalleryPrev() { prydCurrentIndex = (prydCurrentIndex - 1 + prydImages.length) % prydImages.length; updatePrydImage(); }
-
-        function updatePrydImage() {
-            const img = document.getElementById('prydGalleryImg');
-            img.src = prydImages[prydCurrentIndex];
-            document.getElementById('prydImageCounter').textContent = (prydCurrentIndex + 1) + ' / ' + prydImages.length;
-            document.querySelectorAll('.pryd-thumbnail').forEach((thumb, idx) => {
-                if (idx === prydCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handlePrydKeyboard(e) {
-            if (e.key === 'ArrowRight') prydGalleryNext();
-            if (e.key === 'ArrowLeft') prydGalleryPrev();
-            if (e.key === 'Escape') closePrydGallery();
-        }
-
-        document.getElementById('prydModal')?.addEventListener('click', function(e) { if (e.target === this) closePrydGallery(); });
+        function openPrydGallery() { galleryState.pryd = 0; openGallery('pryd'); }
+        function closePrydGallery() { closeGallery('pryd'); }
+        function prydGalleryNext() { galleryState.pryd = (galleryState.pryd + 1) % prydImages.length; updateGallery('pryd'); }
+        function prydGalleryPrev() { galleryState.pryd = (galleryState.pryd - 1 + prydImages.length) % prydImages.length; updateGallery('pryd'); }
 
         // ONE BANGKOK FORUM GALLERY
-        const obkfImages = ['img/proj/OBKF/1.png', 'img/proj/OBKF/2.png', 'img/proj/OBKF/3.png'];
-        let obkfCurrentIndex = 0;
 
-        function openObkfGallery() {
-            document.getElementById('obkfModal').style.display = 'flex';
-            generateObkfThumbnails();
-            updateObkfImage();
-            document.addEventListener('keydown', handleObkfKeyboard);
-        }
-
-        function closeObkfGallery() {
-            document.getElementById('obkfModal').style.display = 'none';
-            document.removeEventListener('keydown', handleObkfKeyboard);
-        }
-
-        function generateObkfThumbnails() {
-            const container = document.getElementById('obkfThumbnailsContainer');
-            container.innerHTML = '';
-            obkfImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'obkf-thumbnail' + (index === obkfCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { obkfCurrentIndex = index; updateObkfImage(); };
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
-                container.appendChild(thumb);
-            });
-        }
-
-        function obkfGalleryNext() { obkfCurrentIndex = (obkfCurrentIndex + 1) % obkfImages.length; updateObkfImage(); }
-        function obkfGalleryPrev() { obkfCurrentIndex = (obkfCurrentIndex - 1 + obkfImages.length) % obkfImages.length; updateObkfImage(); }
-
-        function updateObkfImage() {
-            const img = document.getElementById('obkfGalleryImg');
-            img.src = obkfImages[obkfCurrentIndex];
-            document.getElementById('obkfImageCounter').textContent = (obkfCurrentIndex + 1) + ' / ' + obkfImages.length;
-            document.querySelectorAll('.obkf-thumbnail').forEach((thumb, idx) => {
-                if (idx === obkfCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handleObkfKeyboard(e) {
-            if (e.key === 'ArrowRight') obkfGalleryNext();
-            if (e.key === 'ArrowLeft') obkfGalleryPrev();
-            if (e.key === 'Escape') closeObkfGallery();
-        }
-
-        document.getElementById('obkfModal')?.addEventListener('click', function(e) { if (e.target === this) closeObkfGallery(); });
+        function openObkfGallery() { galleryState.obkf = 0; openGallery('obkf'); }
+        function closeObkfGallery() { closeGallery('obkf'); }
+        function obkfGalleryNext() { galleryState.obkf = (galleryState.obkf + 1) % obkfImages.length; updateGallery('obkf'); }
+        function obkfGalleryPrev() { galleryState.obkf = (galleryState.obkf - 1 + obkfImages.length) % obkfImages.length; updateGallery('obkf'); }
 
         // THAI OIL GALLERY
-        const thaiOilImages = ['img/proj/tocop/1.png', 'img/proj/tocop/2.png'];
-        let thaiOilCurrentIndex = 0;
 
-        function openThaiOilGallery() {
-            document.getElementById('thaiOilModal').style.display = 'flex';
-            generateThaiOilThumbnails();
-            updateThaiOilImage();
-            document.addEventListener('keydown', handleThaiOilKeyboard);
-        }
-
-        function closeThaiOilGallery() {
-            document.getElementById('thaiOilModal').style.display = 'none';
-            document.removeEventListener('keydown', handleThaiOilKeyboard);
-        }
-
-        function generateThaiOilThumbnails() {
-            const container = document.getElementById('thaiOilThumbnailsContainer');
-            container.innerHTML = '';
-            thaiOilImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'tqhe-thumbnail' + (index === thaiOilCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { thaiOilCurrentIndex = index; updateThaiOilImage(); };
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
-                container.appendChild(thumb);
-            });
-        }
-
-        function thaiOilGalleryNext() { thaiOilCurrentIndex = (thaiOilCurrentIndex + 1) % thaiOilImages.length; updateThaiOilImage(); }
-        function thaiOilGalleryPrev() { thaiOilCurrentIndex = (thaiOilCurrentIndex - 1 + thaiOilImages.length) % thaiOilImages.length; updateThaiOilImage(); }
-
-        function updateThaiOilImage() {
-            const img = document.getElementById('thaiOilGalleryImg');
-            img.src = thaiOilImages[thaiOilCurrentIndex];
-            document.getElementById('thaiOilImageCounter').textContent = (thaiOilCurrentIndex + 1) + ' / ' + thaiOilImages.length;
-            document.querySelectorAll('.tqhe-thumbnail').forEach((thumb, idx) => {
-                if (idx === thaiOilCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handleThaiOilKeyboard(e) {
-            if (e.key === 'ArrowRight') thaiOilGalleryNext();
-            if (e.key === 'ArrowLeft') thaiOilGalleryPrev();
-            if (e.key === 'Escape') closeThaiOilGallery();
-        }
-
-        document.getElementById('thaiOilModal')?.addEventListener('click', function(e) { if (e.target === this) closeThaiOilGallery(); });
+        function openThaiOilGallery() { galleryState.thaiOil = 0; openGallery('thaiOil'); }
+        function closeThaiOilGallery() { closeGallery('thaiOil'); }
+        function thaiOilGalleryNext() { galleryState.thaiOil = (galleryState.thaiOil + 1) % thaiOilImages.length; updateGallery('thaiOil'); }
+        function thaiOilGalleryPrev() { galleryState.thaiOil = (galleryState.thaiOil - 1 + thaiOilImages.length) % thaiOilImages.length; updateGallery('thaiOil'); }
 
         // TEMP FACTORY GALLERY
-        const tempFactoryImages = ['img/proj/7000m2tempf/1.png', 'img/proj/7000m2tempf/2.png', 'img/proj/7000m2tempf/7000m2tempfhero.png'];
-        let tempFactoryCurrentIndex = 0;
 
-        function openTempFactoryGallery() {
-            document.getElementById('tempFactoryModal').style.display = 'flex';
-            generateTempFactoryThumbnails();
-            updateTempFactoryImage();
-            document.addEventListener('keydown', handleTempFactoryKeyboard);
-        }
-
-        function closeTempFactoryGallery() {
-            document.getElementById('tempFactoryModal').style.display = 'none';
-            document.removeEventListener('keydown', handleTempFactoryKeyboard);
-        }
-
-        function generateTempFactoryThumbnails() {
-            const container = document.getElementById('tempFactoryThumbnailsContainer');
-            container.innerHTML = '';
-            tempFactoryImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'tqhe-thumbnail' + (index === tempFactoryCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { tempFactoryCurrentIndex = index; updateTempFactoryImage(); };
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
-                container.appendChild(thumb);
-            });
-        }
-
-        function tempFactoryGalleryNext() { tempFactoryCurrentIndex = (tempFactoryCurrentIndex + 1) % tempFactoryImages.length; updateTempFactoryImage(); }
-        function tempFactoryGalleryPrev() { tempFactoryCurrentIndex = (tempFactoryCurrentIndex - 1 + tempFactoryImages.length) % tempFactoryImages.length; updateTempFactoryImage(); }
-
-        function updateTempFactoryImage() {
-            const img = document.getElementById('tempFactoryGalleryImg');
-            img.src = tempFactoryImages[tempFactoryCurrentIndex];
-            document.getElementById('tempFactoryImageCounter').textContent = (tempFactoryCurrentIndex + 1) + ' / ' + tempFactoryImages.length;
-            document.querySelectorAll('.tqhe-thumbnail').forEach((thumb, idx) => {
-                if (idx === tempFactoryCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handleTempFactoryKeyboard(e) {
-            if (e.key === 'ArrowRight') tempFactoryGalleryNext();
-            if (e.key === 'ArrowLeft') tempFactoryGalleryPrev();
-            if (e.key === 'Escape') closeTempFactoryGallery();
-        }
-
-        document.getElementById('tempFactoryModal')?.addEventListener('click', function(e) { if (e.target === this) closeTempFactoryGallery(); });
+        function openTempFactoryGallery() { galleryState.tempFactory = 0; openGallery('tempFactory'); }
+        function closeTempFactoryGallery() { closeGallery('tempFactory'); }
+        function tempFactoryGalleryNext() { galleryState.tempFactory = (galleryState.tempFactory + 1) % tempFactoryImages.length; updateGallery('tempFactory'); }
+        function tempFactoryGalleryPrev() { galleryState.tempFactory = (galleryState.tempFactory - 1 + tempFactoryImages.length) % tempFactoryImages.length; updateGallery('tempFactory'); }
 
         // PIERRE REPAIR GALLERY
-        const pierreRepairImages = ['img/proj/pierrepair/1.png', 'img/proj/pierrepair/pierrepairhero.png'];
-        let pierreRepairCurrentIndex = 0;
 
-        function openPierreRepairGallery() {
-            document.getElementById('pierreRepairModal').style.display = 'flex';
-            generatePierreRepairThumbnails();
-            updatePierreRepairImage();
-            document.addEventListener('keydown', handlePierreRepairKeyboard);
-        }
-
-        function closePierreRepairGallery() {
-            document.getElementById('pierreRepairModal').style.display = 'none';
-            document.removeEventListener('keydown', handlePierreRepairKeyboard);
-        }
-
-        function generatePierreRepairThumbnails() {
-            const container = document.getElementById('pierreRepairThumbnailsContainer');
-            container.innerHTML = '';
-            pierreRepairImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'tqhe-thumbnail' + (index === pierreRepairCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { pierreRepairCurrentIndex = index; updatePierreRepairImage(); };
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
-                container.appendChild(thumb);
-            });
-        }
-
-        function pierreRepairGalleryNext() { pierreRepairCurrentIndex = (pierreRepairCurrentIndex + 1) % pierreRepairImages.length; updatePierreRepairImage(); }
-        function pierreRepairGalleryPrev() { pierreRepairCurrentIndex = (pierreRepairCurrentIndex - 1 + pierreRepairImages.length) % pierreRepairImages.length; updatePierreRepairImage(); }
-
-        function updatePierreRepairImage() {
-            const img = document.getElementById('pierreRepairGalleryImg');
-            img.src = pierreRepairImages[pierreRepairCurrentIndex];
-            document.getElementById('pierreRepairImageCounter').textContent = (pierreRepairCurrentIndex + 1) + ' / ' + pierreRepairImages.length;
-            document.querySelectorAll('.tqhe-thumbnail').forEach((thumb, idx) => {
-                if (idx === pierreRepairCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handlePierreRepairKeyboard(e) {
-            if (e.key === 'ArrowRight') pierreRepairGalleryNext();
-            if (e.key === 'ArrowLeft') pierreRepairGalleryPrev();
-            if (e.key === 'Escape') closePierreRepairGallery();
-        }
-
-        document.getElementById('pierreRepairModal')?.addEventListener('click', function(e) { if (e.target === this) closePierreRepairGallery(); });
+        function openPierreRepairGallery() { galleryState.pierreRepair = 0; openGallery('pierreRepair'); }
+        function closePierreRepairGallery() { closeGallery('pierreRepair'); }
+        function pierreRepairGalleryNext() { galleryState.pierreRepair = (galleryState.pierreRepair + 1) % pierreRepairImages.length; updateGallery('pierreRepair'); }
+        function pierreRepairGalleryPrev() { galleryState.pierreRepair = (galleryState.pierreRepair - 1 + pierreRepairImages.length) % pierreRepairImages.length; updateGallery('pierreRepair'); }
 
         // KAOYAI GALLERY
-        const kaoyaiImages = ['img/proj/kaoyaires/1.png', 'img/proj/kaoyaires/2.png', 'img/proj/kaoyaires/3.png', 'img/proj/kaoyaires/4.png', 'img/proj/kaoyaires/kaoyaireshero.png'];
-        let kaoyaiCurrentIndex = 0;
 
-        function openKaoyaiGallery() {
-            document.getElementById('kaoyaiModal').style.display = 'flex';
-            generateKaoyaiThumbnails();
-            updateKaoyaiImage();
-            document.addEventListener('keydown', handleKaoyaiKeyboard);
-        }
-
-        function closeKaoyaiGallery() {
-            document.getElementById('kaoyaiModal').style.display = 'none';
-            document.removeEventListener('keydown', handleKaoyaiKeyboard);
-        }
-
-        function generateKaoyaiThumbnails() {
-            const container = document.getElementById('kaoyaiThumbnailsContainer');
-            container.innerHTML = '';
-            kaoyaiImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'tqhe-thumbnail' + (index === kaoyaiCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { kaoyaiCurrentIndex = index; updateKaoyaiImage(); };
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
-                container.appendChild(thumb);
-            });
-        }
-
-        function kaoyaiGalleryNext() { kaoyaiCurrentIndex = (kaoyaiCurrentIndex + 1) % kaoyaiImages.length; updateKaoyaiImage(); }
-        function kaoyaiGalleryPrev() { kaoyaiCurrentIndex = (kaoyaiCurrentIndex - 1 + kaoyaiImages.length) % kaoyaiImages.length; updateKaoyaiImage(); }
-
-        function updateKaoyaiImage() {
-            const img = document.getElementById('kaoyaiGalleryImg');
-            img.src = kaoyaiImages[kaoyaiCurrentIndex];
-            document.getElementById('kaoyaiImageCounter').textContent = (kaoyaiCurrentIndex + 1) + ' / ' + kaoyaiImages.length;
-            document.querySelectorAll('.tqhe-thumbnail').forEach((thumb, idx) => {
-                if (idx === kaoyaiCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handleKaoyaiKeyboard(e) {
-            if (e.key === 'ArrowRight') kaoyaiGalleryNext();
-            if (e.key === 'ArrowLeft') kaoyaiGalleryPrev();
-            if (e.key === 'Escape') closeKaoyaiGallery();
-        }
-
-        document.getElementById('kaoyaiModal')?.addEventListener('click', function(e) { if (e.target === this) closeKaoyaiGallery(); });
+        function openKaoyaiGallery() { galleryState.kaoyai = 0; openGallery('kaoyai'); }
+        function closeKaoyaiGallery() { closeGallery('kaoyai'); }
+        function kaoyaiGalleryNext() { galleryState.kaoyai = (galleryState.kaoyai + 1) % kaoyaiImages.length; updateGallery('kaoyai'); }
+        function kaoyaiGalleryPrev() { galleryState.kaoyai = (galleryState.kaoyai - 1 + kaoyaiImages.length) % kaoyaiImages.length; updateGallery('kaoyai'); }
 
         // BOON NAK GALLERY
-        const boonNakImages = ['img/proj/boonnak/boonnakhero.jpg'];
-        let boonNakCurrentIndex = 0;
 
-        function openBoonNakGallery() {
-            document.getElementById('boonNakModal').style.display = 'flex';
-            generateBoonNakThumbnails();
-            updateBoonNakImage();
-            document.addEventListener('keydown', handleBoonNakKeyboard);
-        }
-
-        function closeBoonNakGallery() {
-            document.getElementById('boonNakModal').style.display = 'none';
-            document.removeEventListener('keydown', handleBoonNakKeyboard);
-        }
-
-        function generateBoonNakThumbnails() {
-            const container = document.getElementById('boonNakThumbnailsContainer');
-            container.innerHTML = '';
-            boonNakImages.forEach((img, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'tqhe-thumbnail' + (index === boonNakCurrentIndex ? ' active' : '');
-                thumb.onclick = () => { boonNakCurrentIndex = index; updateBoonNakImage(); };
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(imgEl);
-                container.appendChild(thumb);
-            });
-        }
-
-        function boonNakGalleryNext() { boonNakCurrentIndex = (boonNakCurrentIndex + 1) % boonNakImages.length; updateBoonNakImage(); }
-        function boonNakGalleryPrev() { boonNakCurrentIndex = (boonNakCurrentIndex - 1 + boonNakImages.length) % boonNakImages.length; updateBoonNakImage(); }
-
-        function updateBoonNakImage() {
-            const img = document.getElementById('boonNakGalleryImg');
-            img.src = boonNakImages[boonNakCurrentIndex];
-            document.getElementById('boonNakImageCounter').textContent = (boonNakCurrentIndex + 1) + ' / ' + boonNakImages.length;
-            document.querySelectorAll('.tqhe-thumbnail').forEach((thumb, idx) => {
-                if (idx === boonNakCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
-                else { thumb.classList.remove('active'); }
-            });
-        }
-
-        function handleBoonNakKeyboard(e) {
-            if (e.key === 'ArrowRight') boonNakGalleryNext();
-            if (e.key === 'ArrowLeft') boonNakGalleryPrev();
-            if (e.key === 'Escape') closeBoonNakGallery();
-        }
-
-        document.getElementById('boonNakModal')?.addEventListener('click', function(e) { if (e.target === this) closeBoonNakGallery(); });
+        function openBoonNakGallery() { galleryState.boonNak = 0; openGallery('boonNak'); }
+        function closeBoonNakGallery() { closeGallery('boonNak'); }
+        function boonNakGalleryNext() { galleryState.boonNak = (galleryState.boonNak + 1) % boonNakImages.length; updateGallery('boonNak'); }
+        function boonNakGalleryPrev() { galleryState.boonNak = (galleryState.boonNak - 1 + boonNakImages.length) % boonNakImages.length; updateGallery('boonNak'); }
     </script>
 </body>
 </html>

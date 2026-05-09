@@ -784,7 +784,10 @@
         .atlas-thumbnail.active,
         .obk-thumbnail.active,
         .quarter-thumbnail.active,
-        .trp-thumbnail.active {
+        .trp-thumbnail.active,
+        .kbh-thumbnail.active,
+        .obkf-thumbnail.active,
+        .pryd-thumbnail.active {
             opacity: 1;
             border-color: var(--accent-gold);
             box-shadow: 0 0 12px rgba(184, 146, 61, 0.5);
@@ -793,10 +796,34 @@
         .atlas-thumbnail img,
         .obk-thumbnail img,
         .quarter-thumbnail img,
-        .trp-thumbnail img {
+        .trp-thumbnail img,
+        .kbh-thumbnail img,
+        .obkf-thumbnail img,
+        .pryd-thumbnail img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .kbh-thumbnail,
+        .obkf-thumbnail,
+        .pryd-thumbnail {
+            width: 80px;
+            height: 60px;
+            flex-shrink: 0;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .kbh-thumbnail:hover,
+        .obkf-thumbnail:hover,
+        .pryd-thumbnail:hover {
+            opacity: 0.8;
+            border-color: var(--accent-gold);
         }
     </style>
 </head>
@@ -1019,7 +1046,7 @@
             <div>
                 <h3 style="color: var(--accent-gold); margin-bottom: 2rem; font-size: 1.5rem;">Residential & Medical</h3>
                 <div class="grid-3">
-                    <div class="pillar-card fade-in-stagger stagger-1" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                    <div class="pillar-card fade-in-stagger stagger-1" onclick="openKbhGallery()" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
                         <div style="position: relative; width: 100%; margin-bottom: 1rem;">
                             <img src="img/proj/KBH/rs=w_365,h_274,cg_true.jpg" alt="KB Private Residence" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                             <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(184, 146, 61, 0.5); color: white; padding: 0.35rem 0.6rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px);">Click to expand →</div>
@@ -1054,9 +1081,10 @@
                         <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Project Complete:</strong> 30 April 2025</p>
                         <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Role:</strong> Internal Construction Management</p>
                     </div>
-                    <div class="pillar-card fade-in-stagger stagger-1" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
-                        <div style="position: relative; width: 100%; margin-bottom: 1rem; background: linear-gradient(135deg, #1A3A5C 0%, #0A1628 100%); border-radius: 0.5rem; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;">
-                            <p style="color: var(--accent-gold); font-size: 0.85rem; text-align: center; padding: 1rem;">Image Coming Soon</p>
+                    <div class="pillar-card fade-in-stagger stagger-1" onclick="openPrydGallery()" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                        <div style="position: relative; width: 100%; margin-bottom: 1rem;">
+                            <img src="img/proj/pryd/prydhero.png" alt="Baan Parinyada Renovation Work" style="width: 100%; height: auto; border-radius: 0.5rem; object-fit: cover; aspect-ratio: 16/10; display: block;" />
+                            <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(184, 146, 61, 0.5); color: white; padding: 0.35rem 0.6rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px);">Click to expand →</div>
                         </div>
                         <h4 style="margin-bottom: 0.75rem;">Baan Parinyada Renovation Work</h4>
                         <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Residential Renovation & Construction</p>
@@ -1235,6 +1263,42 @@
                 <div id="obkThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0.5rem 0; max-height: 100px;">
                     <!-- Thumbnails will be inserted here -->
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KB PRIVATE RESIDENCE GALLERY MODAL -->
+    <div id="kbhModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
+            <button onclick="closeKbhGallery()" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+            <div id="kbhImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+                <img id="kbhGalleryImg" src="" alt="KB Private Residence Gallery" style="width: 100%; height: 100%; object-fit: cover; animation: slideIn 0.6s ease-out;" />
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
+                <button onclick="kbhGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+                <span id="kbhImageCounter">1 / 4</span>
+                <button onclick="kbhGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+            </div>
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
+                <div id="kbhThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0.5rem 0; max-height: 100px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAAN PARINYADA GALLERY MODAL -->
+    <div id="prydModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
+            <button onclick="closePrydGallery()" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+            <div id="prydImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+                <img id="prydGalleryImg" src="" alt="Baan Parinyada Gallery" style="width: 100%; height: 100%; object-fit: cover; animation: slideIn 0.6s ease-out;" />
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
+                <button onclick="prydGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+                <span id="prydImageCounter">1 / 7</span>
+                <button onclick="prydGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+            </div>
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
+                <div id="prydThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0.5rem 0; max-height: 100px;"></div>
             </div>
         </div>
     </div>
@@ -1808,6 +1872,110 @@
         document.getElementById('trpModal')?.addEventListener('click', function(e) {
             if (e.target === this) closeTrpGallery();
         });
+
+        // KB PRIVATE RESIDENCE GALLERY
+        const kbhImages = ['img/proj/KBH/1.png', 'img/proj/KBH/2.png', 'img/proj/KBH/3.png', 'img/proj/KBH/4.png'];
+        let kbhCurrentIndex = 0;
+
+        function openKbhGallery() {
+            document.getElementById('kbhModal').style.display = 'flex';
+            generateKbhThumbnails();
+            updateKbhImage();
+            document.addEventListener('keydown', handleKbhKeyboard);
+        }
+
+        function closeKbhGallery() {
+            document.getElementById('kbhModal').style.display = 'none';
+            document.removeEventListener('keydown', handleKbhKeyboard);
+        }
+
+        function generateKbhThumbnails() {
+            const container = document.getElementById('kbhThumbnailsContainer');
+            container.innerHTML = '';
+            kbhImages.forEach((img, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'kbh-thumbnail' + (index === kbhCurrentIndex ? ' active' : '');
+                thumb.onclick = () => { kbhCurrentIndex = index; updateKbhImage(); };
+                const imgEl = document.createElement('img');
+                imgEl.src = img;
+                imgEl.alt = `Thumbnail ${index + 1}`;
+                thumb.appendChild(imgEl);
+                container.appendChild(thumb);
+            });
+        }
+
+        function kbhGalleryNext() { kbhCurrentIndex = (kbhCurrentIndex + 1) % kbhImages.length; updateKbhImage(); }
+        function kbhGalleryPrev() { kbhCurrentIndex = (kbhCurrentIndex - 1 + kbhImages.length) % kbhImages.length; updateKbhImage(); }
+
+        function updateKbhImage() {
+            const img = document.getElementById('kbhGalleryImg');
+            img.src = kbhImages[kbhCurrentIndex];
+            document.getElementById('kbhImageCounter').textContent = (kbhCurrentIndex + 1) + ' / ' + kbhImages.length;
+            document.querySelectorAll('.kbh-thumbnail').forEach((thumb, idx) => {
+                if (idx === kbhCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
+                else { thumb.classList.remove('active'); }
+            });
+        }
+
+        function handleKbhKeyboard(e) {
+            if (e.key === 'ArrowRight') kbhGalleryNext();
+            if (e.key === 'ArrowLeft') kbhGalleryPrev();
+            if (e.key === 'Escape') closeKbhGallery();
+        }
+
+        document.getElementById('kbhModal')?.addEventListener('click', function(e) { if (e.target === this) closeKbhGallery(); });
+
+        // BAAN PARINYADA GALLERY
+        const prydImages = ['img/proj/pryd/1.png', 'img/proj/pryd/2.png', 'img/proj/pryd/3.png', 'img/proj/pryd/4.png', 'img/proj/pryd/5.png', 'img/proj/pryd/6.png', 'img/proj/pryd/7.png'];
+        let prydCurrentIndex = 0;
+
+        function openPrydGallery() {
+            document.getElementById('prydModal').style.display = 'flex';
+            generatePrydThumbnails();
+            updatePrydImage();
+            document.addEventListener('keydown', handlePrydKeyboard);
+        }
+
+        function closePrydGallery() {
+            document.getElementById('prydModal').style.display = 'none';
+            document.removeEventListener('keydown', handlePrydKeyboard);
+        }
+
+        function generatePrydThumbnails() {
+            const container = document.getElementById('prydThumbnailsContainer');
+            container.innerHTML = '';
+            prydImages.forEach((img, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'pryd-thumbnail' + (index === prydCurrentIndex ? ' active' : '');
+                thumb.onclick = () => { prydCurrentIndex = index; updatePrydImage(); };
+                const imgEl = document.createElement('img');
+                imgEl.src = img;
+                imgEl.alt = `Thumbnail ${index + 1}`;
+                thumb.appendChild(imgEl);
+                container.appendChild(thumb);
+            });
+        }
+
+        function prydGalleryNext() { prydCurrentIndex = (prydCurrentIndex + 1) % prydImages.length; updatePrydImage(); }
+        function prydGalleryPrev() { prydCurrentIndex = (prydCurrentIndex - 1 + prydImages.length) % prydImages.length; updatePrydImage(); }
+
+        function updatePrydImage() {
+            const img = document.getElementById('prydGalleryImg');
+            img.src = prydImages[prydCurrentIndex];
+            document.getElementById('prydImageCounter').textContent = (prydCurrentIndex + 1) + ' / ' + prydImages.length;
+            document.querySelectorAll('.pryd-thumbnail').forEach((thumb, idx) => {
+                if (idx === prydCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
+                else { thumb.classList.remove('active'); }
+            });
+        }
+
+        function handlePrydKeyboard(e) {
+            if (e.key === 'ArrowRight') prydGalleryNext();
+            if (e.key === 'ArrowLeft') prydGalleryPrev();
+            if (e.key === 'Escape') closePrydGallery();
+        }
+
+        document.getElementById('prydModal')?.addEventListener('click', function(e) { if (e.target === this) closePrydGallery(); });
     </script>
 </body>
 </html>

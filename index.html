@@ -1063,9 +1063,10 @@
                         <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Value:</strong> 68,000,000.00 THB</p>
                         <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Role:</strong> Structural Design & Building Construction</p>
                     </div>
-                    <div class="pillar-card fade-in-stagger stagger-2" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
-                        <div style="position: relative; width: 100%; margin-bottom: 1rem; background: linear-gradient(135deg, #1A3A5C 0%, #0A1628 100%); border-radius: 0.5rem; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;">
-                            <p style="color: var(--accent-gold); font-size: 0.85rem; text-align: center; padding: 1rem;">Image Coming Soon</p>
+                    <div class="pillar-card fade-in-stagger stagger-2" onclick="openBoonNakGallery()" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                        <div style="position: relative; width: 100%; margin-bottom: 1rem;">
+                            <img src="img/proj/boonnak/boonnakerohero.png" alt="Boon Nak Residence Ubon" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                            <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(184, 146, 61, 0.5); color: white; padding: 0.35rem 0.6rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px);">Click to expand →</div>
                         </div>
                         <h4 style="margin-bottom: 0.75rem;">Boon Nak Residence Ubon</h4>
                         <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Design & Building Construction</p>
@@ -1384,6 +1385,22 @@
             </div>
             <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
                 <div id="kaoyaiThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; max-height: 75px; scrollbar-width: thin;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOON NAK GALLERY MODAL -->
+    <div id="boonNakModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
+        <div style="position: relative; width: 90%; max-width: 900px; height: 70vh; display: flex; flex-direction: column;">
+            <button style="position: absolute; top: -3rem; right: 0; background: var(--accent-gold); border: none; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; font-weight: 600; z-index: 2001;" onclick="closeBoonNakGallery()">×</button>
+            <img id="boonNakGalleryImg" src="img/proj/boonnak/boonnakerohero.png" alt="Boon Nak Residence" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="boonNakGalleryPrev()">← Previous</button>
+                <span id="boonNakImageCounter" style="color: var(--accent-gold); font-weight: 600;">1 / 1</span>
+                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="boonNakGalleryNext()">Next →</button>
+            </div>
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
+                <div id="boonNakThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; max-height: 75px; scrollbar-width: thin;"></div>
             </div>
         </div>
     </div>
@@ -2257,6 +2274,58 @@
         }
 
         document.getElementById('kaoyaiModal')?.addEventListener('click', function(e) { if (e.target === this) closeKaoyaiGallery(); });
+
+        // BOON NAK GALLERY
+        const boonNakImages = ['img/proj/boonnak/boonnakerohero.png'];
+        let boonNakCurrentIndex = 0;
+
+        function openBoonNakGallery() {
+            document.getElementById('boonNakModal').style.display = 'flex';
+            generateBoonNakThumbnails();
+            updateBoonNakImage();
+            document.addEventListener('keydown', handleBoonNakKeyboard);
+        }
+
+        function closeBoonNakGallery() {
+            document.getElementById('boonNakModal').style.display = 'none';
+            document.removeEventListener('keydown', handleBoonNakKeyboard);
+        }
+
+        function generateBoonNakThumbnails() {
+            const container = document.getElementById('boonNakThumbnailsContainer');
+            container.innerHTML = '';
+            boonNakImages.forEach((img, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'tqhe-thumbnail' + (index === boonNakCurrentIndex ? ' active' : '');
+                thumb.onclick = () => { boonNakCurrentIndex = index; updateBoonNakImage(); };
+                const imgEl = document.createElement('img');
+                imgEl.src = img;
+                imgEl.alt = `Thumbnail ${index + 1}`;
+                thumb.appendChild(imgEl);
+                container.appendChild(thumb);
+            });
+        }
+
+        function boonNakGalleryNext() { boonNakCurrentIndex = (boonNakCurrentIndex + 1) % boonNakImages.length; updateBoonNakImage(); }
+        function boonNakGalleryPrev() { boonNakCurrentIndex = (boonNakCurrentIndex - 1 + boonNakImages.length) % boonNakImages.length; updateBoonNakImage(); }
+
+        function updateBoonNakImage() {
+            const img = document.getElementById('boonNakGalleryImg');
+            img.src = boonNakImages[boonNakCurrentIndex];
+            document.getElementById('boonNakImageCounter').textContent = (boonNakCurrentIndex + 1) + ' / ' + boonNakImages.length;
+            document.querySelectorAll('.tqhe-thumbnail').forEach((thumb, idx) => {
+                if (idx === boonNakCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
+                else { thumb.classList.remove('active'); }
+            });
+        }
+
+        function handleBoonNakKeyboard(e) {
+            if (e.key === 'ArrowRight') boonNakGalleryNext();
+            if (e.key === 'ArrowLeft') boonNakGalleryPrev();
+            if (e.key === 'Escape') closeBoonNakGallery();
+        }
+
+        document.getElementById('boonNakModal')?.addEventListener('click', function(e) { if (e.target === this) closeBoonNakGallery(); });
     </script>
 </body>
 </html>

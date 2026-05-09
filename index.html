@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th="Site Architect Portfolio" data-en="Site Architect Portfolio">[YOUR NAME] - Site Architect & Construction Consultant</title>
+    <meta name="description" content="Portfolio of [YOUR NAME], Site Architect and Construction Consultant specializing in architectural design and project management.">
+
+    <!-- Google Fonts Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           ROOT & COLOR SYSTEM
+           ============================================ */
+        :root {
+            --bg-primary: #0c0a08;
+            --bg-card: #161210;
+            --bg-hover: #1e1a16;
+            --accent-gold: #c9a96e;
+            --accent-gold-alpha: #c9a96e22;
+            --text-primary: #e8dcc8;
+            --text-muted: #7a7269;
+            --text-dark: #3a3a3a;
+            --border-gold: 1px solid var(--accent-gold-alpha);
+
+            --ff-display: 'Cormorant Garamond', serif;
+            --ff-body: 'Jost', sans-serif;
+        }
+
+        /* ============================================
+           GLOBAL STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--ff-body);
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--ff-display);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        h1 { font-size: clamp(2rem, 8vw, 5rem); font-weight: 300; }
+        h2 { font-size: clamp(1.75rem, 6vw, 3.5rem); font-weight: 300; margin-bottom: 2rem; }
+        h3 { font-size: clamp(1.25rem, 4vw, 1.75rem); font-weight: 400; }
+        h4 { font-size: 1.125rem; font-weight: 400; }
+
+        a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        button {
+            font-family: var(--ff-body);
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        /* ============================================
+           CUSTOM CURSOR
+           ============================================ */
+        body {
+            cursor: none;
+        }
+
+        .cursor {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+        }
+
+        .cursor-ring {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9998;
+            mix-blend-mode: screen;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            padding: 0 clamp(2rem, 5vw, 4rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(12, 10, 8, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom-color: var(--accent-gold-alpha);
+        }
+
+        .nav-logo {
+            font-family: var(--ff-display);
+            font-size: 1.25rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 300;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .lang-toggle {
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            border: 1px solid var(--accent-gold-alpha);
+            padding: 0.5rem 1rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .lang-toggle.active {
+            background-color: var(--accent-gold);
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                height: 60px;
+                padding: 0 1rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .nav-logo {
+                font-size: 1rem;
+            }
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(22, 18, 16, 0.3), rgba(30, 26, 22, 0.3)), repeating-linear-gradient(0deg, rgba(201, 169, 110, 0.03) 0px, rgba(201, 169, 110, 0.03) 1px, transparent 1px, transparent 80px), repeating-linear-gradient(90deg, rgba(201, 169, 110, 0.03) 0px, rgba(201, 169, 110, 0.03) 1px, transparent 1px, transparent 80px);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            transform: translateY(var(--parallax-offset, 0px));
+        }
+
+        .hero-line {
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-gold);
+            margin: 0 auto 2rem;
+            animation: revealLine 1.2s ease-out 0.3s forwards;
+        }
+
+        @keyframes revealLine {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100px;
+            }
+        }
+
+        .hero h1 {
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--accent-gold);
+            font-family: var(--ff-display);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            font-family: var(--ff-display);
+            font-weight: 300;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            margin-bottom: 3rem;
+        }
+
+        .hero-cta:hover {
+            background-color: var(--accent-gold);
+            color: var(--text-dark);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--accent-gold-alpha);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-stat-num {
+            font-family: var(--ff-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 1.5rem;
+                flex-direction: column;
+            }
+        }
+
+        /* ============================================
+           CONTAINER & GRID
+           ============================================ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 5vw, 4rem);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           SECTIONS
+           ============================================ */
+        section {
+            padding: 6rem 0;
+        }
+
+        section.section-alt {
+            background-color: rgba(22, 18, 16, 0.3);
+        }
+
+        /* ============================================
+           ANIMATION: FADE UP
+           ============================================ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-stagger {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .fade-in-stagger.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 2px;
+            background: linear-gradient(135deg, #2a2218 0%, #1e1a16 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 3rem;
+        }
+
+        .about-text h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--accent-gold-alpha);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--ff-display);
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           SERVICE CARDS
+           ============================================ */
+        .service-card {
+            padding: 2rem;
+            border: var(--border-gold);
+            border-radius: 2px;
+            background: var(--bg-card);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent-gold);
+            background: var(--bg-hover);
+            transform: translateY(-5px);
+        }
+
+        .service-num {
+            font-family: var(--ff-display);
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .service-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .service-card h4 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           SKILLS SECTION
+           ============================================ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-tag {
+            padding: 1rem;
+            background: var(--bg-card);
+            border: var(--border-gold);
+            border-radius: 2px;
+            text-align: center;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-gold);
+            background: var(--bg-hover);
+        }
+
+        .skill-level {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ============================================
+           PROJECT CARDS
+           ============================================ */
+        .project-card {
+            position: relative;
+            border-radius: 2px;
+            overflow: hidden;
+            group: card;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 0 30px rgba(201, 169, 110, 0.2);
+            transform: scale(1.02);
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #2a2218 0%, #1e1a16 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            font-size: 4rem;
+            color: rgba(201, 169, 110, 0.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(12, 10, 8, 0.95), transparent);
+            z-index: 2;
+        }
+
+        .project-name {
+            font-family: var(--ff-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-type {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 400;
+            margin-top: 0.5rem;
+        }
+
+        .badge-completed {
+            background-color: rgba(100, 200, 100, 0.3);
+            color: #64c864;
+        }
+
+        .badge-progress {
+            background-color: rgba(201, 169, 110, 0.3);
+            color: var(--accent-gold);
+        }
+
+        .badge-past {
+            background-color: rgba(122, 114, 105, 0.3);
+            color: var(--text-muted);
+        }
+
+        .project-view-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .project-view-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--text-dark);
+        }
+
+        /* ============================================
+           GALLERY MODAL
+           ============================================ */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .gallery-modal.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            border-bottom: 1px solid var(--accent-gold-alpha);
+            position: sticky;
+            top: 0;
+            background: rgba(12, 10, 8, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .gallery-title {
+            font-family: var(--ff-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .gallery-close {
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-close:hover {
+            color: var(--accent-gold);
+        }
+
+        .gallery-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .gallery-main {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #2a2218 0%, #1e1a16 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: rgba(201, 169, 110, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            z-index: 10;
+        }
+
+        .gallery-nav-btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-nav-btn:hover {
+            background: var(--accent-gold);
+            color: var(--text-dark);
+        }
+
+        .gallery-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .gallery-info {
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: var(--border-gold);
+            border-radius: 2px;
+        }
+
+        .gallery-info h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .gallery-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .gallery-thumb {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #2a2218 0%, #1e1a16 100%);
+            border: 1px solid var(--accent-gold-alpha);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .gallery-thumb:hover,
+        .gallery-thumb.active {
+            border-color: var(--accent-gold);
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-content {
+                grid-template-columns: 1fr;
+            }
+            .gallery-sidebar {
+                flex-direction: row;
+            }
+            .gallery-info {
+                flex: 1;
+            }
+            .gallery-thumbnails {
+                flex-direction: row;
+                max-height: none;
+                max-width: none;
+                overflow-x: auto;
+            }
+            .gallery-thumb {
+                flex-shrink: 0;
+                width: 80px;
+            }
+        }
+
+        /* ============================================
+           TEAM SECTION
+           ============================================ */
+        .team-card {
+            text-align: center;
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #8b7d66 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-family: var(--ff-display);
+            font-size: 2rem;
+            color: var(--text-dark);
+            font-weight: 400;
+        }
+
+        .team-card h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .team-position {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-company {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact-info-item {
+            margin-bottom: 2rem;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: var(--bg-card);
+            border: var(--border-gold);
+            border-radius: 2px;
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            font-family: var(--ff-body);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: var(--bg-hover);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            padding: 1rem 2rem;
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .form-submit:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--accent-gold-alpha);
+            background: rgba(22, 18, 16, 0.5);
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-left {
+            text-align: left;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-left,
+            .footer-right {
+                text-align: center;
+            }
+            .footer-links {
+                justify-content: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ============================================
+           MOBILE-FIRST RESPONSIVE DESIGN
+           ============================================ */
+
+        /* BASE: Mobile (320px - 767px) */
+        section {
+            padding: 2.5rem 0;
+        }
+
+        .container {
+            padding: 0 1rem;
+        }
+
+        nav {
+            height: 60px;
+            padding: 0 1rem;
+        }
+
+        .nav-logo {
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            flex-direction: column;
+            background: rgba(12, 10, 8, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--accent-gold-alpha);
+            padding: 1rem 0;
+            list-style: none;
+            z-index: 999;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .nav-links li {
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid var(--accent-gold-alpha);
+        }
+
+        .nav-links a {
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+        }
+
+        .nav-right {
+            gap: 0.5rem;
+        }
+
+        .lang-toggle {
+            font-size: 0.7rem;
+            padding: 0.4rem 0.6rem;
+        }
+
+        h1 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+        h2 { font-size: clamp(1.25rem, 5vw, 2rem); margin-bottom: 1.5rem; }
+        h3 { font-size: clamp(1rem, 4vw, 1.5rem); }
+
+        .hero {
+            height: auto;
+            min-height: 90vh;
+            padding: 4rem 0;
+        }
+
+        .hero-content {
+            padding: 1rem;
+        }
+
+        .hero-line {
+            width: 60px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-cta {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .hero-stat-num {
+            font-size: 1.25rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .grid-4 {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .about-stats {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .service-card {
+            padding: 1.5rem;
+        }
+
+        .service-num {
+            font-size: 2rem;
+        }
+
+        .skills-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .project-image {
+            aspect-ratio: 1;
+            font-size: 3rem;
+        }
+
+        .gallery-content {
+            grid-template-columns: 1fr;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .gallery-main {
+            aspect-ratio: 4/3;
+            min-height: auto;
+        }
+
+        .gallery-sidebar {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .gallery-thumbnails {
+            flex-direction: row;
+            max-height: none;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .gallery-thumb {
+            flex-shrink: 0;
+            width: 70px;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-header {
+            padding: 1rem;
+        }
+
+        .gallery-title {
+            font-size: 1.25rem;
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            font-size: 1.75rem;
+        }
+
+        .contact-form {
+            gap: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.7rem 0.9rem;
+            font-size: 16px;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* TABLET: 768px and up */
+        @media (min-width: 768px) {
+            section {
+                padding: 4rem 0;
+            }
+
+            .container {
+                padding: 0 clamp(1.5rem, 5vw, 3rem);
+            }
+
+            nav {
+                height: 80px;
+                padding: 0 clamp(1.5rem, 5vw, 3rem);
+            }
+
+            .nav-logo {
+                font-size: 1.1rem;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex !important;
+                position: static;
+                top: auto;
+                left: auto;
+                right: auto;
+                flex-direction: row;
+                background: transparent;
+                backdrop-filter: none;
+                border-bottom: none;
+                padding: 0;
+                z-index: auto;
+            }
+
+            .nav-links li {
+                padding: 0;
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: inline;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
+            h2 { font-size: clamp(1.75rem, 6vw, 2.75rem); margin-bottom: 2rem; }
+            h3 { font-size: clamp(1.25rem, 5vw, 1.75rem); }
+
+            .hero {
+                height: 100vh;
+                padding: 0;
+            }
+
+            .hero-line {
+                width: 80px;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-tagline {
+                font-size: clamp(1.25rem, 3vw, 1.75rem);
+                margin-bottom: 2rem;
+            }
+
+            .hero-cta {
+                padding: 0.9rem 2rem;
+                font-size: 0.8rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+                gap: 2.5rem;
+            }
+
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .service-num {
+                font-size: 2.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+                gap: 1.25rem;
+            }
+
+            .skill-tag {
+                padding: 0.9rem;
+                font-size: 0.9rem;
+            }
+
+            .gallery-content {
+                grid-template-columns: 1fr 300px;
+                padding: 2rem;
+                gap: 2rem;
+            }
+
+            .gallery-main {
+                aspect-ratio: 4/3;
+                min-height: 400px;
+            }
+
+            .gallery-sidebar {
+                flex-direction: column;
+            }
+
+            .gallery-thumbnails {
+                max-height: 400px;
+                overflow-y: auto;
+                flex-direction: column;
+            }
+
+            .gallery-thumb {
+                width: 100%;
+            }
+
+            .team-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+                text-align: left;
+                gap: 2rem;
+            }
+
+            .footer-left {
+                text-align: left;
+            }
+
+            .footer-right {
+                text-align: right;
+            }
+        }
+
+        /* DESKTOP: 1024px and up */
+        @media (min-width: 1024px) {
+            section {
+                padding: 6rem 0;
+            }
+
+            .container {
+                padding: 0 clamp(2rem, 5vw, 4rem);
+            }
+
+            nav {
+                padding: 0 clamp(2rem, 5vw, 4rem);
+            }
+
+            h1 { font-size: clamp(3.5rem, 8vw, 5rem); }
+            h2 { font-size: clamp(2rem, 6.5vw, 3.5rem); }
+
+            .hero-stats {
+                gap: 3rem;
+            }
+
+            .grid-3 {
+                gap: 2rem;
+            }
+
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .service-card {
+                padding: 2.5rem;
+            }
+
+            .skills-grid {
+                gap: 1.5rem;
+            }
+
+            .project-card:hover {
+                transform: scale(1.02);
+            }
+
+            .gallery-content {
+                gap: 2.5rem;
+            }
+        }
+
+        /* LARGE DESKTOP: 1440px and up */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1400px;
+            }
+
+            .grid-3 {
+                gap: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-logo">SA — [YOUR NAME]</div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about" data-th="เกี่ยวกับ" data-en="About">About</a></li>
+            <li><a href="#services" data-th="บริการ" data-en="Services">Services</a></li>
+            <li><a href="#skills" data-th="ทักษะ" data-en="Skills">Skills</a></li>
+            <li><a href="#projects" data-th="โครงการ" data-en="Projects">Projects</a></li>
+            <li><a href="#team" data-th="ทีม" data-en="Team">Team</a></li>
+            <li><a href="#contact" data-th="ติดต่อ" data-en="Contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="lang-toggle active" id="langToggle">
+                <span class="lang-th">TH</span> / <span class="lang-en">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-line"></div>
+            <h1 data-th="[YOUR NAME]" data-en="[YOUR NAME]">[YOUR NAME]</h1>
+            <div class="hero-subtitle" data-th="Site Architect & Construction Consultant" data-en="Site Architect & Construction Consultant">Site Architect & Construction Consultant</div>
+            <p class="hero-tagline" data-th="&quot;ก่อสร้างความเป็นเลิศ ส่งมอบความเชื่อถือ&quot;" data-en="&quot;Building Excellence. Delivering Trust.&quot;">"Building Excellence. Delivering Trust."</p>
+            <button class="hero-cta" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" data-th="ดูโครงการ" data-en="View Projects">View Projects</button>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-num">10+</div>
+                    <div data-th="ปีประสบการณ์" data-en="Years Experience">Years Experience</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num">50+</div>
+                    <div data-th="โครงการสำเร็จ" data-en="Projects Completed">Projects Completed</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num">100+</div>
+                    <div data-th="ไคลเอนต์พอใจ" data-en="Satisfied Clients">Satisfied Clients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section-alt">
+        <div class="container">
+            <h2 data-th="เกี่ยวกับเรา" data-en="About Us">About Us</h2>
+            <div class="grid-2 fade-in">
+                <div class="about-image">📐</div>
+                <div class="about-text fade-in-stagger stagger-1">
+                    <h3 data-th="[YOUR FULL NAME]" data-en="[YOUR FULL NAME]">[YOUR FULL NAME]</h3>
+                    <p data-th="Site Architect & Construction Consultant" data-en="Site Architect & Construction Consultant">Site Architect & Construction Consultant</p>
+                    <p data-th="ประสบการณ์กว่า 10 ปีในด้านการออกแบบสถาปัตยกรรม การบริหารจัดการโครงการ และการให้คำปรึกษาด้านการก่อสร้าง ทำงานกับโครงการขนาดใหญ่ด้านสุขภาพ พาณิชย์ และรัฐบาล" data-en="With over 10 years of experience in architectural design, project management, and construction consulting. Worked on major healthcare, commercial, and government projects.">ประสบการณ์กว่า 10 ปีในด้านการออกแบบสถาปัตยกรรม การบริหารจัดการโครงการ และการให้คำปรึกษาด้านการก่อสร้าง</p>
+                    <p data-th="การศึกษา: มหาวิทยาลัย [UNIVERSITY NAME], คณะสถาปัตยกรรม | ใบอนุญาต: [LICENSE NO.]" data-en="Education: [UNIVERSITY NAME], Faculty of Architecture | License: [LICENSE NO.]">Education: [UNIVERSITY NAME], Faculty of Architecture</p>
+
+                    <div class="about-stats fade-in-stagger stagger-2">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label" data-th="โครงการสำเร็จ" data-en="Projects Completed">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10</div>
+                            <div class="stat-label" data-th="ปีประสบการณ์" data-en="Years Experience">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label" data-th="ไคลเอนต์พอใจ" data-en="Satisfied Clients">Satisfied Clients</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services">
+        <div class="container">
+            <h2 data-th="บริการของเรา" data-en="What We Do">What We Do</h2>
+            <div class="grid-3">
+                <div class="service-card fade-in-stagger stagger-1">
+                    <div class="service-num">01</div>
+                    <h4 data-th="ให้คำปรึกษาด้านการก่อสร้าง" data-en="Construction Consulting">Construction Consulting</h4>
+                    <p data-th="ให้คำปรึกษาด้านการก่อสร้างตั้งแต่ต้นจนจบโครงการ เพื่อให้การสร้างเป็นไปตามแผนและมีประสิทธิภาพสูงสุด" data-en="Expert guidance from project inception to completion ensuring efficiency and quality standards.">Expert guidance from project inception to completion.</p>
+                </div>
+                <div class="service-card fade-in-stagger stagger-2">
+                    <div class="service-num">02</div>
+                    <h4 data-th="บริหารจัดการหน้างาน" data-en="Site Management">Site Management</h4>
+                    <p data-th="บริหารจัดการหน้างานให้เป็นไปตามข้อกำหนดและกำหนดเวลาการก่อสร้าง เพื่อให้งานเสร็จตรงตามเวลา" data-en="Coordinate all on-site activities ensuring timelines and specifications are met.">Coordinate all on-site activities.</p>
+                </div>
+                <div class="service-card fade-in-stagger stagger-3">
+                    <div class="service-num">03</div>
+                    <h4 data-th="ตรวจสอบสถาปัตยกรรม" data-en="Architectural Review">Architectural Review</h4>
+                    <p data-th="ตรวจสอบแบบและ drawing ให้ถูกต้องตามมาตรฐานและข้อบัญญัติการก่อสร้าง" data-en="Thorough review of designs and drawings for compliance and accuracy.">Thorough review of designs for compliance.</p>
+                </div>
+                <div class="service-card fade-in-stagger stagger-4">
+                    <div class="service-num">04</div>
+                    <h4 data-th="ประมาณราคา" data-en="Cost Estimation">Cost Estimation</h4>
+                    <p data-th="ประมาณราคาค่าก่อสร้างและควบคุมงบประมาณให้อยู่ในขอบเขตที่กำหนด" data-en="Accurate budget estimation and cost control throughout the project.">Accurate budget estimation and control.</p>
+                </div>
+                <div class="service-card fade-in-stagger stagger-5">
+                    <div class="service-num">05</div>
+                    <h4 data-th="ประสานงาน" data-en="Project Coordination">Project Coordination</h4>
+                    <p data-th="ประสานงานระหว่าง Owner, Contractor, Consultant เพื่อให้การทำงานเป็นไปอย่างราบรื่น" data-en="Seamless coordination between all project stakeholders.">Seamless coordination between stakeholders.</p>
+                </div>
+                <div class="service-card fade-in-stagger stagger-6">
+                    <div class="service-num">06</div>
+                    <h4 data-th="ควบคุมคุณภาพ" data-en="Quality Control">Quality Control</h4>
+                    <p data-th="ตรวจสอบคุณภาพงานก่อสร้างให้ตรงตามมาตรฐานและข้อกำหนด" data-en="Rigorous quality checks ensuring all work meets standards.">Rigorous quality checks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="section-alt">
+        <div class="container">
+            <h2 data-th="ทักษะและความเชี่ยวชาญ" data-en="Skills & Expertise">Skills & Expertise</h2>
+
+            <h3 style="color: var(--accent-gold); margin: 2rem 0 1rem; font-size: 1.25rem;" data-th="ซอฟต์แวร์" data-en="Software">Software</h3>
+            <div class="skills-grid">
+                <div class="skill-tag fade-in-stagger stagger-1">
+                    <div>AutoCAD</div>
+                    <div class="skill-level" data-th="ผู้เชี่ยวชาญ" data-en="Expert">Expert</div>
+                </div>
+                <div class="skill-tag fade-in-stagger stagger-2">
+                    <div>Revit</div>
+                    <div class="skill-level" data-th="ผู้เชี่ยวชาญ" data-en="Expert">Expert</div>
+                </div>
+                <div class="skill-tag fade-in-stagger stagger-3">
+                    <div>SketchUp</div>
+                    <div class="skill-level" data-th="ผู้เชี่ยวชาญ" data-en="Expert">Expert</div>
+                </div>
+                <div class="skill-tag fade-in-stagger stagger-4">
+                    <div>ArchiCAD</div>
+                    <div class="skill-level" data-th="ขั้นสูง" data-en="Advanced">Advanced</div>
+                </div>
+                <div class="skill-tag fade-in-stagger stagger-5">
+                    <div>Adobe Suite</div>
+                    <div class="skill-level" data-th="ขั้นสูง" data-en="Advanced">Advanced</div>
+                </div>
+                <div class="skill-tag fade-in-stagger stagger-6">
+                    <div>Microsoft Project</div>
+                    <div class="skill-level" data-th="ขั้นสูง" data-en="Advanced">Advanced</div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--accent-gold); margin: 2rem 0 1rem; font-size: 1.25rem;" data-th="ความเชี่ยวชาญ" data-en="Expertise">Expertise</h3>
+            <div class="skills-grid">
+                <div class="skill-tag fade-in-stagger stagger-1">
+                    <div data-th="บริหารการก่อสร้าง" data-en="Construction Management">Construction Management</div>
+                </div>
+                <div class="skill-tag fade-in-stagger stagger-2">
+                    <div data-th="การตรวจสอบหน้างาน" data-en="Site Inspection">Site Inspection</div>
+                </div>
+                <div class="skill-tag fade-in-stagger stagger-3">
+                    <div data-th="บริหารสัญญา" data-en="Contract Administration">Contract Administration</div>
+                </div>
+                <div class="skill-tag fade-in-stagger stagger-4">
+                    <div data-th="ประสานโครงสร้าง" data-en="Structural Coordination">Structural Coordination</div>
+                </div>
+                <div class="skill-tag fade-in-stagger stagger-5">
+                    <div data-th="ประสาน MEP" data-en="MEP Coordination">MEP Coordination</div>
+                </div>
+                <div class="skill-tag fade-in-stagger stagger-6">
+                    <div data-th="การปฏิบัติตามกฎหมาย" data-en="Building Code Compliance">Building Code Compliance</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <div class="container">
+            <h2 data-th="ผลงานเลือกสรร" data-en="Selected Works">Selected Works</h2>
+            <div class="grid-4">
+                <div class="project-card fade-in-stagger stagger-1">
+                    <div class="project-image">🏥</div>
+                    <div class="project-info">
+                        <h4 class="project-name" data-th="โรงพยาบาลธีรพร" data-en="Thiraporn Hospital">Thiraporn Hospital</h4>
+                        <p class="project-type" data-th="สาธารณสุข" data-en="Healthcare">Healthcare</p>
+                        <span class="project-badge badge-completed" data-th="สำเร็จแล้ว" data-en="Completed">Completed</span>
+                        <button class="project-view-btn" onclick="openGallery(0)" data-th="ดูแกลเลอรี่" data-en="View Gallery">View Gallery</button>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-stagger stagger-2">
+                    <div class="project-image">🎭</div>
+                    <div class="project-info">
+                        <h4 class="project-name" data-th="ATLAS Superclub" data-en="ATLAS Superclub">ATLAS Superclub</h4>
+                        <p class="project-type" data-th="พาณิชย์ / บันเทิง" data-en="Entertainment / Hospitality">Entertainment</p>
+                        <span class="project-badge badge-completed" data-th="สำเร็จแล้ว" data-en="Completed">Completed</span>
+                        <button class="project-view-btn" onclick="openGallery(1)" data-th="ดูแกลเลอรี่" data-en="View Gallery">View Gallery</button>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-stagger stagger-3">
+                    <div class="project-image">🏢</div>
+                    <div class="project-info">
+                        <h4 class="project-name" data-th="The Quarter Ekkamai" data-en="The Quarter Ekkamai">The Quarter Ekkamai</h4>
+                        <p class="project-type" data-th="พาณิชย์ผสม" data-en="Mixed-Use Commercial">Mixed-Use</p>
+                        <span class="project-badge badge-progress" data-th="ในการดำเนิน" data-en="In Progress">In Progress</span>
+                        <button class="project-view-btn" onclick="openGallery(2)" data-th="ดูแกลเลอรี่" data-en="View Gallery">View Gallery</button>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-stagger stagger-4">
+                    <div class="project-image">🏛️</div>
+                    <div class="project-info">
+                        <h4 class="project-name" data-th="สำนักงานตรวจเงิน" data-en="NACC Office">NACC Office</h4>
+                        <p class="project-type" data-th="รัฐบาล" data-en="Government">Government</p>
+                        <span class="project-badge badge-past" data-th="ผ่านมาแล้ว" data-en="Past Project">Past Project</span>
+                        <button class="project-view-btn" onclick="openGallery(3)" data-th="ดูแกลเลอรี่" data-en="View Gallery">View Gallery</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY MODAL -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-header">
+            <h3 class="gallery-title" id="galleryTitle">Project Gallery</h3>
+            <button class="gallery-close" onclick="closeGallery()">✕</button>
+        </div>
+        <div class="gallery-content">
+            <div class="gallery-main" id="galleryMain">
+                <img class="gallery-image" id="galleryImage" src="" alt="">
+                <div class="gallery-nav">
+                    <button class="gallery-nav-btn" onclick="prevGalleryImage()">←</button>
+                    <span id="imageCounter" style="color: var(--text-muted);">1 / 5</span>
+                    <button class="gallery-nav-btn" onclick="nextGalleryImage()">→</button>
+                </div>
+            </div>
+            <div class="gallery-sidebar">
+                <div class="gallery-info">
+                    <h3 id="galleryProjName">Project Name</h3>
+                    <p><strong data-th="ประเภท" data-en="Type">Type:</strong> <span id="galleryProjType">-</span></p>
+                    <p><strong data-th="สถานะ" data-en="Status">Status:</strong> <span id="galleryProjStatus">-</span></p>
+                    <p><strong data-th="บทบาท" data-en="Role">Role:</strong> <span id="galleryProjRole">-</span></p>
+                    <hr style="border: none; border-top: 1px solid var(--accent-gold-alpha); margin: 1rem 0;">
+                    <p id="galleryProjDesc" style="font-size: 0.9rem; color: var(--text-muted);">-</p>
+                </div>
+                <div class="gallery-thumbnails" id="galleryThumbnails">
+                    <!-- Thumbnails populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEAM SECTION -->
+    <section id="team" class="section-alt">
+        <div class="container">
+            <h2 data-th="ทีมของเรา" data-en="Our Team">Our Team</h2>
+            <div class="grid-3">
+                <div class="team-card fade-in-stagger stagger-1">
+                    <div class="team-avatar">SA</div>
+                    <h4 data-th="[YOUR NAME]" data-en="[YOUR NAME]">[YOUR NAME]</h4>
+                    <p class="team-position" data-th="Site Architect / Lead Consultant" data-en="Site Architect / Lead Consultant">Site Architect</p>
+                    <p class="team-company" data-th="[COMPANY NAME]" data-en="[COMPANY NAME]">[COMPANY NAME]</p>
+                </div>
+                <div class="team-card fade-in-stagger stagger-2">
+                    <div class="team-avatar">TM</div>
+                    <h4 data-th="[TEAM MEMBER 2]" data-en="[TEAM MEMBER 2]">[TEAM MEMBER 2]</h4>
+                    <p class="team-position" data-th="[POSITION]" data-en="[POSITION]">Senior Architect</p>
+                    <p class="team-company" data-th="[COMPANY NAME]" data-en="[COMPANY NAME]">[COMPANY NAME]</p>
+                </div>
+                <div class="team-card fade-in-stagger stagger-3">
+                    <div class="team-avatar">TC</div>
+                    <h4 data-th="[TEAM MEMBER 3]" data-en="[TEAM MEMBER 3]">[TEAM MEMBER 3]</h4>
+                    <p class="team-position" data-th="[POSITION]" data-en="[POSITION]">Engineer</p>
+                    <p class="team-company" data-th="[COMPANY NAME]" data-en="[COMPANY NAME]">[COMPANY NAME]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="container">
+            <h2 data-th="ติดต่อเรา" data-en="Get In Touch">Get In Touch</h2>
+            <div class="grid-2 fade-in">
+                <div class="fade-in-stagger stagger-1">
+                    <div class="contact-info-item">
+                        <span class="contact-label" data-th="อีเมล" data-en="Email">Email</span>
+                        <a href="mailto:contact@[yourdomain].com" class="contact-value">contact@[yourdomain].com</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="contact-label" data-th="โทรศัพท์" data-en="Phone">Phone</span>
+                        <a href="tel:+66" class="contact-value">+66 (XX) XXX XXXX</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="contact-label" data-th="Line ID" data-en="Line ID">Line ID</span>
+                        <a href="https://line.me/ti/p/@[yourline]" class="contact-value">@[yourline]</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="contact-label" data-th="บริษัท" data-en="Company">Company</span>
+                        <p class="contact-value" data-th="[COMPANY NAME]" data-en="[COMPANY NAME]">[COMPANY NAME]</p>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="contact-label" data-th="สถานที่" data-en="Location">Location</span>
+                        <p class="contact-value" data-th="กรุงเทพมหานคร ประเทศไทย" data-en="Bangkok, Thailand">Bangkok, Thailand</p>
+                    </div>
+                </div>
+
+                <form class="contact-form fade-in-stagger stagger-2" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name" data-th="ชื่อ" data-en="Name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-th="อีเมล" data-en="Email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-th="ข้อความ" data-en="Message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit" data-th="ส่งข้อความ" data-en="Send Message">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="nav-logo">SA — [YOUR NAME]</div>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="#about" data-th="เกี่ยวกับ" data-en="About">About</a></li>
+                    <li><a href="#services" data-th="บริการ" data-en="Services">Services</a></li>
+                    <li><a href="#projects" data-th="โครงการ" data-en="Projects">Projects</a></li>
+                    <li><a href="#contact" data-th="ติดต่อ" data-en="Contact">Contact</a></li>
+                </ul>
+                <div class="footer-right">
+                    <p class="footer-text">© 2025 <span data-th="[YOUR NAME]" data-en="[YOUR NAME]">[YOUR NAME]</span>. <span data-th="สงวนสิทธิ์ทั้งหมด" data-en="All rights reserved">All rights reserved</span>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // CUSTOM CURSOR
+        // ============================================
+        const cursor = document.querySelector('.cursor');
+        const cursorRing = document.querySelector('.cursor-ring');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 4 + 'px';
+            cursor.style.top = e.clientY - 4 + 'px';
+            cursorRing.style.left = e.clientX - 15 + 'px';
+            cursorRing.style.top = e.clientY - 15 + 'px';
+        });
+
+        // ============================================
+        // PARALLAX HERO
+        // ============================================
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.scrollY;
+            hero.style.setProperty('--parallax-offset', scrolled * 0.3 + 'px');
+        });
+
+        // ============================================
+        // NAV SCROLL EFFECT
+        // ============================================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ============================================
+        // INTERSECTION OBSERVER FOR FADE-IN
+        // ============================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-in-stagger').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ============================================
+        // MOBILE MENU TOGGLE
+        // ============================================
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu on scroll
+        window.addEventListener('scroll', () => {
+            navLinks.classList.remove('active');
+        });
+
+        // ============================================
+        // BILINGUAL TOGGLE
+        // ============================================
+        let currentLang = localStorage.getItem('language') || 'th';
+
+        const langToggle = document.getElementById('langToggle');
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'th' ? 'en' : 'th';
+            localStorage.setItem('language', currentLang);
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            document.documentElement.lang = currentLang;
+
+            document.querySelectorAll('[data-th][data-en]').forEach(el => {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-${currentLang}`);
+                } else {
+                    el.textContent = el.getAttribute(`data-${currentLang}`);
+                }
+            });
+
+            // Update lang toggle button
+            if (currentLang === 'th') {
+                langToggle.classList.add('active');
+            } else {
+                langToggle.classList.remove('active');
+            }
+        }
+
+        // Initialize language on load
+        updateLanguage();
+
+        // ============================================
+        // PROJECTS DATA
+        // ============================================
+        const projects = [
+            {
+                name: 'Thiraporn Hospital',
+                nameThai: 'โรงพยาบาลธีรพร',
+                type: 'Healthcare',
+                typeThai: 'สาธารณสุข',
+                status: 'Completed',
+                statusThai: 'สำเร็จแล้ว',
+                role: 'Site Architect',
+                roleThai: 'สถาปนิกหน้างาน',
+                desc: 'Modern healthcare facility with advanced construction management and quality assurance.',
+                descThai: 'สถานพยาบาลสมัยใหม่ด้วยการบริหารจัดการการก่อสร้างและการประกันคุณภาพขั้นสูง',
+                images: [
+                    'linear-gradient(135deg, #2a2218 0%, #1e1a16 100%)',
+                    'linear-gradient(135deg, #1e1a16 0%, #2a2218 100%)',
+                    'linear-gradient(135deg, #34281f 0%, #1e1a16 100%)',
+                    'linear-gradient(135deg, #2a2218 0%, #34281f 100%)',
+                    'linear-gradient(135deg, #1e1a16 0%, #3a2f26 100%)'
+                ]
+            },
+            {
+                name: 'ATLAS Superclub',
+                nameThai: 'ATLAS Superclub',
+                type: 'Entertainment / Hospitality',
+                typeThai: 'พาณิชย์ / บันเทิง',
+                status: 'Completed',
+                statusThai: 'สำเร็จแล้ว',
+                role: 'Construction Consultant',
+                roleThai: 'ที่ปรึกษาการก่อสร้าง',
+                desc: 'Premium entertainment venue combining luxury design with complex site coordination.',
+                descThai: 'สถานบันเทิงระดับพรีเมี่ยมรวมการออกแบบระดับหรู่กับการประสานงานหน้างานที่ซับซ้อน',
+                images: [
+                    'linear-gradient(135deg, #3a2f26 0%, #2a2218 100%)',
+                    'linear-gradient(135deg, #1e1a16 0%, #34281f 100%)',
+                    'linear-gradient(135deg, #2a2218 0%, #1e1a16 100%)',
+                    'linear-gradient(135deg, #34281f 0%, #2a2218 100%)',
+                    'linear-gradient(135deg, #1e1a16 0%, #2a2218 100%)'
+                ]
+            },
+            {
+                name: 'The Quarter Ekkamai',
+                nameThai: 'The Quarter Ekkamai',
+                type: 'Mixed-Use Commercial',
+                typeThai: 'พาณิชย์ผสม',
+                status: 'In Progress',
+                statusThai: 'ในการดำเนิน',
+                role: 'Site Architect',
+                roleThai: 'สถาปนิกหน้างาน',
+                desc: 'Large-scale mixed-use development featuring residential and retail spaces.',
+                descThai: 'โครงการพัฒนาผสมขนาดใหญ่ที่มีช่องพักอาศัยและพื้นที่ค้าปลีก',
+                images: [
+                    'linear-gradient(135deg, #2a2218 0%, #3a2f26 100%)',
+                    'linear-gradient(135deg, #34281f 0%, #1e1a16 100%)',
+                    'linear-gradient(135deg, #1e1a16 0%, #2a2218 100%)',
+                    'linear-gradient(135deg, #3a2f26 0%, #34281f 100%)',
+                    'linear-gradient(135deg, #2a2218 0%, #1e1a16 100%)'
+                ]
+            },
+            {
+                name: 'NACC Office',
+                nameThai: 'สำนักงานตรวจเงินแผ่นดิน',
+                type: 'Government',
+                typeThai: 'รัฐบาล',
+                status: 'Past Project',
+                statusThai: 'ผ่านมาแล้ว',
+                role: 'Site Architect',
+                roleThai: 'สถาปนิกหน้างาน',
+                desc: 'Government building project with stringent compliance and security requirements.',
+                descThai: 'โครงการอาคารรัฐบาลพร้อมข้อกำหนดการปฏิบัติตามกฎหมายและความปลอดภัยที่เข้มงวด',
+                images: [
+                    'linear-gradient(135deg, #1e1a16 0%, #2a2218 100%)',
+                    'linear-gradient(135deg, #34281f 0%, #3a2f26 100%)',
+                    'linear-gradient(135deg, #2a2218 0%, #1e1a16 100%)',
+                    'linear-gradient(135deg, #3a2f26 0%, #2a2218 100%)',
+                    'linear-gradient(135deg, #1e1a16 0%, #34281f 100%)'
+                ]
+            }
+        ];
+
+        let currentProjectIndex = 0;
+        let currentImageIndex = 0;
+
+        function openGallery(projectIndex) {
+            currentProjectIndex = projectIndex;
+            currentImageIndex = 0;
+            const modal = document.getElementById('galleryModal');
+            const proj = projects[projectIndex];
+
+            // Update header
+            document.getElementById('galleryTitle').textContent = currentLang === 'th' ? proj.nameThai : proj.name;
+
+            // Update main image
+            const imgEl = document.getElementById('galleryImage');
+            imgEl.style.background = proj.images[0];
+            imgEl.style.backgroundSize = 'cover';
+
+            // Update info
+            document.getElementById('galleryProjName').textContent = currentLang === 'th' ? proj.nameThai : proj.name;
+            document.getElementById('galleryProjType').textContent = currentLang === 'th' ? proj.typeThai : proj.type;
+            document.getElementById('galleryProjStatus').textContent = currentLang === 'th' ? proj.statusThai : proj.status;
+            document.getElementById('galleryProjRole').textContent = currentLang === 'th' ? proj.roleThai : proj.role;
+            document.getElementById('galleryProjDesc').textContent = currentLang === 'th' ? proj.descThai : proj.desc;
+
+            // Update thumbnails
+            const thumbContainer = document.getElementById('galleryThumbnails');
+            thumbContainer.innerHTML = '';
+            proj.images.forEach((img, idx) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
+                thumb.style.background = img;
+                thumb.style.backgroundSize = 'cover';
+                thumb.onclick = () => selectGalleryImage(idx);
+                thumbContainer.appendChild(thumb);
+            });
+
+            updateImageCounter();
+            modal.classList.add('active');
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').classList.remove('active');
+        }
+
+        function nextGalleryImage() {
+            const proj = projects[currentProjectIndex];
+            currentImageIndex = (currentImageIndex + 1) % proj.images.length;
+            updateGalleryDisplay();
+        }
+
+        function prevGalleryImage() {
+            const proj = projects[currentProjectIndex];
+            currentImageIndex = (currentImageIndex - 1 + proj.images.length) % proj.images.length;
+            updateGalleryDisplay();
+        }
+
+        function selectGalleryImage(idx) {
+            currentImageIndex = idx;
+            updateGalleryDisplay();
+        }
+
+        function updateGalleryDisplay() {
+            const proj = projects[currentProjectIndex];
+            const img = document.getElementById('galleryImage');
+            img.style.background = proj.images[currentImageIndex];
+            img.style.backgroundSize = 'cover';
+
+            // Update active thumbnail
+            document.querySelectorAll('.gallery-thumb').forEach((thumb, idx) => {
+                if (idx === currentImageIndex) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+
+            updateImageCounter();
+        }
+
+        function updateImageCounter() {
+            const proj = projects[currentProjectIndex];
+            document.getElementById('imageCounter').textContent = (currentImageIndex + 1) + ' / ' + proj.images.length;
+        }
+
+        // Close gallery on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeGallery();
+            }
+        });
+
+        // Gallery arrow keys
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('galleryModal').classList.contains('active')) {
+                if (e.key === 'ArrowRight') nextGalleryImage();
+                if (e.key === 'ArrowLeft') prevGalleryImage();
+            }
+        });
+
+        // ============================================
+        // FORM SUBMISSION
+        // ============================================
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Mock submission
+            alert(currentLang === 'th' ? 'ขอบคุณสำหรับข้อความของคุณ!' : 'Thank you for your message!');
+            event.target.reset();
+        }
+
+        // ============================================
+        // SMOOTH SCROLL LINKS
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

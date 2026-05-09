@@ -1038,9 +1038,10 @@
                         <p style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 0.5rem;"><strong>Role:</strong> Contractor</p>
                         <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Status:</strong> Completed | April 2025</p>
                     </div>
-                    <div class="pillar-card fade-in-stagger stagger-3" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                    <div class="pillar-card fade-in-stagger stagger-3" onclick="openTrpGallery()" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
                         <div style="position: relative; width: 100%; margin-bottom: 1rem; border-radius: 0.5rem; aspect-ratio: 16/10; overflow: hidden;">
                             <img src="img/proj/trp/trphero.jpg" alt="Teeraporn Clinic Bangkok" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" />
+                            <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(184, 146, 61, 0.5); color: white; padding: 0.35rem 0.6rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px);">Click to expand →</div>
                         </div>
                         <h4 style="margin-bottom: 0.75rem;">Teeraporn Clinic Bangkok</h4>
                         <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">6-Storey Medical Building</p>
@@ -1077,6 +1078,33 @@
             </div>
         </div>
     </section>
+
+    <!-- TEERAPORN CLINIC GALLERY MODAL -->
+    <div id="trpModal" role="dialog" aria-modal="true" aria-labelledby="trpGalleryImg" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
+            <!-- Close Button -->
+            <button onclick="closeTrpGallery()" aria-label="Close gallery" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+
+            <!-- Image Container with Animation -->
+            <div id="trpImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+                <img id="trpGalleryImg" src="" alt="Teeraporn Gallery" style="width: 100%; height: 100%; object-fit: cover; animation: slideIn 0.6s ease-out;" />
+            </div>
+
+            <!-- Navigation Controls -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
+                <button onclick="trpGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+                <span id="trpImageCounter">1 / 16</span>
+                <button onclick="trpGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
+                <div id="trpThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0.5rem 0; max-height: 100px;">
+                    <!-- Thumbnails will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- TEAM SECTION -->
     <section id="team" class="section-alt">
@@ -1683,6 +1711,98 @@
         // Close modal on background click
         document.getElementById('obkModal')?.addEventListener('click', function(e) {
             if (e.target === this) closeObkGallery();
+        });
+
+        // TEERAPORN GALLERY
+        const trpImages = [
+            'img/proj/trp/trphero.jpg',
+            'img/proj/trp/117142_0.jpg',
+            'img/proj/trp/117151_0.jpg',
+            'img/proj/trp/117156_0.jpg',
+            'img/proj/trp/117194_0.jpg',
+            'img/proj/trp/117196_0.jpg',
+            'img/proj/trp/17982_0.jpg',
+            'img/proj/trp/27_0.jpg',
+            'img/proj/trp/643411.jpg',
+            'img/proj/trp/643412.jpg',
+            'img/proj/trp/646762_0.jpg',
+            'img/proj/trp/647550_0.jpg',
+            'img/proj/trp/647552_0.jpg',
+            'img/proj/trp/S__17539212_0.jpg',
+            'img/proj/trp/S__67215380_0.jpg',
+            'img/proj/trp/S__67215383_0.jpg'
+        ];
+        let trpCurrentIndex = 0;
+
+        function openTrpGallery() {
+            document.getElementById('trpModal').style.display = 'flex';
+            trpCurrentIndex = 0;
+            loadTrpThumbnails();
+            updateTrpImage();
+            document.addEventListener('keydown', handleTrpKeyboard);
+        }
+
+        function closeTrpGallery() {
+            document.getElementById('trpModal').style.display = 'none';
+            trpCurrentIndex = 0;
+            document.removeEventListener('keydown', handleTrpKeyboard);
+        }
+
+        function loadTrpThumbnails() {
+            const container = document.getElementById('trpThumbnailsContainer');
+            container.innerHTML = '';
+            trpImages.forEach((src, idx) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.className = 'trp-thumbnail';
+                img.setAttribute('data-gallery', 'trp');
+                img.style.cursor = 'pointer';
+                img.onclick = (e) => {
+                    e.stopPropagation();
+                    trpCurrentIndex = idx;
+                    updateTrpImage();
+                };
+                if (idx === 0) img.classList.add('active');
+                container.appendChild(img);
+            });
+        }
+
+        function trpGalleryNext() {
+            trpCurrentIndex = (trpCurrentIndex + 1) % trpImages.length;
+            updateTrpImage();
+        }
+
+        function trpGalleryPrev() {
+            trpCurrentIndex = (trpCurrentIndex - 1 + trpImages.length) % trpImages.length;
+            updateTrpImage();
+        }
+
+        function updateTrpImage() {
+            const img = document.getElementById('trpGalleryImg');
+            const counter = document.getElementById('trpImageCounter');
+            img.src = trpImages[trpCurrentIndex];
+            counter.textContent = (trpCurrentIndex + 1) + ' / ' + trpImages.length;
+
+            // Update active thumbnail
+            document.querySelectorAll('.trp-thumbnail[data-gallery="trp"]').forEach((thumb, idx) => {
+                if (idx === trpCurrentIndex) {
+                    thumb.classList.add('active');
+                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        function handleTrpKeyboard(e) {
+            if (e.key === 'ArrowRight') trpGalleryNext();
+            if (e.key === 'ArrowLeft') trpGalleryPrev();
+            if (e.key === 'Escape') closeTrpGallery();
+        }
+
+        // Close modal on background click
+        document.getElementById('trpModal')?.addEventListener('click', function(e) {
+            if (e.target === this) closeTrpGallery();
         });
     </script>
 </body>

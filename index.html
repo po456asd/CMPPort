@@ -978,9 +978,9 @@
             <div style="margin-bottom: 4rem;">
                 <h3 style="color: var(--accent-gold); margin-bottom: 2rem; font-size: 1.5rem;">Mega-Projects</h3>
                 <div class="grid-3">
-                    <div class="pillar-card fade-in-stagger stagger-1" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                    <div class="pillar-card fade-in-stagger stagger-1" onclick="openObkGallery()" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
                         <div style="position: relative; width: 100%; margin-bottom: 1rem;">
-                            <img src="../../../img/proj/OBK/rs=w_365,h_274,cg_true%20(1).jpg" alt="The One Bangkok" style="width: 100%; height: auto; border-radius: 0.5rem; object-fit: cover; aspect-ratio: 16/10; display: block;" />
+                            <img src="../../../img/proj/OBK/rs=w_365,h_274,cg_true-1.jpg" alt="The One Bangkok" style="width: 100%; height: auto; border-radius: 0.5rem; object-fit: cover; aspect-ratio: 16/10; display: block;" />
                             <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(184, 146, 61, 0.5); color: white; padding: 0.35rem 0.6rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px);">Click to expand →</div>
                         </div>
                         <h4 style="margin-bottom: 0.75rem;">The One Bangkok</h4>
@@ -1203,7 +1203,7 @@
 
             <!-- Thumbnails Strip -->
             <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
-                <div id="atlasThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; flex: 1; padding: 0.5rem 0;">
+                <div id="atlasThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0.5rem 0; max-height: 100px;">
                     <!-- Thumbnails will be inserted here -->
                 </div>
             </div>
@@ -1249,6 +1249,35 @@
                 height: 100%;
                 object-fit: cover;
             }
+
+            .obk-thumbnail {
+                width: 80px;
+                height: 60px;
+                flex-shrink: 0;
+                cursor: pointer;
+                border: 2px solid transparent;
+                border-radius: 4px;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                opacity: 0.6;
+            }
+
+            .obk-thumbnail:hover {
+                opacity: 0.8;
+                border-color: var(--accent-gold);
+            }
+
+            .obk-thumbnail.active {
+                opacity: 1;
+                border-color: var(--accent-gold);
+                box-shadow: 0 0 12px rgba(184, 146, 61, 0.5);
+            }
+
+            .obk-thumbnail img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         </style>
     </div>
 
@@ -1272,7 +1301,34 @@
 
             <!-- Thumbnails Strip -->
             <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
-                <div id="quarterThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; flex: 1; padding: 0.5rem 0;">
+                <div id="quarterThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0.5rem 0; max-height: 100px;">
+                    <!-- Thumbnails will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ONE BANGKOK GALLERY MODAL -->
+    <div id="obkModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
+            <!-- Close Button -->
+            <button onclick="closeObkGallery()" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+
+            <!-- Image Container with Animation -->
+            <div id="obkImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+                <img id="obkGalleryImg" src="" alt="One Bangkok Gallery" style="max-width: 100%; max-height: 100%; object-fit: contain; animation: slideIn 0.6s ease-out;" />
+            </div>
+
+            <!-- Navigation Controls -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
+                <button onclick="obkGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+                <span id="obkImageCounter">1 / 21</span>
+                <button onclick="obkGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; overflow-y: hidden; padding-bottom: 0.5rem; align-items: center; max-height: 120px;">
+                <div id="obkThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0.5rem 0; max-height: 100px;">
                     <!-- Thumbnails will be inserted here -->
                 </div>
             </div>
@@ -1651,6 +1707,106 @@
         // Close modal on background click
         document.getElementById('quarterModal')?.addEventListener('click', function(e) {
             if (e.target === this) closeQuarterGallery();
+        });
+
+        // ============================================
+        // ONE BANGKOK GALLERY
+        // ============================================
+        const obkImages = [
+            './img/proj/OBK/rs=w_365,h_274,cg_true-1.jpg',
+            './img/proj/OBK/1877192.jpg',
+            './img/proj/OBK/41236.jpg',
+            './img/proj/OBK/425973.jpg',
+            './img/proj/OBK/64676.jpg',
+            './img/proj/OBK/64678.jpg',
+            './img/proj/OBK/L2M 471598.jpg',
+            './img/proj/OBK/S__290668553.jpg',
+            './img/proj/OBK/S__51519499.jpg',
+            './img/proj/OBK/S__51519501.jpg',
+            './img/proj/OBK/S__51519521.jpg',
+            './img/proj/OBK/S__51519523.jpg',
+            './img/proj/OBK/S__51519524.jpg',
+            './img/proj/OBK/S__51519525.jpg',
+            './img/proj/OBK/S__51519526.jpg',
+            './img/proj/OBK/S__51519531.jpg',
+            './img/proj/OBK/S__51519534.jpg',
+            './img/proj/OBK/S__51519538.jpg',
+            './img/proj/OBK/S__51519543.jpg',
+            './img/proj/OBK/S__51519551.jpg',
+            './img/proj/OBK/S__51961899.jpg'
+        ];
+        let obkCurrentIndex = 0;
+
+        function openObkGallery() {
+            const modal = document.getElementById('obkModal');
+            modal.style.display = 'flex';
+            generateObkThumbnails();
+            updateObkImage();
+            document.addEventListener('keydown', handleObkKeyboard);
+        }
+
+        function closeObkGallery() {
+            const modal = document.getElementById('obkModal');
+            modal.style.display = 'none';
+            document.removeEventListener('keydown', handleObkKeyboard);
+        }
+
+        function generateObkThumbnails() {
+            const container = document.getElementById('obkThumbnailsContainer');
+            container.innerHTML = '';
+            obkImages.forEach((img, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'obk-thumbnail' + (index === obkCurrentIndex ? ' active' : '');
+                thumb.onclick = () => jumpToObkImage(index);
+                const imgEl = document.createElement('img');
+                imgEl.src = img;
+                imgEl.alt = `Thumbnail ${index + 1}`;
+                thumb.appendChild(imgEl);
+                container.appendChild(thumb);
+            });
+        }
+
+        function jumpToObkImage(index) {
+            obkCurrentIndex = index;
+            updateObkImage();
+        }
+
+        function obkGalleryNext() {
+            obkCurrentIndex = (obkCurrentIndex + 1) % obkImages.length;
+            updateObkImage();
+        }
+
+        function obkGalleryPrev() {
+            obkCurrentIndex = (obkCurrentIndex - 1 + obkImages.length) % obkImages.length;
+            updateObkImage();
+        }
+
+        function updateObkImage() {
+            const img = document.getElementById('obkGalleryImg');
+            const counter = document.getElementById('obkImageCounter');
+            img.src = obkImages[obkCurrentIndex];
+            counter.textContent = (obkCurrentIndex + 1) + ' / ' + obkImages.length;
+
+            // Update active thumbnail
+            document.querySelectorAll('.obk-thumbnail').forEach((thumb, idx) => {
+                if (idx === obkCurrentIndex) {
+                    thumb.classList.add('active');
+                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        function handleObkKeyboard(e) {
+            if (e.key === 'ArrowRight') obkGalleryNext();
+            if (e.key === 'ArrowLeft') obkGalleryPrev();
+            if (e.key === 'Escape') closeObkGallery();
+        }
+
+        // Close modal on background click
+        document.getElementById('obkModal')?.addEventListener('click', function(e) {
+            if (e.target === this) closeObkGallery();
         });
     </script>
 </body>

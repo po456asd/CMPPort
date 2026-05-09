@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1778314662179,
+  "projectRoot": "C:\\Users\\White\\OneDrive\\AHK\\CMPPort\\.claude\\worktrees\\cool-johnson-c3cfa7",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": {
+      "defaultBranch": "master",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {},
+  "hotPaths": [
+    {
+      "path": "index.html",
+      "accessCount": 181,
+      "lastAccessed": 1778326902629,
+      "type": "file"
+    },
+    {
+      "path": ".claude\\launch.json",
+      "accessCount": 3,
+      "lastAccessed": 1778326288733,
+      "type": "file"
+    },
+    {
+      "path": ".",
+      "accessCount": 1,
+      "lastAccessed": 1778314667416,
+      "type": "directory"
+    },
+    {
+      "path": "rawdata.md",
+      "accessCount": 1,
+      "lastAccessed": 1778314674039,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 1,
+      "lastAccessed": 1778315645448,
+      "type": "directory"
+    }
+  ],
+  "userDirectives": []
+}

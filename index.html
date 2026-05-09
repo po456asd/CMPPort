@@ -1,33 +1,41 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-th="Site Architect Portfolio" data-en="Site Architect Portfolio">[YOUR NAME] - Site Architect & Construction Consultant</title>
-    <meta name="description" content="Portfolio of [YOUR NAME], Site Architect and Construction Consultant specializing in architectural design and project management.">
+    <title>CMP Management Asia — Construction Management & Project Solutions</title>
+    <meta name="description" content="CMP Management Asia: Systematic partner for developers requiring certainty in complex construction projects. Project management, construction oversight, cost control, and project audit.">
 
     <!-- Google Fonts Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Google Translate -->
+    <script async src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <style>
         /* ============================================
            ROOT & COLOR SYSTEM
            ============================================ */
         :root {
-            --bg-primary: #0c0a08;
-            --bg-card: #161210;
-            --bg-hover: #1e1a16;
-            --accent-gold: #c9a96e;
-            --accent-gold-alpha: #c9a96e22;
-            --text-primary: #e8dcc8;
-            --text-muted: #7a7269;
-            --text-dark: #3a3a3a;
+            --bg-primary: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --bg-hover: #252525;
+            --accent-gold: #b8923d;
+            --accent-gold-alpha: #b8923d22;
+            --text-primary: #f5f5f0;
+            --text-muted: #a0a0a0;
+            --text-dark: #0a0a0a;
             --border-gold: 1px solid var(--accent-gold-alpha);
 
-            --ff-display: 'Cormorant Garamond', serif;
-            --ff-body: 'Jost', sans-serif;
+            --ff-display: 'Kanit', sans-serif;
+            --ff-body: 'Kanit', sans-serif;
+
+            /* Phase colors */
+            --phase-i: #1a3a5c;
+            --phase-ii: #b8923d;
+            --phase-iii: #4a7c59;
         }
 
         /* ============================================
@@ -56,7 +64,6 @@
             scroll-margin-top: 80px;
         }
 
-        /* Typography */
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--ff-display);
             font-weight: 400;
@@ -64,8 +71,8 @@
             letter-spacing: -0.01em;
         }
 
-        h1 { font-size: clamp(2rem, 8vw, 5rem); font-weight: 300; }
-        h2 { font-size: clamp(1.75rem, 6vw, 3.5rem); font-weight: 300; margin-bottom: 2rem; }
+        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 300; }
+        h2 { font-size: clamp(1.75rem, 6vw, 3rem); font-weight: 300; margin-bottom: 2rem; }
         h3 { font-size: clamp(1.25rem, 4vw, 1.75rem); font-weight: 400; }
         h4 { font-size: 1.125rem; font-weight: 400; }
 
@@ -139,17 +146,31 @@
         }
 
         nav.scrolled {
-            background: rgba(12, 10, 8, 0.8);
+            background: rgba(10, 10, 10, 0.9);
             backdrop-filter: blur(10px);
             border-bottom-color: var(--accent-gold-alpha);
         }
 
         .nav-logo {
             font-family: var(--ff-display);
-            font-size: 1.25rem;
+            font-size: 0.85rem;
             font-weight: 400;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            max-width: 280px;
+            white-space: nowrap;
+        }
+
+        .nav-logo img {
+            height: 35px;
+            width: auto;
+            object-fit: contain;
+            background: #ffffff;
+            padding: 4px 8px;
+            border-radius: 4px;
         }
 
         .nav-links {
@@ -197,26 +218,23 @@
             gap: 1.5rem;
         }
 
-        .lang-toggle {
+        #google_translate_element {
+            display: flex;
+            align-items: center;
+        }
+
+        #google_translate_element select {
             background: transparent;
-            color: var(--text-primary);
-            font-size: 0.85rem;
-            font-weight: 300;
-            letter-spacing: 0.05em;
+            color: #ffffff;
             border: 1px solid var(--accent-gold-alpha);
-            padding: 0.5rem 1rem;
-            border-radius: 2px;
-            transition: all 0.3s ease;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+            cursor: pointer;
         }
 
-        .lang-toggle:hover {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-        }
-
-        .lang-toggle.active {
-            background-color: var(--accent-gold);
-            color: var(--text-dark);
+        #google_translate_element select option {
+            background: #fff;
+            color: #000000;
         }
 
         @media (max-width: 768px) {
@@ -236,6 +254,14 @@
             }
             .nav-logo {
                 font-size: 1rem;
+                order: 2;
+            }
+            .mobile-menu-btn {
+                order: 1;
+                margin-right: auto;
+            }
+            .nav-right {
+                order: 3;
             }
         }
 
@@ -249,13 +275,20 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(22, 18, 16, 0.3), rgba(30, 26, 22, 0.3)), repeating-linear-gradient(0deg, rgba(201, 169, 110, 0.03) 0px, rgba(201, 169, 110, 0.03) 1px, transparent 1px, transparent 80px), repeating-linear-gradient(90deg, rgba(201, 169, 110, 0.03) 0px, rgba(201, 169, 110, 0.03) 1px, transparent 1px, transparent 80px);
+            background-image:
+                linear-gradient(135deg, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.7)),
+                url('../../../img/etc/rs=w_1279,m.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .hero-content {
             text-align: center;
             z-index: 2;
             transform: translateY(var(--parallax-offset, 0px));
+            max-width: 900px;
+            padding: 0 2rem;
         }
 
         .hero-line {
@@ -267,35 +300,24 @@
         }
 
         @keyframes revealLine {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100px;
-            }
+            from { width: 0; }
+            to { width: 100px; }
         }
 
         .hero h1 {
             margin-bottom: 0.5rem;
             font-weight: 300;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            color: var(--accent-gold);
-            font-family: var(--ff-display);
-            font-weight: 300;
-            margin-bottom: 1rem;
-            letter-spacing: 0.05em;
+            line-height: 1.3;
         }
 
         .hero-tagline {
-            font-size: clamp(1.25rem, 4vw, 2rem);
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
             font-family: var(--ff-display);
             font-weight: 300;
             color: var(--text-muted);
             margin-bottom: 2.5rem;
             font-style: italic;
+            line-height: 1.5;
         }
 
         .hero-cta {
@@ -368,21 +390,12 @@
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         @media (max-width: 1024px) {
             .grid-3 {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            .grid-4 {
-                grid-template-columns: 1fr;
             }
         }
 
@@ -404,7 +417,7 @@
         }
 
         section.section-alt {
-            background-color: rgba(22, 18, 16, 0.3);
+            background-color: rgba(26, 26, 26, 0.4);
         }
 
         /* ============================================
@@ -437,65 +450,14 @@
         .stagger-4 { transition-delay: 0.4s; }
         .stagger-5 { transition-delay: 0.5s; }
         .stagger-6 { transition-delay: 0.6s; }
+        .stagger-7 { transition-delay: 0.7s; }
+        .stagger-8 { transition-delay: 0.8s; }
 
         /* ============================================
-           ABOUT SECTION
+           THREE-PILLAR CARDS
            ============================================ */
-        .about-image {
-            width: 100%;
-            aspect-ratio: 1;
-            border-radius: 2px;
-            background: linear-gradient(135deg, #2a2218 0%, #1e1a16 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 3rem;
-        }
-
-        .about-text h3 {
-            color: var(--accent-gold);
-            margin-bottom: 1rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--accent-gold-alpha);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: var(--ff-display);
-            font-size: 2rem;
-            font-weight: 400;
-            color: var(--accent-gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-        }
-
-        /* ============================================
-           SERVICE CARDS
-           ============================================ */
-        .service-card {
-            padding: 2rem;
+        .pillar-card {
+            padding: 2.5rem;
             border: var(--border-gold);
             border-radius: 2px;
             background: var(--bg-card);
@@ -503,406 +465,142 @@
             transition: all 0.3s ease;
         }
 
-        .service-card:hover {
+        .pillar-card:hover {
             border-color: var(--accent-gold);
             background: var(--bg-hover);
             transform: translateY(-5px);
         }
 
-        .service-num {
-            font-family: var(--ff-display);
-            font-size: 2.5rem;
-            font-weight: 400;
-            color: var(--accent-gold);
-            margin-bottom: 1rem;
-            opacity: 0.6;
-        }
-
-        .service-icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 1rem;
-            opacity: 0.6;
-        }
-
-        .service-card h4 {
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .service-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        /* ============================================
-           SKILLS SECTION
-           ============================================ */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-tag {
-            padding: 1rem;
-            background: var(--bg-card);
+        /* PROJECT CARDS WITH IMAGES */
+        .project-card {
+            display: flex;
+            flex-direction: column;
             border: var(--border-gold);
             border-radius: 2px;
-            text-align: center;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .skill-tag:hover {
-            border-color: var(--accent-gold);
-            background: var(--bg-hover);
-        }
-
-        .skill-level {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* ============================================
-           PROJECT CARDS
-           ============================================ */
-        .project-card {
-            position: relative;
-            border-radius: 2px;
+            background: var(--bg-card);
             overflow: hidden;
-            group: card;
             transition: all 0.3s ease;
         }
 
         .project-card:hover {
-            border: 2px solid var(--accent-gold);
-            box-shadow: 0 0 30px rgba(201, 169, 110, 0.2);
-            transform: scale(1.02);
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
         }
 
         .project-image {
             width: 100%;
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, #2a2218 0%, #1e1a16 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
             overflow: hidden;
-            font-size: 4rem;
-            color: rgba(201, 169, 110, 0.1);
-        }
-
-        .project-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            align-items: flex-end;
-            padding: 2rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
         }
 
         .project-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem;
-            background: linear-gradient(to top, rgba(12, 10, 8, 0.95), transparent);
-            z-index: 2;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .project-name {
-            font-family: var(--ff-display);
-            font-size: 1.5rem;
-            font-weight: 400;
+            font-size: 1.1rem;
+            color: var(--text-light);
             margin-bottom: 0.5rem;
+            font-weight: 500;
         }
 
         .project-type {
             font-size: 0.85rem;
             color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .project-badge {
             display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(184, 146, 61, 0.2);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
             font-size: 0.75rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 2px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            font-weight: 400;
-            margin-top: 0.5rem;
+            border-radius: 2px;
+            margin-bottom: 1rem;
         }
 
         .badge-completed {
-            background-color: rgba(100, 200, 100, 0.3);
-            color: #64c864;
-        }
-
-        .badge-progress {
-            background-color: rgba(201, 169, 110, 0.3);
-            color: var(--accent-gold);
-        }
-
-        .badge-past {
-            background-color: rgba(122, 114, 105, 0.3);
-            color: var(--text-muted);
+            background: rgba(76, 175, 80, 0.2);
+            border-color: #4caf50;
+            color: #4caf50;
         }
 
         .project-view-btn {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
+            align-self: flex-start;
+            padding: 0.5rem 1.5rem;
+            background: transparent;
             border: 1px solid var(--accent-gold);
             color: var(--accent-gold);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            background: transparent;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .project-view-btn:hover {
-            background-color: var(--accent-gold);
-            color: var(--text-dark);
-        }
-
-        /* ============================================
-           GALLERY MODAL
-           ============================================ */
-        .gallery-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            overflow-y: auto;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .gallery-modal.active {
-            display: flex;
-            flex-direction: column;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .gallery-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem;
-            border-bottom: 1px solid var(--accent-gold-alpha);
-            position: sticky;
-            top: 0;
-            background: rgba(12, 10, 8, 0.9);
-            backdrop-filter: blur(10px);
-        }
-
-        .gallery-title {
-            font-family: var(--ff-display);
-            font-size: 1.5rem;
-            font-weight: 400;
-        }
-
-        .gallery-close {
-            background: transparent;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-close:hover {
-            color: var(--accent-gold);
-        }
-
-        .gallery-content {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 2rem;
-            padding: 2rem;
-        }
-
-        .gallery-main {
-            aspect-ratio: 4/3;
-            background: linear-gradient(135deg, #2a2218 0%, #1e1a16 100%);
-            border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: rgba(201, 169, 110, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gallery-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .gallery-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            right: 2rem;
-            z-index: 10;
-        }
-
-        .gallery-nav-btn {
-            background: rgba(0, 0, 0, 0.5);
-            color: var(--accent-gold);
-            border: 1px solid var(--accent-gold);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .gallery-nav-btn:hover {
             background: var(--accent-gold);
             color: var(--text-dark);
         }
 
-        .gallery-sidebar {
+        .pillar-header {
             display: flex;
-            flex-direction: column;
+            align-items: flex-start;
             gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .gallery-info {
-            padding: 1.5rem;
-            background: var(--bg-card);
-            border: var(--border-gold);
-            border-radius: 2px;
-        }
-
-        .gallery-info h3 {
+        .pillar-number {
+            font-family: var(--ff-display);
+            font-size: 2.5rem;
+            font-weight: 400;
             color: var(--accent-gold);
-            margin-bottom: 1rem;
+            opacity: 0.6;
+            min-width: 60px;
         }
 
-        .gallery-info p {
+        .pillar-title h3 {
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .pillar-title p {
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 0.75rem;
         }
 
-        .gallery-thumbnails {
+        .pillar-services {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            max-height: 400px;
-            overflow-y: auto;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--accent-gold-alpha);
         }
 
-        .gallery-thumb {
-            aspect-ratio: 4/3;
-            background: linear-gradient(135deg, #2a2218 0%, #1e1a16 100%);
-            border: 1px solid var(--accent-gold-alpha);
-            border-radius: 2px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            overflow: hidden;
+        .service-item {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            padding-left: 1.5rem;
+            position: relative;
         }
 
-        .gallery-thumb:hover,
-        .gallery-thumb.active {
-            border-color: var(--accent-gold);
-        }
-
-        @media (max-width: 1024px) {
-            .gallery-content {
-                grid-template-columns: 1fr;
-            }
-            .gallery-sidebar {
-                flex-direction: row;
-            }
-            .gallery-info {
-                flex: 1;
-            }
-            .gallery-thumbnails {
-                flex-direction: row;
-                max-height: none;
-                max-width: none;
-                overflow-x: auto;
-            }
-            .gallery-thumb {
-                flex-shrink: 0;
-                width: 80px;
-            }
-        }
-
-        /* ============================================
-           TEAM SECTION
-           ============================================ */
-        .team-card {
-            text-align: center;
-        }
-
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-gold) 0%, #8b7d66 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-family: var(--ff-display);
-            font-size: 2rem;
-            color: var(--text-dark);
-            font-weight: 400;
-        }
-
-        .team-card h4 {
-            margin-bottom: 0.5rem;
-        }
-
-        .team-position {
-            font-size: 0.9rem;
+        .service-item::before {
+            content: '→';
+            position: absolute;
+            left: 0;
             color: var(--accent-gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .team-company {
-            font-size: 0.85rem;
-            color: var(--text-muted);
         }
 
         /* ============================================
@@ -992,7 +690,7 @@
         footer {
             padding: 2rem 0;
             border-top: 1px solid var(--accent-gold-alpha);
-            background: rgba(22, 18, 16, 0.5);
+            background: rgba(26, 26, 26, 0.5);
             margin-top: 3rem;
         }
 
@@ -1041,435 +739,116 @@
         }
 
         /* ============================================
-           MOBILE-FIRST RESPONSIVE DESIGN
+           MOBILE-FIRST RESPONSIVE
            ============================================ */
-
-        /* BASE: Mobile (320px - 767px) */
-        section {
-            padding: 2.5rem 0;
-        }
-
-        .container {
-            padding: 0 1rem;
-        }
-
-        nav {
-            height: 60px;
-            padding: 0 1rem;
-        }
-
-        .nav-logo {
-            font-size: 0.9rem;
-        }
-
-        .nav-links {
-            display: none;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            right: 0;
-            flex-direction: column;
-            background: rgba(12, 10, 8, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--accent-gold-alpha);
-            padding: 1rem 0;
-            list-style: none;
-            z-index: 999;
-        }
-
-        .nav-links.active {
-            display: flex;
-        }
-
-        .nav-links li {
-            padding: 0.75rem 1.5rem;
-            border-bottom: 1px solid var(--accent-gold-alpha);
-        }
-
-        .nav-links a {
-            display: block;
-            font-size: 0.9rem;
-        }
-
-        .mobile-menu-btn {
-            display: block;
-        }
-
-        .nav-right {
-            gap: 0.5rem;
-        }
-
-        .lang-toggle {
-            font-size: 0.7rem;
-            padding: 0.4rem 0.6rem;
-        }
-
-        h1 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
-        h2 { font-size: clamp(1.25rem, 5vw, 2rem); margin-bottom: 1.5rem; }
-        h3 { font-size: clamp(1rem, 4vw, 1.5rem); }
-
-        .hero {
-            height: auto;
-            min-height: 90vh;
-            padding: 4rem 0;
-        }
-
-        .hero-content {
-            padding: 1rem;
-        }
-
-        .hero-line {
-            width: 60px;
-            margin-bottom: 1rem;
-        }
-
-        .hero-tagline {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-cta {
-            padding: 0.75rem 1.5rem;
-            font-size: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero-stats {
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .hero-stat-num {
-            font-size: 1.25rem;
-        }
-
-        .grid-2 {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .grid-3 {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .grid-4 {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .about-stats {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .service-card {
-            padding: 1.5rem;
-        }
-
-        .service-num {
-            font-size: 2rem;
-        }
-
-        .skills-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .skill-tag {
-            padding: 0.75rem;
-            font-size: 0.85rem;
-        }
-
-        .project-image {
-            aspect-ratio: 1;
-            font-size: 3rem;
-        }
-
-        .gallery-content {
-            grid-template-columns: 1fr;
-            padding: 1rem;
-            gap: 1rem;
-        }
-
-        .gallery-main {
-            aspect-ratio: 4/3;
-            min-height: auto;
-        }
-
-        .gallery-sidebar {
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .gallery-thumbnails {
-            flex-direction: row;
-            max-height: none;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
-
-        .gallery-thumb {
-            flex-shrink: 0;
-            width: 70px;
-            aspect-ratio: 4/3;
-        }
-
-        .gallery-header {
-            padding: 1rem;
-        }
-
-        .gallery-title {
-            font-size: 1.25rem;
-        }
-
-        .team-avatar {
-            width: 100px;
-            height: 100px;
-            font-size: 1.75rem;
-        }
-
-        .contact-form {
-            gap: 1rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 0.7rem 0.9rem;
-            font-size: 16px;
-        }
-
-        .footer-content {
-            grid-template-columns: 1fr;
-            text-align: center;
-            gap: 1rem;
-        }
-
-        .footer-links {
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        /* TABLET: 768px and up */
-        @media (min-width: 768px) {
+        @media (max-width: 640px) {
             section {
-                padding: 4rem 0;
+                padding: 2.5rem 0;
             }
 
             .container {
-                padding: 0 clamp(1.5rem, 5vw, 3rem);
+                padding: 0 1rem;
             }
 
             nav {
-                height: 80px;
-                padding: 0 clamp(1.5rem, 5vw, 3rem);
+                height: 60px;
+                padding: 0 1rem;
             }
 
             .nav-logo {
-                font-size: 1.1rem;
-            }
-
-            .mobile-menu-btn {
-                display: none;
-            }
-
-            .nav-links {
-                display: flex !important;
-                position: static;
-                top: auto;
-                left: auto;
-                right: auto;
-                flex-direction: row;
-                background: transparent;
-                backdrop-filter: none;
-                border-bottom: none;
-                padding: 0;
-                z-index: auto;
-            }
-
-            .nav-links li {
-                padding: 0;
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                display: inline;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-            }
-
-            h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
-            h2 { font-size: clamp(1.75rem, 6vw, 2.75rem); margin-bottom: 2rem; }
-            h3 { font-size: clamp(1.25rem, 5vw, 1.75rem); }
-
-            .hero {
-                height: 100vh;
-                padding: 0;
-            }
-
-            .hero-line {
-                width: 80px;
-                margin-bottom: 1.5rem;
-            }
-
-            .hero-tagline {
-                font-size: clamp(1.25rem, 3vw, 1.75rem);
-                margin-bottom: 2rem;
-            }
-
-            .hero-cta {
-                padding: 0.9rem 2rem;
-                font-size: 0.8rem;
-                margin-bottom: 2.5rem;
-            }
-
-            .hero-stats {
-                gap: 2rem;
-            }
-
-            .grid-2 {
-                grid-template-columns: 1fr 1fr;
-                gap: 2.5rem;
-            }
-
-            .grid-3 {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1.5rem;
-            }
-
-            .grid-4 {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-
-            .about-stats {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2rem;
-            }
-
-            .service-card {
-                padding: 2rem;
-            }
-
-            .service-num {
-                font-size: 2.5rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-                gap: 1.25rem;
-            }
-
-            .skill-tag {
-                padding: 0.9rem;
                 font-size: 0.9rem;
             }
 
-            .gallery-content {
-                grid-template-columns: 1fr 300px;
-                padding: 2rem;
-                gap: 2rem;
-            }
-
-            .gallery-main {
-                aspect-ratio: 4/3;
-                min-height: 400px;
-            }
-
-            .gallery-sidebar {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
                 flex-direction: column;
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--accent-gold-alpha);
+                padding: 1rem 0;
+                list-style: none;
+                z-index: 999;
             }
 
-            .gallery-thumbnails {
-                max-height: 400px;
-                overflow-y: auto;
-                flex-direction: column;
+            .nav-links.active {
+                display: flex;
             }
 
-            .gallery-thumb {
-                width: 100%;
+            .nav-links li {
+                padding: 0.75rem 1.5rem;
+                border-bottom: 1px solid var(--accent-gold-alpha);
             }
 
-            .team-avatar {
-                width: 120px;
-                height: 120px;
-                font-size: 2rem;
+            .nav-links a {
+                display: block;
+                font-size: 0.9rem;
             }
 
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-                text-align: left;
-                gap: 2rem;
+            .mobile-menu-btn {
+                display: block;
             }
 
-            .footer-left {
-                text-align: left;
+            .nav-right {
+                gap: 0.5rem;
             }
 
-            .footer-right {
-                text-align: right;
-            }
-        }
+            h1 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+            h2 { font-size: clamp(1.25rem, 5vw, 2rem); margin-bottom: 1.5rem; }
+            h3 { font-size: clamp(1rem, 4vw, 1.5rem); }
 
-        /* DESKTOP: 1024px and up */
-        @media (min-width: 1024px) {
-            section {
-                padding: 6rem 0;
-            }
-
-            .container {
-                padding: 0 clamp(2rem, 5vw, 4rem);
+            .hero {
+                height: auto;
+                min-height: 80vh;
+                padding: 4rem 0;
             }
 
-            nav {
-                padding: 0 clamp(2rem, 5vw, 4rem);
+            .hero-content {
+                padding: 1rem;
             }
 
-            h1 { font-size: clamp(3.5rem, 8vw, 5rem); }
-            h2 { font-size: clamp(2rem, 6.5vw, 3.5rem); }
+            .hero-line {
+                width: 60px;
+                margin-bottom: 1rem;
+            }
+
+            .hero-tagline {
+                font-size: clamp(0.95rem, 3vw, 1.25rem);
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-cta {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.75rem;
+                margin-bottom: 2rem;
+            }
 
             .hero-stats {
-                gap: 3rem;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 2rem;
             }
 
             .grid-3 {
-                gap: 2rem;
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
-            .grid-4 {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
+            .pillar-card {
+                padding: 1.5rem;
             }
 
-            .service-card {
-                padding: 2.5rem;
-            }
-
-            .skills-grid {
-                gap: 1.5rem;
-            }
-
-            .project-card:hover {
-                transform: scale(1.02);
-            }
-
-            .gallery-content {
-                gap: 2.5rem;
+            .pillar-number {
+                font-size: 2rem;
             }
         }
 
-        /* LARGE DESKTOP: 1440px and up */
-        @media (min-width: 1440px) {
-            .container {
-                max-width: 1400px;
-            }
-
-            .grid-3 {
-                gap: 2.5rem;
+        @media (min-width: 768px) {
+            section {
+                padding: 4rem 0;
             }
         }
     </style>
@@ -1481,20 +860,20 @@
 
     <!-- NAVIGATION -->
     <nav id="navbar">
-        <div class="nav-logo">SA — [YOUR NAME]</div>
+        <div class="nav-logo">
+            <img src="../../../img/etc/cmp logo.png" alt="CMP Management Asia Logo">
+            <span>CMP Management Asia</span>
+        </div>
         <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#about" data-th="เกี่ยวกับ" data-en="About">About</a></li>
-            <li><a href="#services" data-th="บริการ" data-en="Services">Services</a></li>
-            <li><a href="#skills" data-th="ทักษะ" data-en="Skills">Skills</a></li>
-            <li><a href="#projects" data-th="โครงการ" data-en="Projects">Projects</a></li>
-            <li><a href="#team" data-th="ทีม" data-en="Team">Team</a></li>
-            <li><a href="#contact" data-th="ติดต่อ" data-en="Contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#pillars">The Model</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="nav-right">
-            <button class="lang-toggle active" id="langToggle">
-                <span class="lang-th">TH</span> / <span class="lang-en">EN</span>
-            </button>
+            <div id="google_translate_element"></div>
         </div>
     </nav>
 
@@ -1502,303 +881,371 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-line"></div>
-            <h1 data-th="[YOUR NAME]" data-en="[YOUR NAME]">[YOUR NAME]</h1>
-            <div class="hero-subtitle" data-th="Site Architect & Construction Consultant" data-en="Site Architect & Construction Consultant">Site Architect & Construction Consultant</div>
-            <p class="hero-tagline" data-th="&quot;ก่อสร้างความเป็นเลิศ ส่งมอบความเชื่อถือ&quot;" data-en="&quot;Building Excellence. Delivering Trust.&quot;">"Building Excellence. Delivering Trust."</p>
-            <button class="hero-cta" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" data-th="ดูโครงการ" data-en="View Projects">View Projects</button>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="hero-stat-num">10+</div>
-                    <div data-th="ปีประสบการณ์" data-en="Years Experience">Years Experience</div>
+            <h1>Turning Vision into Reality with Expertise and Confidence.</h1>
+            <p class="hero-tagline">"From Vision to Guaranteed Reality. Built with Confidence."</p>
+            <button class="hero-cta" onclick="document.getElementById('pillars').scrollIntoView({behavior: 'smooth'})">Explore Our Model</button>
+        </div>
+    </section>
+
+    <!-- THREE-PILLAR FRAMEWORK SECTION -->
+    <section id="pillars" class="section-alt">
+        <div class="container">
+            <h2>Our Three-Pillar Framework</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 3rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                We govern the entire project lifecycle across three integrated phases, replacing uncertainty with structured methodology and verifiable outcomes.
+            </p>
+
+            <div class="grid-3">
+                <!-- PHASE I -->
+                <div class="pillar-card fade-in-stagger stagger-1">
+                    <div class="pillar-header">
+                        <div class="pillar-number">|</div>
+                        <div class="pillar-title">
+                            <h3>Concept & Planning</h3>
+                            <p>The Brain</p>
+                        </div>
+                    </div>
+                    <div class="pillar-services">
+                        <div class="service-item">Project Management</div>
+                        <div class="service-item">Client Representation</div>
+                        <div class="service-item">Contract & Commercial Management</div>
+                        <div class="service-item">Design & Build</div>
+                    </div>
                 </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-num">50+</div>
-                    <div data-th="โครงการสำเร็จ" data-en="Projects Completed">Projects Completed</div>
+
+                <!-- PHASE II -->
+                <div class="pillar-card fade-in-stagger stagger-2">
+                    <div class="pillar-header">
+                        <div class="pillar-number">||</div>
+                        <div class="pillar-title">
+                            <h3>Execution & Oversight</h3>
+                            <p>The Hands</p>
+                        </div>
+                    </div>
+                    <div class="pillar-services">
+                        <div class="service-item">Site Supervision</div>
+                        <div class="service-item">Construction Management</div>
+                        <div class="service-item">Quantity Surveying</div>
+                    </div>
                 </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-num">100+</div>
-                    <div data-th="ไคลเอนต์พอใจ" data-en="Satisfied Clients">Satisfied Clients</div>
+
+                <!-- PHASE III -->
+                <div class="pillar-card fade-in-stagger stagger-3">
+                    <div class="pillar-header">
+                        <div class="pillar-number">|||</div>
+                        <div class="pillar-title">
+                            <h3>Validation & Assurance</h3>
+                            <p>The Guarantee</p>
+                        </div>
+                    </div>
+                    <div class="pillar-services">
+                        <div class="service-item">Project Audit</div>
+                        <div class="service-item">Compliance Verification</div>
+                        <div class="service-item">Final Handover & Certification</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ABOUT SECTION -->
-    <section id="about" class="section-alt">
+    <section id="about">
         <div class="container">
-            <h2 data-th="เกี่ยวกับเรา" data-en="About Us">About Us</h2>
+            <h2>About CMP Management Asia</h2>
             <div class="grid-2 fade-in">
-                <div class="about-image">📐</div>
-                <div class="about-text fade-in-stagger stagger-1">
-                    <h3 data-th="[YOUR FULL NAME]" data-en="[YOUR FULL NAME]">[YOUR FULL NAME]</h3>
-                    <p data-th="Site Architect & Construction Consultant" data-en="Site Architect & Construction Consultant">Site Architect & Construction Consultant</p>
-                    <p data-th="ประสบการณ์กว่า 10 ปีในด้านการออกแบบสถาปัตยกรรม การบริหารจัดการโครงการ และการให้คำปรึกษาด้านการก่อสร้าง ทำงานกับโครงการขนาดใหญ่ด้านสุขภาพ พาณิชย์ และรัฐบาล" data-en="With over 10 years of experience in architectural design, project management, and construction consulting. Worked on major healthcare, commercial, and government projects.">ประสบการณ์กว่า 10 ปีในด้านการออกแบบสถาปัตยกรรม การบริหารจัดการโครงการ และการให้คำปรึกษาด้านการก่อสร้าง</p>
-                    <p data-th="การศึกษา: มหาวิทยาลัย [UNIVERSITY NAME], คณะสถาปัตยกรรม | ใบอนุญาต: [LICENSE NO.]" data-en="Education: [UNIVERSITY NAME], Faculty of Architecture | License: [LICENSE NO.]">Education: [UNIVERSITY NAME], Faculty of Architecture</p>
-
-                    <div class="about-stats fade-in-stagger stagger-2">
-                        <div class="stat-item">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label" data-th="โครงการสำเร็จ" data-en="Projects Completed">Projects Completed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">10</div>
-                            <div class="stat-label" data-th="ปีประสบการณ์" data-en="Years Experience">Years Experience</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">100+</div>
-                            <div class="stat-label" data-th="ไคลเอนต์พอใจ" data-en="Satisfied Clients">Satisfied Clients</div>
-                        </div>
-                    </div>
+                <div style="aspect-ratio: 1; border-radius: 2px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <img src="../../../img/etc/rs=w_1279,m.jpg" alt="CMP Management Asia Office" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="fade-in-stagger stagger-1">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 1rem;">From Vision to Guaranteed Reality</h3>
+                    <p style="margin-bottom: 1.5rem;">For decades, developers and project owners across Asia have faced the same recurring crisis: ambitious visions undermined by fragmented oversight, escalating costs, and accountability gaps that surface only when the damage is done. Too often, the parties entrusted with safeguarding a project's interests are the same parties whose performance requires scrutiny.</p>
+                    <p style="margin-bottom: 1.5rem;">CMP Management Asia was founded to close that gap—permanently. Drawing on more than three decades of international development experience across Asia and the Middle East, our founders recognized that what the market lacked was not more contractors or consultants, but a single, independent partner capable of governing the entire project lifecycle with discipline, transparency, and uncompromising standards.</p>
+                    <p style="color: var(--text-muted);">Today, CMP serves as the trusted intermediary between vision and reality. We replace uncertainty with structured methodology, opacity with verifiable reporting, and reactive problem-solving with proactive risk command. For developers who require certainty in complex projects, CMP delivers exactly that—the confidence to build, knowing every dimension of execution is under expert control.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES SECTION -->
-    <section id="services">
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="section-alt">
         <div class="container">
-            <h2 data-th="บริการของเรา" data-en="What We Do">What We Do</h2>
-            <div class="grid-3">
-                <div class="service-card fade-in-stagger stagger-1">
-                    <div class="service-num">01</div>
-                    <h4 data-th="ให้คำปรึกษาด้านการก่อสร้าง" data-en="Construction Consulting">Construction Consulting</h4>
-                    <p data-th="ให้คำปรึกษาด้านการก่อสร้างตั้งแต่ต้นจนจบโครงการ เพื่อให้การสร้างเป็นไปตามแผนและมีประสิทธิภาพสูงสุด" data-en="Expert guidance from project inception to completion ensuring efficiency and quality standards.">Expert guidance from project inception to completion.</p>
+            <h2>Project Portfolio</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Demonstrated expertise across mega-projects, specialized builds, and complex developments in healthcare, commercial, government, and hospitality sectors.
+            </p>
+
+            <!-- MEGA-PROJECTS -->
+            <div style="margin-bottom: 4rem;">
+                <h3 style="color: var(--accent-gold); margin-bottom: 2rem; font-size: 1.5rem;">Mega-Projects</h3>
+                <div class="grid-3">
+                    <div class="pillar-card fade-in-stagger stagger-1" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                        <div style="position: relative; width: 100%; margin-bottom: 1rem; background: linear-gradient(135deg, #1A3A5C 0%, #0A1628 100%); border-radius: 0.5rem; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;">
+                            <p style="color: var(--accent-gold); font-size: 0.85rem; text-align: center; padding: 1rem;">Image Coming Soon</p>
+                        </div>
+                        <h4 style="margin-bottom: 0.75rem;">The One Bangkok</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Retail and Office Building (R1/O1B) + Substructure & Architectural Phase</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Client: Italian Thai Development Public Company Limited / Thai Takenaka International Limited JV</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 0.5rem;"><strong>Role:</strong> Contract & Commercial Management, Substructure & Architectural</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Status:</strong> Completed (March 2023) | In Progress (Est. Sept 2026)</p>
+                    </div>
+                    <div class="pillar-card fade-in-stagger stagger-2" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                        <div style="position: relative; width: 100%; margin-bottom: 1rem; background: linear-gradient(135deg, #1A3A5C 0%, #0A1628 100%); border-radius: 0.5rem; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;">
+                            <p style="color: var(--accent-gold); font-size: 0.85rem; text-align: center; padding: 1rem;">Image Coming Soon</p>
+                        </div>
+                        <h4 style="margin-bottom: 0.75rem;">One Bangkok Forum</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Art & Cultural Multi-Purpose Hall</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Client: TTS Engineering 2004 Co., Ltd.</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 0.5rem;"><strong>Role:</strong> Contract & Commercial Management</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Status:</strong> Completed | December 2024</p>
+                    </div>
                 </div>
-                <div class="service-card fade-in-stagger stagger-2">
-                    <div class="service-num">02</div>
-                    <h4 data-th="บริหารจัดการหน้างาน" data-en="Site Management">Site Management</h4>
-                    <p data-th="บริหารจัดการหน้างานให้เป็นไปตามข้อกำหนดและกำหนดเวลาการก่อสร้าง เพื่อให้งานเสร็จตรงตามเวลา" data-en="Coordinate all on-site activities ensuring timelines and specifications are met.">Coordinate all on-site activities.</p>
-                </div>
-                <div class="service-card fade-in-stagger stagger-3">
-                    <div class="service-num">03</div>
-                    <h4 data-th="ตรวจสอบสถาปัตยกรรม" data-en="Architectural Review">Architectural Review</h4>
-                    <p data-th="ตรวจสอบแบบและ drawing ให้ถูกต้องตามมาตรฐานและข้อบัญญัติการก่อสร้าง" data-en="Thorough review of designs and drawings for compliance and accuracy.">Thorough review of designs for compliance.</p>
-                </div>
-                <div class="service-card fade-in-stagger stagger-4">
-                    <div class="service-num">04</div>
-                    <h4 data-th="ประมาณราคา" data-en="Cost Estimation">Cost Estimation</h4>
-                    <p data-th="ประมาณราคาค่าก่อสร้างและควบคุมงบประมาณให้อยู่ในขอบเขตที่กำหนด" data-en="Accurate budget estimation and cost control throughout the project.">Accurate budget estimation and control.</p>
-                </div>
-                <div class="service-card fade-in-stagger stagger-5">
-                    <div class="service-num">05</div>
-                    <h4 data-th="ประสานงาน" data-en="Project Coordination">Project Coordination</h4>
-                    <p data-th="ประสานงานระหว่าง Owner, Contractor, Consultant เพื่อให้การทำงานเป็นไปอย่างราบรื่น" data-en="Seamless coordination between all project stakeholders.">Seamless coordination between stakeholders.</p>
-                </div>
-                <div class="service-card fade-in-stagger stagger-6">
-                    <div class="service-num">06</div>
-                    <h4 data-th="ควบคุมคุณภาพ" data-en="Quality Control">Quality Control</h4>
-                    <p data-th="ตรวจสอบคุณภาพงานก่อสร้างให้ตรงตามมาตรฐานและข้อกำหนด" data-en="Rigorous quality checks ensuring all work meets standards.">Rigorous quality checks.</p>
+            </div>
+
+            <!-- SPECIALIZED BUILDS -->
+            <div style="margin-bottom: 4rem;">
+                <h3 style="color: var(--accent-gold); margin-bottom: 2rem; font-size: 1.5rem;">Specialized Builds</h3>
+                <div class="grid-3">
+                    <div class="pillar-card fade-in-stagger stagger-1" onclick="openAtlasGallery()" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                        <div style="position: relative; width: 100%; margin-bottom: 1rem;">
+                            <img src="./img/proj/atlas/IMG_20251219_201353.jpg" alt="Atlas Super Club Ratchada Soi 4" style="width: 100%; height: auto; border-radius: 0.5rem; object-fit: cover; aspect-ratio: 16/10; display: block;" />
+                            <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(184, 146, 61, 0.5); color: white; padding: 0.35rem 0.6rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px);">Click to expand →</div>
+                        </div>
+                        <h4 style="margin-bottom: 0.75rem;">Atlas Super Club Ratchada Soi 4</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Super Night Club / Entertainment Venue</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Client: HWG Group Indonesia</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 0.5rem;"><strong>Role:</strong> Design, Project Mgmt, Construction Mgmt, QS</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Status:</strong> Completed | December 2025</p>
+                    </div>
+                    <div class="pillar-card fade-in-stagger stagger-2" onclick="openQuarterGallery()" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                        <div style="position: relative; width: 100%; margin-bottom: 1rem;">
+                            <img src="./img/proj/tqhe/cr=w_600,h_300.jpg" alt="The Quarter Hotel Ekkamai" style="width: 100%; height: auto; border-radius: 0.5rem; object-fit: cover; aspect-ratio: 16/10; display: block;" />
+                            <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(184, 146, 61, 0.5); color: white; padding: 0.35rem 0.6rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px);">Click to expand →</div>
+                        </div>
+                        <h4 style="margin-bottom: 0.75rem;">The Quarter Hotel Ekkamai</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">8-Storey Building + 1 Basement (Hotel)</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Client: Urban 63 Company Limited</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 0.5rem;"><strong>Role:</strong> Construction Mgmt & Quantity Surveying</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Status:</strong> In Progress | Est. Dec 2026</p>
+                    </div>
+</div>
+            </div>
+
+            <!-- RESIDENTIAL & MEDICAL -->
+            <div>
+                <h3 style="color: var(--accent-gold); margin-bottom: 2rem; font-size: 1.5rem;">Residential & Medical</h3>
+                <div class="grid-3">
+                    <div class="pillar-card fade-in-stagger stagger-1" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                        <div style="position: relative; width: 100%; margin-bottom: 1rem;">
+                            <img src=".\img\proj\KBH\rs=w_365,h_274,cg_true.jpg" alt="KB Private Residence" style="width: 100%; height: auto; border-radius: 0.5rem; object-fit: cover; aspect-ratio: 16/10; display: block;" />
+                            <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(184, 146, 61, 0.5); color: white; padding: 0.35rem 0.6rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px);">Click to expand →</div>
+                        </div>
+                        <h4 style="margin-bottom: 0.75rem;">KB Private Residence</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Structural Design & Building Construction</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Client: Dear Child Co., Ltd.</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 0.5rem;"><strong>Role:</strong> Contractor</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Status:</strong> Completed | November 2024</p>
+                    </div>
+                    <div class="pillar-card fade-in-stagger stagger-2" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                        <div style="position: relative; width: 100%; margin-bottom: 1rem; background: linear-gradient(135deg, #1A3A5C 0%, #0A1628 100%); border-radius: 0.5rem; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;">
+                            <p style="color: var(--accent-gold); font-size: 0.85rem; text-align: center; padding: 1rem;">Image Coming Soon</p>
+                        </div>
+                        <h4 style="margin-bottom: 0.75rem;">Boon Nak Residence Ubon</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Design & Building Construction</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Client: Boonnak Kanharin</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 0.5rem;"><strong>Role:</strong> Contractor</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Status:</strong> Completed | April 2025</p>
+                    </div>
+                    <div class="pillar-card fade-in-stagger stagger-3" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                        <div style="position: relative; width: 100%; margin-bottom: 1rem; background: linear-gradient(135deg, #1A3A5C 0%, #0A1628 100%); border-radius: 0.5rem; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;">
+                            <p style="color: var(--accent-gold); font-size: 0.85rem; text-align: center; padding: 1rem;">Image Coming Soon</p>
+                        </div>
+                        <h4 style="margin-bottom: 0.75rem;">Teeraporn Clinic Bangkok</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">6-Storey Medical Building</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Client: Italian Thai Development Public Company Limited</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 0.5rem;"><strong>Role:</strong> Sub Contractor</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Status:</strong> Completed | April 2025</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SKILLS SECTION -->
-    <section id="skills" class="section-alt">
+    <!-- TEAM SECTION -->
+    <section id="team" class="section-alt">
         <div class="container">
-            <h2 data-th="ทักษะและความเชี่ยวชาญ" data-en="Skills & Expertise">Skills & Expertise</h2>
+            <h2>Our Team</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                30+ years of combined international experience in construction management, project delivery, and complex development across Asia and the Middle East.
+            </p>
 
-            <h3 style="color: var(--accent-gold); margin: 2rem 0 1rem; font-size: 1.25rem;" data-th="ซอฟต์แวร์" data-en="Software">Software</h3>
-            <div class="skills-grid">
-                <div class="skill-tag fade-in-stagger stagger-1">
-                    <div>AutoCAD</div>
-                    <div class="skill-level" data-th="ผู้เชี่ยวชาญ" data-en="Expert">Expert</div>
+            <div class="grid-2">
+                <!-- Johnny Beh -->
+                <div class="pillar-card fade-in-stagger stagger-1">
+                    <img src="../../../img/ppl/JB.jpg" alt="Johnny Beh" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
+                    <h4 style="margin-bottom: 0.5rem;">Johnny Beh</h4>
+                    <p style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 1rem;">Chief Executive Officer & Founder</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">30+ years in construction and project management. School of Architect PAM graduate with expertise across Asia and Middle East. Led major projects including YLP Narathiwat Road, Ari Hills, Avani Riverside Hotel Bangkok, and international assignments in Doha.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Languages: English, Bahasa Malaysia, Mandarin | Previous: Cornerstone Management, Taisei Corporation</p>
                 </div>
-                <div class="skill-tag fade-in-stagger stagger-2">
-                    <div>Revit</div>
-                    <div class="skill-level" data-th="ผู้เชี่ยวชาญ" data-en="Expert">Expert</div>
-                </div>
-                <div class="skill-tag fade-in-stagger stagger-3">
-                    <div>SketchUp</div>
-                    <div class="skill-level" data-th="ผู้เชี่ยวชาญ" data-en="Expert">Expert</div>
-                </div>
-                <div class="skill-tag fade-in-stagger stagger-4">
-                    <div>ArchiCAD</div>
-                    <div class="skill-level" data-th="ขั้นสูง" data-en="Advanced">Advanced</div>
-                </div>
-                <div class="skill-tag fade-in-stagger stagger-5">
-                    <div>Adobe Suite</div>
-                    <div class="skill-level" data-th="ขั้นสูง" data-en="Advanced">Advanced</div>
-                </div>
-                <div class="skill-tag fade-in-stagger stagger-6">
-                    <div>Microsoft Project</div>
-                    <div class="skill-level" data-th="ขั้นสูง" data-en="Advanced">Advanced</div>
-                </div>
-            </div>
 
-            <h3 style="color: var(--accent-gold); margin: 2rem 0 1rem; font-size: 1.25rem;" data-th="ความเชี่ยวชาญ" data-en="Expertise">Expertise</h3>
-            <div class="skills-grid">
-                <div class="skill-tag fade-in-stagger stagger-1">
-                    <div data-th="บริหารการก่อสร้าง" data-en="Construction Management">Construction Management</div>
+                <!-- Philaiwan -->
+                <div class="pillar-card fade-in-stagger stagger-2">
+                    <img src="../../../img/ppl/PT.jpg" alt="Philaiwan Thathisa" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
+                    <h4 style="margin-bottom: 0.5rem;">Philaiwan Thathisa</h4>
+                    <p style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 1rem;">Finance Director</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">Distinguished career in financial management and strategic leadership. Joined CMP in 2019. Ramkhamhaeng University graduate specializing in fiscal discipline, operational efficiency, and transparent reporting. Ensures zero hidden cost erosion and protection of client capital.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Languages: Thai, English | Expertise: Financial strategy, budget control, transparency</p>
                 </div>
-                <div class="skill-tag fade-in-stagger stagger-2">
-                    <div data-th="การตรวจสอบหน้างาน" data-en="Site Inspection">Site Inspection</div>
+
+                <!-- Clarence Sim -->
+                <div class="pillar-card fade-in-stagger stagger-3">
+                    <img src="../../../img/ppl/CSB.jpg" alt="Clarence Sim B.H" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
+                    <h4 style="margin-bottom: 0.5rem;">Clarence Sim B.H</h4>
+                    <p style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 1rem;">Operations Director / Associate Director</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">15+ years in construction, project management, and property development across Thailand and Singapore. Business Administration graduate from Selkirk College, Canada. Specializes in cost control, workflow optimization, and quality assurance. Led Fresh City Chiang Mai, The Sails Resort & Spa, and Mahanakorn's Edition Hotel projects.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Languages: English, Mandarin, Thai | Previous: Chiang Mai Lanna Co., MTR Assets Managers</p>
                 </div>
-                <div class="skill-tag fade-in-stagger stagger-3">
-                    <div data-th="บริหารสัญญา" data-en="Contract Administration">Contract Administration</div>
-                </div>
-                <div class="skill-tag fade-in-stagger stagger-4">
-                    <div data-th="ประสานโครงสร้าง" data-en="Structural Coordination">Structural Coordination</div>
-                </div>
-                <div class="skill-tag fade-in-stagger stagger-5">
-                    <div data-th="ประสาน MEP" data-en="MEP Coordination">MEP Coordination</div>
-                </div>
-                <div class="skill-tag fade-in-stagger stagger-6">
-                    <div data-th="การปฏิบัติตามกฎหมาย" data-en="Building Code Compliance">Building Code Compliance</div>
+
+                <!-- Worapot -->
+                <div class="pillar-card fade-in-stagger stagger-4">
+                    <img src="../../../img/ppl/WK.jpg" alt="Worapot Kitcharenchai" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
+                    <h4 style="margin-bottom: 0.5rem;">Worapot Kitcharenchai</h4>
+                    <p style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 1rem;">Chief Operating Officer</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">12 years specialized in marketing and operational expertise for construction projects. Combines market insight with execution discipline to ensure operational excellence. Brings data-driven strategies and competitive market foresight to every engagement, aligning project delivery with commercial realities.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Languages: English, Mandarin, Thai | Expertise: Market analysis, operational efficiency, strategic positioning, competitive intelligence</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROJECTS SECTION -->
-    <section id="projects">
-        <div class="container">
-            <h2 data-th="ผลงานเลือกสรร" data-en="Selected Works">Selected Works</h2>
-            <div class="grid-4">
-                <div class="project-card fade-in-stagger stagger-1">
-                    <div class="project-image">🏥</div>
-                    <div class="project-info">
-                        <h4 class="project-name" data-th="โรงพยาบาลธีรพร" data-en="Thiraporn Hospital">Thiraporn Hospital</h4>
-                        <p class="project-type" data-th="สาธารณสุข" data-en="Healthcare">Healthcare</p>
-                        <span class="project-badge badge-completed" data-th="สำเร็จแล้ว" data-en="Completed">Completed</span>
-                        <button class="project-view-btn" onclick="openGallery(0)" data-th="ดูแกลเลอรี่" data-en="View Gallery">View Gallery</button>
-                    </div>
-                </div>
+    <!-- ATLAS GALLERY MODAL -->
+    <div id="atlasModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
+            <!-- Close Button -->
+            <button onclick="closeAtlasGallery()" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
 
-                <div class="project-card fade-in-stagger stagger-2">
-                    <div class="project-image">🎭</div>
-                    <div class="project-info">
-                        <h4 class="project-name" data-th="ATLAS Superclub" data-en="ATLAS Superclub">ATLAS Superclub</h4>
-                        <p class="project-type" data-th="พาณิชย์ / บันเทิง" data-en="Entertainment / Hospitality">Entertainment</p>
-                        <span class="project-badge badge-completed" data-th="สำเร็จแล้ว" data-en="Completed">Completed</span>
-                        <button class="project-view-btn" onclick="openGallery(1)" data-th="ดูแกลเลอรี่" data-en="View Gallery">View Gallery</button>
-                    </div>
-                </div>
+            <!-- Image Container with Animation -->
+            <div id="atlasImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+                <img id="atlasGalleryImg" src="" alt="Atlas Gallery" style="max-width: 100%; max-height: 100%; object-fit: contain; animation: slideIn 0.6s ease-out;" />
+            </div>
 
-                <div class="project-card fade-in-stagger stagger-3">
-                    <div class="project-image">🏢</div>
-                    <div class="project-info">
-                        <h4 class="project-name" data-th="The Quarter Ekkamai" data-en="The Quarter Ekkamai">The Quarter Ekkamai</h4>
-                        <p class="project-type" data-th="พาณิชย์ผสม" data-en="Mixed-Use Commercial">Mixed-Use</p>
-                        <span class="project-badge badge-progress" data-th="ในการดำเนิน" data-en="In Progress">In Progress</span>
-                        <button class="project-view-btn" onclick="openGallery(2)" data-th="ดูแกลเลอรี่" data-en="View Gallery">View Gallery</button>
-                    </div>
-                </div>
+            <!-- Navigation Controls -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
+                <button onclick="atlasGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+                <span id="atlasImageCounter">1 / 17</span>
+                <button onclick="atlasGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+            </div>
 
-                <div class="project-card fade-in-stagger stagger-4">
-                    <div class="project-image">🏛️</div>
-                    <div class="project-info">
-                        <h4 class="project-name" data-th="สำนักงานตรวจเงิน" data-en="NACC Office">NACC Office</h4>
-                        <p class="project-type" data-th="รัฐบาล" data-en="Government">Government</p>
-                        <span class="project-badge badge-past" data-th="ผ่านมาแล้ว" data-en="Past Project">Past Project</span>
-                        <button class="project-view-btn" onclick="openGallery(3)" data-th="ดูแกลเลอรี่" data-en="View Gallery">View Gallery</button>
-                    </div>
+            <!-- Thumbnails Strip -->
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
+                <div id="atlasThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; flex: 1; padding: 0.5rem 0;">
+                    <!-- Thumbnails will be inserted here -->
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- GALLERY MODAL -->
-    <div class="gallery-modal" id="galleryModal">
-        <div class="gallery-header">
-            <h3 class="gallery-title" id="galleryTitle">Project Gallery</h3>
-            <button class="gallery-close" onclick="closeGallery()">✕</button>
-        </div>
-        <div class="gallery-content">
-            <div class="gallery-main" id="galleryMain">
-                <img class="gallery-image" id="galleryImage" src="" alt="">
-                <div class="gallery-nav">
-                    <button class="gallery-nav-btn" onclick="prevGalleryImage()">←</button>
-                    <span id="imageCounter" style="color: var(--text-muted);">1 / 5</span>
-                    <button class="gallery-nav-btn" onclick="nextGalleryImage()">→</button>
-                </div>
+        <style>
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            .atlas-thumbnail {
+                width: 80px;
+                height: 60px;
+                flex-shrink: 0;
+                cursor: pointer;
+                border: 2px solid transparent;
+                border-radius: 4px;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                opacity: 0.6;
+            }
+
+            .atlas-thumbnail:hover {
+                opacity: 0.8;
+                border-color: var(--accent-gold);
+            }
+
+            .atlas-thumbnail.active {
+                opacity: 1;
+                border-color: var(--accent-gold);
+                box-shadow: 0 0 12px rgba(184, 146, 61, 0.5);
+            }
+
+            .atlas-thumbnail img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        </style>
+    </div>
+
+    <!-- QUARTER HOTEL GALLERY MODAL -->
+    <div id="quarterModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
+            <!-- Close Button -->
+            <button onclick="closeQuarterGallery()" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+
+            <!-- Image Container with Animation -->
+            <div id="quarterImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+                <img id="quarterGalleryImg" src="" alt="Quarter Gallery" style="max-width: 100%; max-height: 100%; object-fit: contain; animation: slideIn 0.6s ease-out;" />
             </div>
-            <div class="gallery-sidebar">
-                <div class="gallery-info">
-                    <h3 id="galleryProjName">Project Name</h3>
-                    <p><strong data-th="ประเภท" data-en="Type">Type:</strong> <span id="galleryProjType">-</span></p>
-                    <p><strong data-th="สถานะ" data-en="Status">Status:</strong> <span id="galleryProjStatus">-</span></p>
-                    <p><strong data-th="บทบาท" data-en="Role">Role:</strong> <span id="galleryProjRole">-</span></p>
-                    <hr style="border: none; border-top: 1px solid var(--accent-gold-alpha); margin: 1rem 0;">
-                    <p id="galleryProjDesc" style="font-size: 0.9rem; color: var(--text-muted);">-</p>
-                </div>
-                <div class="gallery-thumbnails" id="galleryThumbnails">
-                    <!-- Thumbnails populated by JS -->
+
+            <!-- Navigation Controls -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
+                <button onclick="quarterGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+                <span id="quarterImageCounter">1 / 29</span>
+                <button onclick="quarterGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
+                <div id="quarterThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; flex: 1; padding: 0.5rem 0;">
+                    <!-- Thumbnails will be inserted here -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- TEAM SECTION -->
-    <section id="team" class="section-alt">
-        <div class="container">
-            <h2 data-th="ทีมของเรา" data-en="Our Team">Our Team</h2>
-            <div class="grid-3">
-                <div class="team-card fade-in-stagger stagger-1">
-                    <div class="team-avatar">SA</div>
-                    <h4 data-th="[YOUR NAME]" data-en="[YOUR NAME]">[YOUR NAME]</h4>
-                    <p class="team-position" data-th="Site Architect / Lead Consultant" data-en="Site Architect / Lead Consultant">Site Architect</p>
-                    <p class="team-company" data-th="[COMPANY NAME]" data-en="[COMPANY NAME]">[COMPANY NAME]</p>
-                </div>
-                <div class="team-card fade-in-stagger stagger-2">
-                    <div class="team-avatar">TM</div>
-                    <h4 data-th="[TEAM MEMBER 2]" data-en="[TEAM MEMBER 2]">[TEAM MEMBER 2]</h4>
-                    <p class="team-position" data-th="[POSITION]" data-en="[POSITION]">Senior Architect</p>
-                    <p class="team-company" data-th="[COMPANY NAME]" data-en="[COMPANY NAME]">[COMPANY NAME]</p>
-                </div>
-                <div class="team-card fade-in-stagger stagger-3">
-                    <div class="team-avatar">TC</div>
-                    <h4 data-th="[TEAM MEMBER 3]" data-en="[TEAM MEMBER 3]">[TEAM MEMBER 3]</h4>
-                    <p class="team-position" data-th="[POSITION]" data-en="[POSITION]">Engineer</p>
-                    <p class="team-company" data-th="[COMPANY NAME]" data-en="[COMPANY NAME]">[COMPANY NAME]</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- CONTACT SECTION -->
-    <section id="contact">
+    <section id="contact" class="section-alt">
         <div class="container">
-            <h2 data-th="ติดต่อเรา" data-en="Get In Touch">Get In Touch</h2>
+            <h2>Get In Touch</h2>
             <div class="grid-2 fade-in">
                 <div class="fade-in-stagger stagger-1">
                     <div class="contact-info-item">
-                        <span class="contact-label" data-th="อีเมล" data-en="Email">Email</span>
-                        <a href="mailto:contact@[yourdomain].com" class="contact-value">contact@[yourdomain].com</a>
+                        <span class="contact-label">Email</span>
+                        <a href="mailto:center@cmpasia.co.th" class="contact-value">center@cmpasia.co.th</a>
                     </div>
                     <div class="contact-info-item">
-                        <span class="contact-label" data-th="โทรศัพท์" data-en="Phone">Phone</span>
-                        <a href="tel:+66" class="contact-value">+66 (XX) XXX XXXX</a>
+                        <span class="contact-label">Phone</span>
+                        <a href="tel:+6620778724" class="contact-value">(+66) 2 077 8724</a>
                     </div>
                     <div class="contact-info-item">
-                        <span class="contact-label" data-th="Line ID" data-en="Line ID">Line ID</span>
-                        <a href="https://line.me/ti/p/@[yourline]" class="contact-value">@[yourline]</a>
+                        <span class="contact-label">Location</span>
+                        <p class="contact-value">162 17 หมู่บ้านซิลค์ สุขสวัสดิ์ ราษฎร์บูรณะ<br>Rat Burana, Bangkok, Thailand</p>
                     </div>
                     <div class="contact-info-item">
-                        <span class="contact-label" data-th="บริษัท" data-en="Company">Company</span>
-                        <p class="contact-value" data-th="[COMPANY NAME]" data-en="[COMPANY NAME]">[COMPANY NAME]</p>
-                    </div>
-                    <div class="contact-info-item">
-                        <span class="contact-label" data-th="สถานที่" data-en="Location">Location</span>
-                        <p class="contact-value" data-th="กรุงเทพมหานคร ประเทศไทย" data-en="Bangkok, Thailand">Bangkok, Thailand</p>
+                        <span class="contact-label">Hours</span>
+                        <p class="contact-value">Monday - Friday: 8am - 5pm<br>Saturday - Sunday: Closed</p>
                     </div>
                 </div>
 
-                <form class="contact-form fade-in-stagger stagger-2" onsubmit="handleFormSubmit(event)">
-                    <div class="form-group">
-                        <label for="name" data-th="ชื่อ" data-en="Name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" data-th="อีเมล" data-en="Email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" data-th="ข้อความ" data-en="Message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit" data-th="ส่งข้อความ" data-en="Send Message">Send Message</button>
-                </form>
+                <div class="fade-in-stagger stagger-2" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.6;">Ready to discuss your project? Click below to send us an email directly through your preferred email client.</p>
+                    <a href="mailto:center@cmpasia.co.th?subject=Project%20Inquiry%20-%20CMP%20Management%20Asia&body=Hello%20CMP%20Team%2C%0A%0AI%20would%20like%20to%20discuss%20a%20project%20opportunity.%0A%0APlease%20let%20me%20know%20the%20next%20steps.%0A%0AThank%20you." style="display: inline-block; padding: 1rem 2rem; background: var(--accent-gold); color: var(--text-dark); font-weight: 400; letter-spacing: 0.05em; text-decoration: none; font-size: 0.85rem; text-align: center; border-radius: 4px; transition: all 0.3s ease;">Send Email to CMP</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; border-radius: 8px; overflow: hidden; border: 1px solid var(--accent-gold-alpha);">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.795357877547!2d100.50724667677497!3d13.670204099174104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2a3c58dcefe93%3A0x87ac137d66dc43a4!2sCMP%20Management%20Asia%20Co.%2CLtd!5e0!3m2!1sen!2sth!4v1778316855453!5m2!1sen!2sth" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -1808,22 +1255,32 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-left">
-                    <div class="nav-logo">SA — [YOUR NAME]</div>
+                    <div class="nav-logo">CMP — Construction Management</div>
                 </div>
                 <ul class="footer-links">
-                    <li><a href="#about" data-th="เกี่ยวกับ" data-en="About">About</a></li>
-                    <li><a href="#services" data-th="บริการ" data-en="Services">Services</a></li>
-                    <li><a href="#projects" data-th="โครงการ" data-en="Projects">Projects</a></li>
-                    <li><a href="#contact" data-th="ติดต่อ" data-en="Contact">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#pillars">The Model</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="footer-right">
-                    <p class="footer-text">© 2025 <span data-th="[YOUR NAME]" data-en="[YOUR NAME]">[YOUR NAME]</span>. <span data-th="สงวนสิทธิ์ทั้งหมด" data-en="All rights reserved">All rights reserved</span>.</p>
+                    <p class="footer-text">© 2026 CMP Management Asia Co., Ltd. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // ============================================
+        // GOOGLE TRANSLATE
+        // ============================================
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en', includedLanguages: 'en,th' },
+                'google_translate_element'
+            );
+        }
+
         // ============================================
         // CUSTOM CURSOR
         // ============================================
@@ -1902,231 +1359,11 @@
         });
 
         // ============================================
-        // BILINGUAL TOGGLE
-        // ============================================
-        let currentLang = localStorage.getItem('language') || 'th';
-
-        const langToggle = document.getElementById('langToggle');
-        langToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'th' ? 'en' : 'th';
-            localStorage.setItem('language', currentLang);
-            updateLanguage();
-        });
-
-        function updateLanguage() {
-            document.documentElement.lang = currentLang;
-
-            document.querySelectorAll('[data-th][data-en]').forEach(el => {
-                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = el.getAttribute(`data-${currentLang}`);
-                } else {
-                    el.textContent = el.getAttribute(`data-${currentLang}`);
-                }
-            });
-
-            // Update lang toggle button
-            if (currentLang === 'th') {
-                langToggle.classList.add('active');
-            } else {
-                langToggle.classList.remove('active');
-            }
-        }
-
-        // Initialize language on load
-        updateLanguage();
-
-        // ============================================
-        // PROJECTS DATA
-        // ============================================
-        const projects = [
-            {
-                name: 'Thiraporn Hospital',
-                nameThai: 'โรงพยาบาลธีรพร',
-                type: 'Healthcare',
-                typeThai: 'สาธารณสุข',
-                status: 'Completed',
-                statusThai: 'สำเร็จแล้ว',
-                role: 'Site Architect',
-                roleThai: 'สถาปนิกหน้างาน',
-                desc: 'Modern healthcare facility with advanced construction management and quality assurance.',
-                descThai: 'สถานพยาบาลสมัยใหม่ด้วยการบริหารจัดการการก่อสร้างและการประกันคุณภาพขั้นสูง',
-                images: [
-                    'linear-gradient(135deg, #2a2218 0%, #1e1a16 100%)',
-                    'linear-gradient(135deg, #1e1a16 0%, #2a2218 100%)',
-                    'linear-gradient(135deg, #34281f 0%, #1e1a16 100%)',
-                    'linear-gradient(135deg, #2a2218 0%, #34281f 100%)',
-                    'linear-gradient(135deg, #1e1a16 0%, #3a2f26 100%)'
-                ]
-            },
-            {
-                name: 'ATLAS Superclub',
-                nameThai: 'ATLAS Superclub',
-                type: 'Entertainment / Hospitality',
-                typeThai: 'พาณิชย์ / บันเทิง',
-                status: 'Completed',
-                statusThai: 'สำเร็จแล้ว',
-                role: 'Construction Consultant',
-                roleThai: 'ที่ปรึกษาการก่อสร้าง',
-                desc: 'Premium entertainment venue combining luxury design with complex site coordination.',
-                descThai: 'สถานบันเทิงระดับพรีเมี่ยมรวมการออกแบบระดับหรู่กับการประสานงานหน้างานที่ซับซ้อน',
-                images: [
-                    'linear-gradient(135deg, #3a2f26 0%, #2a2218 100%)',
-                    'linear-gradient(135deg, #1e1a16 0%, #34281f 100%)',
-                    'linear-gradient(135deg, #2a2218 0%, #1e1a16 100%)',
-                    'linear-gradient(135deg, #34281f 0%, #2a2218 100%)',
-                    'linear-gradient(135deg, #1e1a16 0%, #2a2218 100%)'
-                ]
-            },
-            {
-                name: 'The Quarter Ekkamai',
-                nameThai: 'The Quarter Ekkamai',
-                type: 'Mixed-Use Commercial',
-                typeThai: 'พาณิชย์ผสม',
-                status: 'In Progress',
-                statusThai: 'ในการดำเนิน',
-                role: 'Site Architect',
-                roleThai: 'สถาปนิกหน้างาน',
-                desc: 'Large-scale mixed-use development featuring residential and retail spaces.',
-                descThai: 'โครงการพัฒนาผสมขนาดใหญ่ที่มีช่องพักอาศัยและพื้นที่ค้าปลีก',
-                images: [
-                    'linear-gradient(135deg, #2a2218 0%, #3a2f26 100%)',
-                    'linear-gradient(135deg, #34281f 0%, #1e1a16 100%)',
-                    'linear-gradient(135deg, #1e1a16 0%, #2a2218 100%)',
-                    'linear-gradient(135deg, #3a2f26 0%, #34281f 100%)',
-                    'linear-gradient(135deg, #2a2218 0%, #1e1a16 100%)'
-                ]
-            },
-            {
-                name: 'NACC Office',
-                nameThai: 'สำนักงานตรวจเงินแผ่นดิน',
-                type: 'Government',
-                typeThai: 'รัฐบาล',
-                status: 'Past Project',
-                statusThai: 'ผ่านมาแล้ว',
-                role: 'Site Architect',
-                roleThai: 'สถาปนิกหน้างาน',
-                desc: 'Government building project with stringent compliance and security requirements.',
-                descThai: 'โครงการอาคารรัฐบาลพร้อมข้อกำหนดการปฏิบัติตามกฎหมายและความปลอดภัยที่เข้มงวด',
-                images: [
-                    'linear-gradient(135deg, #1e1a16 0%, #2a2218 100%)',
-                    'linear-gradient(135deg, #34281f 0%, #3a2f26 100%)',
-                    'linear-gradient(135deg, #2a2218 0%, #1e1a16 100%)',
-                    'linear-gradient(135deg, #3a2f26 0%, #2a2218 100%)',
-                    'linear-gradient(135deg, #1e1a16 0%, #34281f 100%)'
-                ]
-            }
-        ];
-
-        let currentProjectIndex = 0;
-        let currentImageIndex = 0;
-
-        function openGallery(projectIndex) {
-            currentProjectIndex = projectIndex;
-            currentImageIndex = 0;
-            const modal = document.getElementById('galleryModal');
-            const proj = projects[projectIndex];
-
-            // Update header
-            document.getElementById('galleryTitle').textContent = currentLang === 'th' ? proj.nameThai : proj.name;
-
-            // Update main image
-            const imgEl = document.getElementById('galleryImage');
-            imgEl.style.background = proj.images[0];
-            imgEl.style.backgroundSize = 'cover';
-
-            // Update info
-            document.getElementById('galleryProjName').textContent = currentLang === 'th' ? proj.nameThai : proj.name;
-            document.getElementById('galleryProjType').textContent = currentLang === 'th' ? proj.typeThai : proj.type;
-            document.getElementById('galleryProjStatus').textContent = currentLang === 'th' ? proj.statusThai : proj.status;
-            document.getElementById('galleryProjRole').textContent = currentLang === 'th' ? proj.roleThai : proj.role;
-            document.getElementById('galleryProjDesc').textContent = currentLang === 'th' ? proj.descThai : proj.desc;
-
-            // Update thumbnails
-            const thumbContainer = document.getElementById('galleryThumbnails');
-            thumbContainer.innerHTML = '';
-            proj.images.forEach((img, idx) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
-                thumb.style.background = img;
-                thumb.style.backgroundSize = 'cover';
-                thumb.onclick = () => selectGalleryImage(idx);
-                thumbContainer.appendChild(thumb);
-            });
-
-            updateImageCounter();
-            modal.classList.add('active');
-        }
-
-        function closeGallery() {
-            document.getElementById('galleryModal').classList.remove('active');
-        }
-
-        function nextGalleryImage() {
-            const proj = projects[currentProjectIndex];
-            currentImageIndex = (currentImageIndex + 1) % proj.images.length;
-            updateGalleryDisplay();
-        }
-
-        function prevGalleryImage() {
-            const proj = projects[currentProjectIndex];
-            currentImageIndex = (currentImageIndex - 1 + proj.images.length) % proj.images.length;
-            updateGalleryDisplay();
-        }
-
-        function selectGalleryImage(idx) {
-            currentImageIndex = idx;
-            updateGalleryDisplay();
-        }
-
-        function updateGalleryDisplay() {
-            const proj = projects[currentProjectIndex];
-            const img = document.getElementById('galleryImage');
-            img.style.background = proj.images[currentImageIndex];
-            img.style.backgroundSize = 'cover';
-
-            // Update active thumbnail
-            document.querySelectorAll('.gallery-thumb').forEach((thumb, idx) => {
-                if (idx === currentImageIndex) {
-                    thumb.classList.add('active');
-                } else {
-                    thumb.classList.remove('active');
-                }
-            });
-
-            updateImageCounter();
-        }
-
-        function updateImageCounter() {
-            const proj = projects[currentProjectIndex];
-            document.getElementById('imageCounter').textContent = (currentImageIndex + 1) + ' / ' + proj.images.length;
-        }
-
-        // Close gallery on ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeGallery();
-            }
-        });
-
-        // Gallery arrow keys
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('galleryModal').classList.contains('active')) {
-                if (e.key === 'ArrowRight') nextGalleryImage();
-                if (e.key === 'ArrowLeft') prevGalleryImage();
-            }
-        });
-
-        // ============================================
         // FORM SUBMISSION
         // ============================================
         function handleFormSubmit(event) {
             event.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            // Mock submission
-            alert(currentLang === 'th' ? 'ขอบคุณสำหรับข้อความของคุณ!' : 'Thank you for your message!');
+            alert('Thank you for your message! We will get back to you soon.');
             event.target.reset();
         }
 
@@ -2140,10 +1377,215 @@
                     e.preventDefault();
                     const target = document.querySelector(href);
                     if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        const navLinks = document.getElementById('navLinks');
+                        if (navLinks) navLinks.classList.remove('show');
                     }
                 }
             });
+        });
+
+        // ATLAS GALLERY
+        const atlasImages = [
+            './img/proj/atlas/IMG_20251209_164603.jpg',
+            './img/proj/atlas/IMG_20251209_165700.jpg',
+            './img/proj/atlas/IMG_20251210_144031.jpg',
+            './img/proj/atlas/IMG_20251218_222932.jpg',
+            './img/proj/atlas/IMG_20251219_201353.jpg',
+            './img/proj/atlas/IMG_20251223_110011.jpg',
+            './img/proj/atlas/IMG_20251223_110034.jpg',
+            './img/proj/atlas/IMG_20260505_125522.jpg',
+            './img/proj/atlas/IMG_20260505_131525.jpg',
+            './img/proj/atlas/IMG_20260505_131549.jpg',
+            './img/proj/atlas/IMG_20260505_131604.jpg',
+            './img/proj/atlas/IMG_20260505_131621.jpg',
+            './img/proj/atlas/IMG_20260505_140420.jpg',
+            './img/proj/atlas/IMG_20260505_140552.jpg',
+            './img/proj/atlas/IMG_20260505_140814.jpg',
+            './img/proj/atlas/IMG_20260505_140819.jpg',
+            './img/proj/atlas/PANO_20260505_140915.jpg'
+        ];
+        let atlasCurrentIndex = 4; // Start with main image (IMG_20251219_201353.jpg)
+
+        function openAtlasGallery() {
+            const modal = document.getElementById('atlasModal');
+            modal.style.display = 'flex';
+            generateAtlasThumbnails();
+            updateAtlasImage();
+            document.addEventListener('keydown', handleAtlasKeyboard);
+        }
+
+        function closeAtlasGallery() {
+            const modal = document.getElementById('atlasModal');
+            modal.style.display = 'none';
+            document.removeEventListener('keydown', handleAtlasKeyboard);
+        }
+
+        function generateAtlasThumbnails() {
+            const container = document.getElementById('atlasThumbnailsContainer');
+            container.innerHTML = '';
+            atlasImages.forEach((img, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'atlas-thumbnail' + (index === atlasCurrentIndex ? ' active' : '');
+                thumb.onclick = () => jumpToAtlasImage(index);
+                const imgEl = document.createElement('img');
+                imgEl.src = img;
+                imgEl.alt = `Thumbnail ${index + 1}`;
+                thumb.appendChild(imgEl);
+                container.appendChild(thumb);
+            });
+        }
+
+        function jumpToAtlasImage(index) {
+            atlasCurrentIndex = index;
+            updateAtlasImage();
+        }
+
+        function atlasGalleryNext() {
+            atlasCurrentIndex = (atlasCurrentIndex + 1) % atlasImages.length;
+            updateAtlasImage();
+        }
+
+        function atlasGalleryPrev() {
+            atlasCurrentIndex = (atlasCurrentIndex - 1 + atlasImages.length) % atlasImages.length;
+            updateAtlasImage();
+        }
+
+        function updateAtlasImage() {
+            const img = document.getElementById('atlasGalleryImg');
+            const counter = document.getElementById('atlasImageCounter');
+            img.src = atlasImages[atlasCurrentIndex];
+            counter.textContent = (atlasCurrentIndex + 1) + ' / ' + atlasImages.length;
+
+            // Update active thumbnail
+            document.querySelectorAll('.atlas-thumbnail').forEach((thumb, idx) => {
+                if (idx === atlasCurrentIndex) {
+                    thumb.classList.add('active');
+                    // Scroll thumbnail into view
+                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        function handleAtlasKeyboard(e) {
+            if (e.key === 'ArrowRight') atlasGalleryNext();
+            if (e.key === 'ArrowLeft') atlasGalleryPrev();
+            if (e.key === 'Escape') closeAtlasGallery();
+        }
+
+        // Close modal on background click
+        document.getElementById('atlasModal')?.addEventListener('click', function(e) {
+            if (e.target === this) closeAtlasGallery();
+        });
+
+        // ============================================
+        // QUARTER HOTEL GALLERY
+        // ============================================
+        const quarterImages = [
+            './img/proj/tqhe/cr=w_600,h_300.jpg',
+            './img/proj/tqhe/IMG_20260422_135544.jpg',
+            './img/proj/tqhe/IMG_20260502_143404.jpg',
+            './img/proj/tqhe/IMG_20260502_143419.jpg',
+            './img/proj/tqhe/IMG_20260502_143515.jpg',
+            './img/proj/tqhe/IMG_20260502_143606.jpg',
+            './img/proj/tqhe/IMG_20260502_143735.jpg',
+            './img/proj/tqhe/render/124235_0.jpg',
+            './img/proj/tqhe/render/124236_0.jpg',
+            './img/proj/tqhe/render/124237_0.jpg',
+            './img/proj/tqhe/render/124238_0.jpg',
+            './img/proj/tqhe/render/124239_0.jpg',
+            './img/proj/tqhe/render/124241_0.jpg',
+            './img/proj/tqhe/render/124242_0.jpg',
+            './img/proj/tqhe/render/124243_0.jpg',
+            './img/proj/tqhe/render/124244_0.jpg',
+            './img/proj/tqhe/render/124247_0.jpg',
+            './img/proj/tqhe/render/4.jpg',
+            './img/proj/tqhe/render/8a00f133-7dab-41ba-bf33-511f118fcce6.jpg',
+            './img/proj/tqhe/render/LIFT-02.jpg',
+            './img/proj/tqhe/render/S__14049355.jpg',
+            './img/proj/tqhe/render/S__14049356.jpg',
+            './img/proj/tqhe/render/S__14049358.jpg',
+            './img/proj/tqhe/render/S__14049360.jpg',
+            './img/proj/tqhe/render/S__14049363.jpg',
+            './img/proj/tqhe/render/S__14049364.jpg',
+            './img/proj/tqhe/render/wc-01.1.jpg',
+            './img/proj/tqhe/render/wc-02.1.jpg',
+            './img/proj/tqhe/render/cr=w_600,h_300.jpg'
+        ];
+        let quarterCurrentIndex = 0;
+
+        function openQuarterGallery() {
+            const modal = document.getElementById('quarterModal');
+            modal.style.display = 'flex';
+            generateQuarterThumbnails();
+            updateQuarterImage();
+            document.addEventListener('keydown', handleQuarterKeyboard);
+        }
+
+        function closeQuarterGallery() {
+            const modal = document.getElementById('quarterModal');
+            modal.style.display = 'none';
+            document.removeEventListener('keydown', handleQuarterKeyboard);
+        }
+
+        function generateQuarterThumbnails() {
+            const container = document.getElementById('quarterThumbnailsContainer');
+            container.innerHTML = '';
+            quarterImages.forEach((img, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'atlas-thumbnail' + (index === quarterCurrentIndex ? ' active' : '');
+                thumb.onclick = () => jumpToQuarterImage(index);
+                const imgEl = document.createElement('img');
+                imgEl.src = img;
+                imgEl.alt = `Thumbnail ${index + 1}`;
+                thumb.appendChild(imgEl);
+                container.appendChild(thumb);
+            });
+        }
+
+        function jumpToQuarterImage(index) {
+            quarterCurrentIndex = index;
+            updateQuarterImage();
+        }
+
+        function quarterGalleryNext() {
+            quarterCurrentIndex = (quarterCurrentIndex + 1) % quarterImages.length;
+            updateQuarterImage();
+        }
+
+        function quarterGalleryPrev() {
+            quarterCurrentIndex = (quarterCurrentIndex - 1 + quarterImages.length) % quarterImages.length;
+            updateQuarterImage();
+        }
+
+        function updateQuarterImage() {
+            const img = document.getElementById('quarterGalleryImg');
+            const counter = document.getElementById('quarterImageCounter');
+            img.src = quarterImages[quarterCurrentIndex];
+            counter.textContent = (quarterCurrentIndex + 1) + ' / ' + quarterImages.length;
+
+            // Update active thumbnail
+            document.querySelectorAll('.atlas-thumbnail').forEach((thumb, idx) => {
+                if (idx === quarterCurrentIndex) {
+                    thumb.classList.add('active');
+                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        function handleQuarterKeyboard(e) {
+            if (e.key === 'ArrowRight') quarterGalleryNext();
+            if (e.key === 'ArrowLeft') quarterGalleryPrev();
+            if (e.key === 'Escape') closeQuarterGallery();
+        }
+
+        // Close modal on background click
+        document.getElementById('quarterModal')?.addEventListener('click', function(e) {
+            if (e.target === this) closeQuarterGallery();
         });
     </script>
 </body>

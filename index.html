@@ -1065,7 +1065,7 @@
                     </div>
                     <div class="pillar-card fade-in-stagger stagger-2" onclick="openBoonNakGallery()" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
                         <div style="position: relative; width: 100%; margin-bottom: 1rem;">
-                            <img src="img/proj/boonnak/boonnakerohero.png" alt="Boon Nak Residence Ubon" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                            <img src="img/proj/boonnak/boonnakhero.jpg" alt="Boon Nak Residence Ubon" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                             <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(184, 146, 61, 0.5); color: white; padding: 0.35rem 0.6rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px);">Click to expand →</div>
                         </div>
                         <h4 style="margin-bottom: 0.75rem;">Boon Nak Residence Ubon</h4>
@@ -1389,7 +1389,7 @@
     <div id="boonNakModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
         <div style="position: relative; width: 90%; max-width: 900px; height: 70vh; display: flex; flex-direction: column;">
             <button style="position: absolute; top: -3rem; right: 0; background: var(--accent-gold); border: none; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; font-weight: 600; z-index: 2001;" onclick="closeBoonNakGallery()">×</button>
-            <img id="boonNakGalleryImg" src="img/proj/boonnak/boonnakerohero.png" alt="Boon Nak Residence" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
+            <img id="boonNakGalleryImg" src="img/proj/boonnak/boonnakhero.jpg" alt="Boon Nak Residence" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="boonNakGalleryPrev()">← Previous</button>
                 <span id="boonNakImageCounter" style="color: var(--accent-gold); font-weight: 600;">1 / 1</span>
@@ -2272,7 +2272,7 @@
         document.getElementById('kaoyaiModal')?.addEventListener('click', function(e) { if (e.target === this) closeKaoyaiGallery(); });
 
         // BOON NAK GALLERY
-        const boonNakImages = ['img/proj/boonnak/boonnakerohero.png'];
+        const boonNakImages = ['img/proj/boonnak/boonnakhero.jpg'];
         let boonNakCurrentIndex = 0;
 
         function openBoonNakGallery() {

@@ -1508,16 +1508,14 @@
         if (atlasCurrentIndex === -1) atlasCurrentIndex = 0; // Fallback to first if not found
 
         function openAtlasGallery() {
-            const modal = document.getElementById('atlasModal');
-            modal.style.display = 'flex';
+            document.getElementById('atlasModal').style.display = 'flex';
             generateAtlasThumbnails();
             updateAtlasImage();
             document.addEventListener('keydown', handleAtlasKeyboard);
         }
 
         function closeAtlasGallery() {
-            const modal = document.getElementById('atlasModal');
-            modal.style.display = 'none';
+            document.getElementById('atlasModal').style.display = 'none';
             atlasCurrentIndex = atlasImages.findIndex(img => img.includes('IMG_20251219_201353.jpg'));
             if (atlasCurrentIndex === -1) atlasCurrentIndex = 0;
             document.removeEventListener('keydown', handleAtlasKeyboard);
@@ -1529,7 +1527,7 @@
             atlasImages.forEach((img, index) => {
                 const thumb = document.createElement('div');
                 thumb.className = 'atlas-thumbnail' + (index === atlasCurrentIndex ? ' active' : '');
-                thumb.onclick = () => jumpToAtlasImage(index);
+                thumb.onclick = () => { atlasCurrentIndex = index; updateAtlasImage(); };
                 const imgEl = document.createElement('img');
                 imgEl.src = img;
                 imgEl.alt = `Thumbnail ${index + 1}`;
@@ -1538,36 +1536,16 @@
             });
         }
 
-        function jumpToAtlasImage(index) {
-            atlasCurrentIndex = index;
-            updateAtlasImage();
-        }
-
-        function atlasGalleryNext() {
-            atlasCurrentIndex = (atlasCurrentIndex + 1) % atlasImages.length;
-            updateAtlasImage();
-        }
-
-        function atlasGalleryPrev() {
-            atlasCurrentIndex = (atlasCurrentIndex - 1 + atlasImages.length) % atlasImages.length;
-            updateAtlasImage();
-        }
+        function atlasGalleryNext() { atlasCurrentIndex = (atlasCurrentIndex + 1) % atlasImages.length; updateAtlasImage(); }
+        function atlasGalleryPrev() { atlasCurrentIndex = (atlasCurrentIndex - 1 + atlasImages.length) % atlasImages.length; updateAtlasImage(); }
 
         function updateAtlasImage() {
             const img = document.getElementById('atlasGalleryImg');
-            const counter = document.getElementById('atlasImageCounter');
             img.src = atlasImages[atlasCurrentIndex];
-            counter.textContent = (atlasCurrentIndex + 1) + ' / ' + atlasImages.length;
-
-            // Update active thumbnail
+            document.getElementById('atlasImageCounter').textContent = (atlasCurrentIndex + 1) + ' / ' + atlasImages.length;
             document.querySelectorAll('.atlas-thumbnail').forEach((thumb, idx) => {
-                if (idx === atlasCurrentIndex) {
-                    thumb.classList.add('active');
-                    // Scroll thumbnail into view
-                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                } else {
-                    thumb.classList.remove('active');
-                }
+                if (idx === atlasCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
+                else { thumb.classList.remove('active'); }
             });
         }
 
@@ -1644,7 +1622,7 @@
             quarterImages.forEach((img, index) => {
                 const thumb = document.createElement('div');
                 thumb.className = 'quarter-thumbnail' + (index === quarterCurrentIndex ? ' active' : '');
-                thumb.onclick = () => jumpToQuarterImage(index);
+                thumb.onclick = () => { quarterCurrentIndex = index; updateQuarterImage(); };
                 const imgEl = document.createElement('img');
                 imgEl.src = img;
                 imgEl.alt = `Thumbnail ${index + 1}`;
@@ -1653,10 +1631,6 @@
             });
         }
 
-        function jumpToQuarterImage(index) {
-            quarterCurrentIndex = index;
-            updateQuarterImage();
-        }
 
         function quarterGalleryNext() {
             quarterCurrentIndex = (quarterCurrentIndex + 1) % quarterImages.length;
@@ -1745,7 +1719,7 @@
             obkImages.forEach((img, index) => {
                 const thumb = document.createElement('div');
                 thumb.className = 'obk-thumbnail' + (index === obkCurrentIndex ? ' active' : '');
-                thumb.onclick = () => jumpToObkImage(index);
+                thumb.onclick = () => { obkCurrentIndex = index; updateObkImage(); };
                 thumb.setAttribute('data-gallery', 'obk');
                 const imgEl = document.createElement('img');
                 imgEl.src = img;
@@ -1755,35 +1729,16 @@
             });
         }
 
-        function jumpToObkImage(index) {
-            obkCurrentIndex = index;
-            updateObkImage();
-        }
-
-        function obkGalleryNext() {
-            obkCurrentIndex = (obkCurrentIndex + 1) % obkImages.length;
-            updateObkImage();
-        }
-
-        function obkGalleryPrev() {
-            obkCurrentIndex = (obkCurrentIndex - 1 + obkImages.length) % obkImages.length;
-            updateObkImage();
-        }
+        function obkGalleryNext() { obkCurrentIndex = (obkCurrentIndex + 1) % obkImages.length; updateObkImage(); }
+        function obkGalleryPrev() { obkCurrentIndex = (obkCurrentIndex - 1 + obkImages.length) % obkImages.length; updateObkImage(); }
 
         function updateObkImage() {
             const img = document.getElementById('obkGalleryImg');
-            const counter = document.getElementById('obkImageCounter');
             img.src = obkImages[obkCurrentIndex];
-            counter.textContent = (obkCurrentIndex + 1) + ' / ' + obkImages.length;
-
-            // Update active thumbnail
+            document.getElementById('obkImageCounter').textContent = (obkCurrentIndex + 1) + ' / ' + obkImages.length;
             document.querySelectorAll('.obk-thumbnail[data-gallery="obk"]').forEach((thumb, idx) => {
-                if (idx === obkCurrentIndex) {
-                    thumb.classList.add('active');
-                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                } else {
-                    thumb.classList.remove('active');
-                }
+                if (idx === obkCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
+                else { thumb.classList.remove('active'); }
             });
         }
 
@@ -1839,43 +1794,24 @@
             trpImages.forEach((src, idx) => {
                 const img = document.createElement('img');
                 img.src = src;
-                img.className = 'trp-thumbnail';
+                img.className = 'trp-thumbnail' + (idx === trpCurrentIndex ? ' active' : '');
                 img.setAttribute('data-gallery', 'trp');
                 img.style.cursor = 'pointer';
-                img.onclick = (e) => {
-                    e.stopPropagation();
-                    trpCurrentIndex = idx;
-                    updateTrpImage();
-                };
-                if (idx === 0) img.classList.add('active');
+                img.onclick = (e) => { e.stopPropagation(); trpCurrentIndex = idx; updateTrpImage(); };
                 container.appendChild(img);
             });
         }
 
-        function trpGalleryNext() {
-            trpCurrentIndex = (trpCurrentIndex + 1) % trpImages.length;
-            updateTrpImage();
-        }
-
-        function trpGalleryPrev() {
-            trpCurrentIndex = (trpCurrentIndex - 1 + trpImages.length) % trpImages.length;
-            updateTrpImage();
-        }
+        function trpGalleryNext() { trpCurrentIndex = (trpCurrentIndex + 1) % trpImages.length; updateTrpImage(); }
+        function trpGalleryPrev() { trpCurrentIndex = (trpCurrentIndex - 1 + trpImages.length) % trpImages.length; updateTrpImage(); }
 
         function updateTrpImage() {
             const img = document.getElementById('trpGalleryImg');
-            const counter = document.getElementById('trpImageCounter');
             img.src = trpImages[trpCurrentIndex];
-            counter.textContent = (trpCurrentIndex + 1) + ' / ' + trpImages.length;
-
-            // Update active thumbnail
+            document.getElementById('trpImageCounter').textContent = (trpCurrentIndex + 1) + ' / ' + trpImages.length;
             document.querySelectorAll('.trp-thumbnail[data-gallery="trp"]').forEach((thumb, idx) => {
-                if (idx === trpCurrentIndex) {
-                    thumb.classList.add('active');
-                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                } else {
-                    thumb.classList.remove('active');
-                }
+                if (idx === trpCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
+                else { thumb.classList.remove('active'); }
             });
         }
 

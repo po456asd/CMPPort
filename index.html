@@ -964,9 +964,10 @@
                         <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Project Complete:</strong> 28 February 2023 (Architectural Extended to March 2025)</p>
                         <p style="font-size: 0.85rem; color: var(--accent-gold);"><strong>Role:</strong> Contract & Commercial Management</p>
                     </div>
-                    <div class="pillar-card fade-in-stagger stagger-2" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
-                        <div style="position: relative; width: 100%; margin-bottom: 1rem; background: linear-gradient(135deg, #1A3A5C 0%, #0A1628 100%); border-radius: 0.5rem; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;">
-                            <p style="color: var(--accent-gold); font-size: 0.85rem; text-align: center; padding: 1rem;">Image Coming Soon</p>
+                    <div class="pillar-card fade-in-stagger stagger-2" onclick="openObkfGallery()" style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(184, 146, 61, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+                        <div style="position: relative; width: 100%; margin-bottom: 1rem;">
+                            <img src="img/proj/OBKF/obkfhero.png" alt="One Bangkok Forum" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                            <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(184, 146, 61, 0.5); color: white; padding: 0.35rem 0.6rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 600; backdrop-filter: blur(4px);">Click to expand →</div>
                         </div>
                         <h4 style="margin-bottom: 0.75rem;">One Bangkok Forum</h4>
                         <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Art & Cultural Multi-Purpose Hall</p>
@@ -1299,6 +1300,22 @@
             </div>
             <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
                 <div id="prydThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0.5rem 0; max-height: 100px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ONE BANGKOK FORUM GALLERY MODAL -->
+    <div id="obkfModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
+        <div style="position: relative; width: 90%; max-width: 900px; height: 70vh; display: flex; flex-direction: column;">
+            <button style="position: absolute; top: -3rem; right: 0; background: var(--accent-gold); border: none; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; font-weight: 600; z-index: 2001;" onclick="closeObkfGallery()">×</button>
+            <img id="obkfGalleryImg" src="img/proj/OBKF/1.png" alt="One Bangkok Forum" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="obkfGalleryPrev()">← Previous</button>
+                <span id="obkfImageCounter" style="color: var(--accent-gold); font-weight: 600;">1 / 3</span>
+                <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="obkfGalleryNext()">Next →</button>
+            </div>
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
+                <div id="obkfThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0.5rem 0; max-height: 100px;"></div>
             </div>
         </div>
     </div>
@@ -1976,6 +1993,58 @@
         }
 
         document.getElementById('prydModal')?.addEventListener('click', function(e) { if (e.target === this) closePrydGallery(); });
+
+        // ONE BANGKOK FORUM GALLERY
+        const obkfImages = ['img/proj/OBKF/1.png', 'img/proj/OBKF/2.png', 'img/proj/OBKF/3.png'];
+        let obkfCurrentIndex = 0;
+
+        function openObkfGallery() {
+            document.getElementById('obkfModal').style.display = 'flex';
+            generateObkfThumbnails();
+            updateObkfImage();
+            document.addEventListener('keydown', handleObkfKeyboard);
+        }
+
+        function closeObkfGallery() {
+            document.getElementById('obkfModal').style.display = 'none';
+            document.removeEventListener('keydown', handleObkfKeyboard);
+        }
+
+        function generateObkfThumbnails() {
+            const container = document.getElementById('obkfThumbnailsContainer');
+            container.innerHTML = '';
+            obkfImages.forEach((img, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'obkf-thumbnail' + (index === obkfCurrentIndex ? ' active' : '');
+                thumb.onclick = () => { obkfCurrentIndex = index; updateObkfImage(); };
+                const imgEl = document.createElement('img');
+                imgEl.src = img;
+                imgEl.alt = `Thumbnail ${index + 1}`;
+                thumb.appendChild(imgEl);
+                container.appendChild(thumb);
+            });
+        }
+
+        function obkfGalleryNext() { obkfCurrentIndex = (obkfCurrentIndex + 1) % obkfImages.length; updateObkfImage(); }
+        function obkfGalleryPrev() { obkfCurrentIndex = (obkfCurrentIndex - 1 + obkfImages.length) % obkfImages.length; updateObkfImage(); }
+
+        function updateObkfImage() {
+            const img = document.getElementById('obkfGalleryImg');
+            img.src = obkfImages[obkfCurrentIndex];
+            document.getElementById('obkfImageCounter').textContent = (obkfCurrentIndex + 1) + ' / ' + obkfImages.length;
+            document.querySelectorAll('.obkf-thumbnail').forEach((thumb, idx) => {
+                if (idx === obkfCurrentIndex) { thumb.classList.add('active'); thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
+                else { thumb.classList.remove('active'); }
+            });
+        }
+
+        function handleObkfKeyboard(e) {
+            if (e.key === 'ArrowRight') obkfGalleryNext();
+            if (e.key === 'ArrowLeft') obkfGalleryPrev();
+            if (e.key === 'Escape') closeObkfGallery();
+        }
+
+        document.getElementById('obkfModal')?.addEventListener('click', function(e) { if (e.target === this) closeObkfGallery(); });
     </script>
 </body>
 </html>

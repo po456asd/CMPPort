@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMP Management Asia — Construction Management & Project Solutions</title>
     <meta name="description" content="CMP Management Asia: Systematic partner for developers requiring certainty in complex construction projects. Project management, construction oversight, cost control, and project audit.">
+    <meta property="og:title" content="CMP Management Asia — Construction Management">
+    <meta property="og:description" content="From Vision to Guaranteed Reality. 30+ years of construction expertise across Asia.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cmpasia.co.th">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="keywords" content="construction management, project management, site supervision, quantity surveying, Bangkok Thailand">
 
     <!-- Google Fonts Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -338,38 +344,6 @@
             color: var(--text-dark);
         }
 
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--accent-gold-alpha);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .hero-stat {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .hero-stat-num {
-            font-family: var(--ff-display);
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--accent-gold);
-            margin-bottom: 0.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero-stats {
-                gap: 1.5rem;
-                flex-direction: column;
-            }
-        }
 
         /* ============================================
            CONTAINER & GRID
@@ -472,87 +446,6 @@
         }
 
         /* PROJECT CARDS WITH IMAGES */
-        .project-card {
-            display: flex;
-            flex-direction: column;
-            border: var(--border-gold);
-            border-radius: 2px;
-            background: var(--bg-card);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            border-color: var(--accent-gold);
-            transform: translateY(-5px);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-        }
-
-        .project-info {
-            padding: 1.5rem;
-            background: var(--bg-card);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .project-name {
-            font-size: 1.1rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .project-type {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        .project-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(184, 146, 61, 0.2);
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-radius: 2px;
-            margin-bottom: 1rem;
-        }
-
-        .badge-completed {
-            background: rgba(76, 175, 80, 0.2);
-            border-color: #4caf50;
-            color: #4caf50;
-        }
-
-        .project-view-btn {
-            align-self: flex-start;
-            padding: 0.5rem 1.5rem;
-            background: transparent;
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .project-view-btn:hover {
-            background: var(--accent-gold);
-            color: var(--text-dark);
-        }
 
         .pillar-header {
             display: flex;
@@ -953,8 +846,8 @@
         <div class="container">
             <h2>About CMP Management Asia</h2>
             <div class="grid-2 fade-in">
-                <div style="aspect-ratio: 1; border-radius: 2px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                    <img src="./img/etc/rs=w_1279,m.jpg" alt="CMP Management Asia Office" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="aspect-ratio: 1; border-radius: 2px; overflow: hidden;">
+                    <img src="./img/etc/rs=w_1279,m.jpg" alt="CMP Management Asia Office" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="fade-in-stagger stagger-1">
                     <h3 style="color: var(--accent-gold); margin-bottom: 1rem;">From Vision to Guaranteed Reality</h3>
@@ -1146,7 +1039,7 @@
             <div class="grid-2">
                 <!-- Johnny Beh -->
                 <div class="pillar-card fade-in-stagger stagger-1">
-                    <img src="./img/ppl/JB.jpg" alt="Johnny Beh" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
+                    <img src="./img/ppl/JB.jpg" alt="Johnny Beh" loading="lazy" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
                     <h4 style="margin-bottom: 0.5rem;">Johnny Beh</h4>
                     <p style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 1rem;">Chief Executive Officer & Founder</p>
                     <p style="font-size: 0.9rem; margin-bottom: 1rem;">30+ years in construction and project management. School of Architect PAM graduate with expertise across Asia and Middle East. Led major projects including YLP Narathiwat Road, Ari Hills, Avani Riverside Hotel Bangkok, and international assignments in Doha.</p>
@@ -1155,7 +1048,7 @@
 
                 <!-- Philaiwan -->
                 <div class="pillar-card fade-in-stagger stagger-2">
-                    <img src="./img/ppl/PT.jpg" alt="Philaiwan Thathisa" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
+                    <img src="./img/ppl/PT.jpg" alt="Philaiwan Thathisa" loading="lazy" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
                     <h4 style="margin-bottom: 0.5rem;">Philaiwan Thathisa</h4>
                     <p style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 1rem;">Finance Director</p>
                     <p style="font-size: 0.9rem; margin-bottom: 1rem;">Distinguished career in financial management and strategic leadership. Joined CMP in 2019. Ramkhamhaeng University graduate specializing in fiscal discipline, operational efficiency, and transparent reporting. Ensures zero hidden cost erosion and protection of client capital.</p>
@@ -1164,7 +1057,7 @@
 
                 <!-- Clarence Sim -->
                 <div class="pillar-card fade-in-stagger stagger-3">
-                    <img src="./img/ppl/CSB.jpg" alt="Clarence Sim B.H" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
+                    <img src="./img/ppl/CSB.jpg" alt="Clarence Sim B.H" loading="lazy" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
                     <h4 style="margin-bottom: 0.5rem;">Clarence Sim B.H</h4>
                     <p style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 1rem;">Operations Director / Associate Director</p>
                     <p style="font-size: 0.9rem; margin-bottom: 1rem;">15+ years in construction, project management, and property development across Thailand and Singapore. Business Administration graduate from Selkirk College, Canada. Specializes in cost control, workflow optimization, and quality assurance. Led Fresh City Chiang Mai, The Sails Resort & Spa, and Mahanakorn's Edition Hotel projects.</p>
@@ -1173,7 +1066,7 @@
 
                 <!-- Worapot -->
                 <div class="pillar-card fade-in-stagger stagger-4">
-                    <img src="./img/ppl/WK.jpg" alt="Worapot Kitcharenchai" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
+                    <img src="./img/ppl/WK.jpg" alt="Worapot Kitcharenchai" loading="lazy" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);" />
                     <h4 style="margin-bottom: 0.5rem;">Worapot Kitcharenchai</h4>
                     <p style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 1rem;">Chief Operating Officer</p>
                     <p style="font-size: 0.9rem; margin-bottom: 1rem;">12 years specialized in marketing and operational expertise for construction projects. Combines market insight with execution discipline to ensure operational excellence. Brings data-driven strategies and competitive market foresight to every engagement, aligning project delivery with commercial realities.</p>
@@ -1184,10 +1077,10 @@
     </section>
 
     <!-- ATLAS GALLERY MODAL -->
-    <div id="atlasModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
+    <div id="atlasModal" role="dialog" aria-modal="true" aria-labelledby="atlasGalleryImg" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
         <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
             <!-- Close Button -->
-            <button onclick="closeAtlasGallery()" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+            <button onclick="closeAtlasGallery()" aria-label="Close gallery" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
 
             <!-- Image Container with Animation -->
             <div id="atlasImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
@@ -1221,64 +1114,9 @@
                 }
             }
 
-            .atlas-thumbnail {
-                width: 80px;
-                height: 60px;
-                flex-shrink: 0;
-                cursor: pointer;
-                border: 2px solid transparent;
-                border-radius: 4px;
-                overflow: hidden;
-                transition: all 0.3s ease;
-                opacity: 0.6;
-            }
-
-            .atlas-thumbnail:hover {
-                opacity: 0.8;
-                border-color: var(--accent-gold);
-            }
-
-            .atlas-thumbnail.active {
-                opacity: 1;
-                border-color: var(--accent-gold);
-                box-shadow: 0 0 12px rgba(184, 146, 61, 0.5);
-            }
-
-            .atlas-thumbnail img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .obk-thumbnail {
-                width: 80px;
-                height: 60px;
-                flex-shrink: 0;
-                cursor: pointer;
-                border: 2px solid transparent;
-                border-radius: 4px;
-                overflow: hidden;
-                transition: all 0.3s ease;
-                opacity: 0.6;
-            }
-
-            .obk-thumbnail:hover {
-                opacity: 0.8;
-                border-color: var(--accent-gold);
-            }
-
-            .obk-thumbnail.active {
-                opacity: 1;
-                border-color: var(--accent-gold);
-                box-shadow: 0 0 12px rgba(184, 146, 61, 0.5);
-            }
-
-            .obk-thumbnail img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
+            /* Gallery thumbnails base class */
+            .atlas-thumbnail,
+            .obk-thumbnail,
             .quarter-thumbnail {
                 width: 80px;
                 height: 60px;
@@ -1291,17 +1129,23 @@
                 opacity: 0.6;
             }
 
+            .atlas-thumbnail:hover,
+            .obk-thumbnail:hover,
             .quarter-thumbnail:hover {
                 opacity: 0.8;
                 border-color: var(--accent-gold);
             }
 
+            .atlas-thumbnail.active,
+            .obk-thumbnail.active,
             .quarter-thumbnail.active {
                 opacity: 1;
                 border-color: var(--accent-gold);
                 box-shadow: 0 0 12px rgba(184, 146, 61, 0.5);
             }
 
+            .atlas-thumbnail img,
+            .obk-thumbnail img,
             .quarter-thumbnail img {
                 width: 100%;
                 height: 100%;
@@ -1311,14 +1155,14 @@
     </div>
 
     <!-- QUARTER HOTEL GALLERY MODAL -->
-    <div id="quarterModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
+    <div id="quarterModal" role="dialog" aria-modal="true" aria-labelledby="quarterGalleryImg" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
         <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
             <!-- Close Button -->
-            <button onclick="closeQuarterGallery()" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+            <button onclick="closeQuarterGallery()" aria-label="Close gallery" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
 
             <!-- Image Container with Animation -->
             <div id="quarterImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
-                <img id="quarterGalleryImg" src="" alt="Quarter Gallery" style="max-width: 100%; max-height: 100%; object-fit: contain; animation: slideIn 0.6s ease-out;" />
+                <img id="quarterGalleryImg" src="" alt="Quarter Gallery" style="width: 100%; height: 100%; object-fit: cover; animation: slideIn 0.6s ease-out;" />
             </div>
 
             <!-- Navigation Controls -->
@@ -1338,14 +1182,14 @@
     </div>
 
     <!-- ONE BANGKOK GALLERY MODAL -->
-    <div id="obkModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
+    <div id="obkModal" role="dialog" aria-modal="true" aria-labelledby="obkGalleryImg" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
         <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
             <!-- Close Button -->
-            <button onclick="closeObkGallery()" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+            <button onclick="closeObkGallery()" aria-label="Close gallery" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
 
             <!-- Image Container with Animation -->
             <div id="obkImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
-                <img id="obkGalleryImg" src="" alt="One Bangkok Gallery" style="max-width: 100%; max-height: 100%; object-fit: contain; animation: slideIn 0.6s ease-out;" />
+                <img id="obkGalleryImg" src="" alt="One Bangkok Gallery" style="width: 100%; height: 100%; object-fit: cover; animation: slideIn 0.6s ease-out;" />
             </div>
 
             <!-- Navigation Controls -->
@@ -1395,7 +1239,7 @@
             </div>
 
             <div style="margin-top: 3rem; border-radius: 8px; overflow: hidden; border: 1px solid var(--accent-gold-alpha);">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.795357877547!2d100.50724667677497!3d13.670204099174104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2a3c58dcefe93%3A0x87ac137d66dc43a4!2sCMP%20Management%20Asia%20Co.%2CLtd!5e0!3m2!1sen!2sth!4v1778316855453!5m2!1sen!2sth" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe title="CMP Management Asia Office Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.795357877547!2d100.50724667677497!3d13.670204099174104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2a3c58dcefe93%3A0x87ac137d66dc43a4!2sCMP%20Management%20Asia%20Co.%2CLtd!5e0!3m2!1sen!2sth!4v1778316855453!5m2!1sen!2sth" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>

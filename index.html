@@ -825,6 +825,124 @@
             opacity: 0.8;
             border-color: var(--accent-gold);
         }
+
+        /* ============================================
+           GALLERY MODAL SYSTEM (Standardized)
+           ============================================ */
+
+        /* Gallery modal outer container - centered overlay */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Gallery modal inner container - holds image and controls */
+        .gallery-modal-inner {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Gallery modal close button */
+        .gallery-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: var(--accent-gold);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--bg-primary);
+            z-index: 2001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Gallery image wrapper */
+        .gallery-image-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            position: relative;
+        }
+
+        /* Gallery image */
+        .gallery-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        /* Gallery navigation controls */
+        .gallery-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        /* Gallery control buttons */
+        .gallery-btn {
+            background: var(--accent-gold);
+            border: none;
+            color: var(--bg-primary);
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-radius: 0.25rem;
+            font-weight: 600;
+        }
+
+        /* Gallery image counter */
+        .gallery-counter {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* Thumbnail strip outer wrapper - STANDARDIZED */
+        .gallery-thumbnails-strip {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            align-items: center;
+        }
+
+        /* Thumbnail container - STANDARDIZED */
+        .gallery-thumbnails-container {
+            display: flex;
+            gap: 0.75rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            flex: 1;
+            padding: 0;
+            scrollbar-width: thin;
+            max-height: 75px;
+        }
     </style>
 </head>
 <body>
@@ -1118,26 +1236,26 @@
     </section>
 
     <!-- TEERAPORN CLINIC GALLERY MODAL -->
-    <div id="trpModal" role="dialog" aria-modal="true" aria-labelledby="trpGalleryImg" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
+    <div id="trpModal" role="dialog" aria-modal="true" aria-labelledby="trpGalleryImg" class="gallery-modal">
+        <div class="gallery-modal-inner">
             <!-- Close Button -->
-            <button onclick="closeTrpGallery()" aria-label="Close gallery" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+            <button onclick="closeTrpGallery()" aria-label="Close gallery" class="gallery-modal-close">×</button>
 
             <!-- Image Container with Animation -->
-            <div id="trpImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+            <div id="trpImageWrapper" class="gallery-image-wrapper">
                 <img id="trpGalleryImg" src="" alt="Teeraporn Gallery" style="width: 100%; height: 100%; object-fit: cover; animation: slideIn 0.6s ease-out;" />
             </div>
 
             <!-- Navigation Controls -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
-                <button onclick="trpGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+            <div class="gallery-controls">
+                <button onclick="trpGalleryPrev()" class="gallery-btn">← Previous</button>
                 <span id="trpImageCounter">1 / 16</span>
-                <button onclick="trpGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+                <button onclick="trpGalleryNext()" class="gallery-btn">Next →</button>
             </div>
 
             <!-- Thumbnails Strip -->
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
-                <div id="trpThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; scrollbar-width: thin; max-height: 75px;">
+            <div class="gallery-thumbnails-strip">
+                <div id="trpThumbnailsContainer" class="gallery-thumbnails-container">
                     <!-- Thumbnails will be inserted here -->
                 </div>
             </div>
@@ -1189,26 +1307,26 @@
     </section>
 
     <!-- ATLAS GALLERY MODAL -->
-    <div id="atlasModal" role="dialog" aria-modal="true" aria-labelledby="atlasGalleryImg" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
+    <div id="atlasModal" role="dialog" aria-modal="true" aria-labelledby="atlasGalleryImg" class="gallery-modal">
+        <div class="gallery-modal-inner">
             <!-- Close Button -->
-            <button onclick="closeAtlasGallery()" aria-label="Close gallery" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+            <button onclick="closeAtlasGallery()" aria-label="Close gallery" class="gallery-modal-close">×</button>
 
             <!-- Image Container with Animation -->
-            <div id="atlasImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
-                <img id="atlasGalleryImg" src="" alt="Atlas Gallery" style="max-width: 100%; max-height: 100%; object-fit: contain; animation: slideIn 0.6s ease-out;" />
+            <div id="atlasImageWrapper" class="gallery-image-wrapper">
+                <img id="atlasGalleryImg" src="" alt="Atlas Gallery" class="gallery-image" />
             </div>
 
             <!-- Navigation Controls -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
-                <button onclick="atlasGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+            <div class="gallery-controls">
+                <button onclick="atlasGalleryPrev()" class="gallery-btn">← Previous</button>
                 <span id="atlasImageCounter">1 / 17</span>
-                <button onclick="atlasGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+                <button onclick="atlasGalleryNext()" class="gallery-btn">Next →</button>
             </div>
 
             <!-- Thumbnails Strip -->
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
-                <div id="atlasThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; scrollbar-width: thin; max-height: 75px;">
+            <div class="gallery-thumbnails-strip">
+                <div id="atlasThumbnailsContainer" class="gallery-thumbnails-container">
                     <!-- Thumbnails will be inserted here -->
                 </div>
             </div>
@@ -1216,26 +1334,26 @@
     </div>
 
     <!-- QUARTER HOTEL GALLERY MODAL -->
-    <div id="quarterModal" role="dialog" aria-modal="true" aria-labelledby="quarterGalleryImg" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
+    <div id="quarterModal" role="dialog" aria-modal="true" aria-labelledby="quarterGalleryImg" class="gallery-modal">
+        <div class="gallery-modal-inner">
             <!-- Close Button -->
-            <button onclick="closeQuarterGallery()" aria-label="Close gallery" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+            <button onclick="closeQuarterGallery()" aria-label="Close gallery" class="gallery-modal-close">×</button>
 
             <!-- Image Container with Animation -->
-            <div id="quarterImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+            <div id="quarterImageWrapper" class="gallery-image-wrapper">
                 <img id="quarterGalleryImg" src="" alt="Quarter Gallery" style="width: 100%; height: 100%; object-fit: cover; animation: slideIn 0.6s ease-out;" />
             </div>
 
             <!-- Navigation Controls -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
-                <button onclick="quarterGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+            <div class="gallery-controls">
+                <button onclick="quarterGalleryPrev()" class="gallery-btn">← Previous</button>
                 <span id="quarterImageCounter">1 / 29</span>
-                <button onclick="quarterGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+                <button onclick="quarterGalleryNext()" class="gallery-btn">Next →</button>
             </div>
 
             <!-- Thumbnails Strip -->
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
-                <div id="quarterThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; scrollbar-width: thin; max-height: 75px;">
+            <div class="gallery-thumbnails-strip">
+                <div id="quarterThumbnailsContainer" class="gallery-thumbnails-container">
                     <!-- Thumbnails will be inserted here -->
                 </div>
             </div>
@@ -1243,26 +1361,26 @@
     </div>
 
     <!-- ONE BANGKOK GALLERY MODAL -->
-    <div id="obkModal" role="dialog" aria-modal="true" aria-labelledby="obkGalleryImg" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
+    <div id="obkModal" role="dialog" aria-modal="true" aria-labelledby="obkGalleryImg" class="gallery-modal">
+        <div class="gallery-modal-inner">
             <!-- Close Button -->
-            <button onclick="closeObkGallery()" aria-label="Close gallery" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
+            <button onclick="closeObkGallery()" aria-label="Close gallery" class="gallery-modal-close">×</button>
 
             <!-- Image Container with Animation -->
-            <div id="obkImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+            <div id="obkImageWrapper" class="gallery-image-wrapper">
                 <img id="obkGalleryImg" src="" alt="One Bangkok Gallery" style="width: 100%; height: 100%; object-fit: cover; animation: slideIn 0.6s ease-out;" />
             </div>
 
             <!-- Navigation Controls -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
-                <button onclick="obkGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+            <div class="gallery-controls">
+                <button onclick="obkGalleryPrev()" class="gallery-btn">← Previous</button>
                 <span id="obkImageCounter">1 / 21</span>
-                <button onclick="obkGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+                <button onclick="obkGalleryNext()" class="gallery-btn">Next →</button>
             </div>
 
             <!-- Thumbnails Strip -->
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; overflow-y: hidden; padding-bottom: 0.5rem; align-items: center; max-height: 120px;">
-                <div id="obkThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; scrollbar-width: thin; max-height: 75px;">
+            <div class="gallery-thumbnails-strip">
+                <div id="obkThumbnailsContainer" class="gallery-thumbnails-container">
                     <!-- Thumbnails will be inserted here -->
                 </div>
             </div>
@@ -1270,37 +1388,37 @@
     </div>
 
     <!-- KB PRIVATE RESIDENCE GALLERY MODAL -->
-    <div id="kbhModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
-            <button onclick="closeKbhGallery()" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
-            <div id="kbhImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+    <div id="kbhModal" class="gallery-modal">
+        <div class="gallery-modal-inner">
+            <button onclick="closeKbhGallery()" class="gallery-modal-close">×</button>
+            <div id="kbhImageWrapper" class="gallery-image-wrapper">
                 <img id="kbhGalleryImg" src="" alt="KB Private Residence Gallery" style="width: 100%; height: 100%; object-fit: cover; animation: slideIn 0.6s ease-out;" />
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
-                <button onclick="kbhGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+            <div class="gallery-controls">
+                <button onclick="kbhGalleryPrev()" class="gallery-btn">← Previous</button>
                 <span id="kbhImageCounter">1 / 4</span>
-                <button onclick="kbhGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+                <button onclick="kbhGalleryNext()" class="gallery-btn">Next →</button>
             </div>
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
-                <div id="kbhThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; scrollbar-width: thin; max-height: 75px;"></div>
+            <div class="gallery-thumbnails-strip">
+                <div id="kbhThumbnailsContainer" class="gallery-thumbnails-container"></div>
             </div>
         </div>
     </div>
 
     <!-- BAAN PARINYADA GALLERY MODAL -->
-    <div id="prydModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="position: relative; width: 90%; max-width: 1200px; height: 90vh; display: flex; flex-direction: column;">
-            <button onclick="closePrydGallery()" style="position: absolute; top: -40px; right: 0; background: var(--accent-gold); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; color: var(--bg-primary); z-index: 2001; display: flex; align-items: center; justify-content: center;">×</button>
-            <div id="prydImageWrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 0.5rem; position: relative;">
+    <div id="prydModal" class="gallery-modal">
+        <div class="gallery-modal-inner">
+            <button onclick="closePrydGallery()" class="gallery-modal-close">×</button>
+            <div id="prydImageWrapper" class="gallery-image-wrapper">
                 <img id="prydGalleryImg" src="" alt="Baan Parinyada Gallery" style="width: 100%; height: 100%; object-fit: cover; animation: slideIn 0.6s ease-out;" />
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--accent-gold); font-size: 0.9rem;">
-                <button onclick="prydGalleryPrev()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">← Previous</button>
+            <div class="gallery-controls">
+                <button onclick="prydGalleryPrev()" class="gallery-btn">← Previous</button>
                 <span id="prydImageCounter">1 / 7</span>
-                <button onclick="prydGalleryNext()" style="background: var(--accent-gold); border: none; color: var(--bg-primary); padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 0.25rem; font-weight: 600;">Next →</button>
+                <button onclick="prydGalleryNext()" class="gallery-btn">Next →</button>
             </div>
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
-                <div id="prydThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; scrollbar-width: thin; max-height: 75px;"></div>
+            <div class="gallery-thumbnails-strip">
+                <div id="prydThumbnailsContainer" class="gallery-thumbnails-container"></div>
             </div>
         </div>
     </div>
@@ -1312,11 +1430,11 @@
             <img id="obkfGalleryImg" src="img/proj/OBKF/1.png" alt="One Bangkok Forum" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="obkfGalleryPrev()">← Previous</button>
-                <span id="obkfImageCounter" style="color: var(--accent-gold); font-weight: 600;">1 / 3</span>
+                <span id="obkfImageCounter" class="gallery-counter">1 / 3</span>
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="obkfGalleryNext()">Next →</button>
             </div>
-            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; align-items: center;">
-                <div id="obkfThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; scrollbar-width: thin; max-height: 75px;"></div>
+            <div class="gallery-thumbnails-strip">
+                <div id="obkfThumbnailsContainer" class="gallery-thumbnails-container"></div>
             </div>
         </div>
     </div>
@@ -1328,11 +1446,11 @@
             <img id="thaiOilGalleryImg" src="img/proj/tocop/1.png" alt="Thai Oil" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="thaiOilGalleryPrev()">← Previous</button>
-                <span id="thaiOilImageCounter" style="color: var(--accent-gold); font-weight: 600;">1 / 2</span>
+                <span id="thaiOilImageCounter" class="gallery-counter">1 / 2</span>
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="thaiOilGalleryNext()">Next →</button>
             </div>
             <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
-                <div id="thaiOilThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; max-height: 75px; scrollbar-width: thin;"></div>
+                <div id="thaiOilThumbnailsContainer" class="gallery-thumbnails-container"></div>
             </div>
         </div>
     </div>
@@ -1344,11 +1462,11 @@
             <img id="tempFactoryGalleryImg" src="img/proj/7000m2tempf/1.png" alt="Temp Factory" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="tempFactoryGalleryPrev()">← Previous</button>
-                <span id="tempFactoryImageCounter" style="color: var(--accent-gold); font-weight: 600;">1 / 3</span>
+                <span id="tempFactoryImageCounter" class="gallery-counter">1 / 3</span>
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="tempFactoryGalleryNext()">Next →</button>
             </div>
             <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
-                <div id="tempFactoryThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; max-height: 75px; scrollbar-width: thin;"></div>
+                <div id="tempFactoryThumbnailsContainer" class="gallery-thumbnails-container"></div>
             </div>
         </div>
     </div>
@@ -1360,11 +1478,11 @@
             <img id="pierreRepairGalleryImg" src="img/proj/pierrepair/1.png" alt="Pierre Repair" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="pierreRepairGalleryPrev()">← Previous</button>
-                <span id="pierreRepairImageCounter" style="color: var(--accent-gold); font-weight: 600;">1 / 1</span>
+                <span id="pierreRepairImageCounter" class="gallery-counter">1 / 1</span>
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="pierreRepairGalleryNext()">Next →</button>
             </div>
             <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
-                <div id="pierreRepairThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; max-height: 75px; scrollbar-width: thin;"></div>
+                <div id="pierreRepairThumbnailsContainer" class="gallery-thumbnails-container"></div>
             </div>
         </div>
     </div>
@@ -1376,11 +1494,11 @@
             <img id="kaoyaiGalleryImg" src="img/proj/kaoyaires/1.png" alt="Kaoyai Residence" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="kaoyaiGalleryPrev()">← Previous</button>
-                <span id="kaoyaiImageCounter" style="color: var(--accent-gold); font-weight: 600;">1 / 4</span>
+                <span id="kaoyaiImageCounter" class="gallery-counter">1 / 4</span>
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="kaoyaiGalleryNext()">Next →</button>
             </div>
             <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
-                <div id="kaoyaiThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; max-height: 75px; scrollbar-width: thin;"></div>
+                <div id="kaoyaiThumbnailsContainer" class="gallery-thumbnails-container"></div>
             </div>
         </div>
     </div>
@@ -1392,11 +1510,11 @@
             <img id="boonNakGalleryImg" src="img/proj/boonnak/boonnakhero.jpg" alt="Boon Nak Residence" style="width: 100%; height: 100%; object-fit: contain; margin-bottom: 1rem;" />
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="boonNakGalleryPrev()">← Previous</button>
-                <span id="boonNakImageCounter" style="color: var(--accent-gold); font-weight: 600;">1 / 1</span>
+                <span id="boonNakImageCounter" class="gallery-counter">1 / 1</span>
                 <button style="padding: 0.5rem 1rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: 600;" onclick="boonNakGalleryNext()">Next →</button>
             </div>
             <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0rem; align-items: center;">
-                <div id="boonNakThumbnailsContainer" style="display: flex; gap: 0.75rem; overflow-x: auto; overflow-y: hidden; flex: 1; padding: 0; max-height: 75px; scrollbar-width: thin;"></div>
+                <div id="boonNakThumbnailsContainer" class="gallery-thumbnails-container"></div>
             </div>
         </div>
     </div>

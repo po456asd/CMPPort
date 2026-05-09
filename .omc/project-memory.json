@@ -35,14 +35,62 @@
   "hotPaths": [
     {
       "path": "index.html",
-      "accessCount": 197,
-      "lastAccessed": 1778345952139,
+      "accessCount": 277,
+      "lastAccessed": 1778357161569,
+      "type": "file"
+    },
+    {
+      "path": "generate-pptx.py",
+      "accessCount": 9,
+      "lastAccessed": 1778357638473,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 9,
+      "lastAccessed": 1778357758077,
+      "type": "directory"
+    },
+    {
+      "path": "pptx_team_generator.py",
+      "accessCount": 9,
+      "lastAccessed": 1778357791925,
+      "type": "file"
+    },
+    {
+      "path": "pptx_annual_generator.py",
+      "accessCount": 8,
+      "lastAccessed": 1778357791191,
+      "type": "file"
+    },
+    {
+      "path": "data\\projects.json",
+      "accessCount": 5,
+      "lastAccessed": 1778357648023,
       "type": "file"
     },
     {
       "path": ".claude\\launch.json",
-      "accessCount": 3,
-      "lastAccessed": 1778326288733,
+      "accessCount": 4,
+      "lastAccessed": 1778356250648,
+      "type": "file"
+    },
+    {
+      "path": "extract-site-data.py",
+      "accessCount": 4,
+      "lastAccessed": 1778357638111,
+      "type": "file"
+    },
+    {
+      "path": "pptx_portfolio_generator.py",
+      "accessCount": 4,
+      "lastAccessed": 1778357657657,
+      "type": "file"
+    },
+    {
+      "path": "main.py",
+      "accessCount": 2,
+      "lastAccessed": 1778357638762,
       "type": "file"
     },
     {
@@ -58,10 +106,16 @@
       "type": "file"
     },
     {
-      "path": "",
+      "path": "index.html.backup",
       "accessCount": 1,
-      "lastAccessed": 1778315645448,
-      "type": "directory"
+      "lastAccessed": 1778351825893,
+      "type": "file"
+    },
+    {
+      "path": "server.log",
+      "accessCount": 1,
+      "lastAccessed": 1778356253379,
+      "type": "file"
     }
   ],
   "userDirectives": []

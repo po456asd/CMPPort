@@ -1,0 +1,109 @@
+{
+  "project": "CMPPort PPTX Presentation Generator",
+  "description": "Generate PowerPoint presentations from CMPPort website data with interactive customization",
+  "stories": [
+    {
+      "id": "US-001",
+      "title": "Extract project data from index.html",
+      "description": "Parse index.html to extract all 12 projects, team members, images, and metadata",
+      "acceptanceCriteria": [
+        "Parser reads index.html and extracts all 12 project gallery names (atlas, quarter, obk, trp, kbh, pryd, obkf, thaiOil, tempFactory, pierreRepair, kaoyai, boonNak)",
+        "All project images and image paths are extracted and validated to exist in img/ directory",
+        "Team member names and biographies are extracted from 'Our Team' section",
+        "Extract hero images, gallery image counts per project",
+        "data/projects.json created with structure: {projects: [...], team: [...], company: {...}}",
+        "Verify projects.json contains all 12 projects with image arrays"
+      ],
+      "passes": true,
+      "priority": 1
+    },
+    {
+      "id": "US-002",
+      "title": "Implement interactive CLI for presentation selection",
+      "description": "Build CLI that prompts user for presentation type, projects, team members, and customization",
+      "acceptanceCriteria": [
+        "CLI prompts user to select presentation type: (1) Portfolio/Showcase (2) Team Profile (3) Annual Report",
+        "CLI allows selection of specific projects to include (multi-select or checkbox-style)",
+        "CLI allows selection of specific team members to include",
+        "CLI prompts for presentation title and subtitle",
+        "CLI validates selections (non-empty, valid project IDs, valid team member names)",
+        "CLI returns structured selection object with all user choices"
+      ],
+      "passes": true,
+      "priority": 2
+    },
+    {
+      "id": "US-003",
+      "title": "Implement Portfolio/Showcase presentation generator",
+      "description": "Generate Portfolio PPTX with all selected projects and images",
+      "acceptanceCriteria": [
+        "Portfolio PPTX contains: Title slide + 1 slide per selected project + Closing slide",
+        "Project slides include: project name, hero/gallery image, description text",
+        "Title slide shows company name and presentation title",
+        "All selected project images display without errors in PPTX",
+        "Text is readable and not cut off (proper margin/sizing)"
+      ],
+      "passes": true,
+      "priority": 3
+    },
+    {
+      "id": "US-004",
+      "title": "Implement Team Profile presentation generator",
+      "description": "Generate Team Profile PPTX with company overview, team members, and featured projects",
+      "acceptanceCriteria": [
+        "Team Profile PPTX contains: Title slide + Company overview + 1 slide per selected team member + Featured projects + Closing slide",
+        "Team member slides display: name, role, bio text",
+        "Company overview slide displays tagline and basic company info",
+        "Featured projects carousel shows 4-6 key projects with images",
+        "All text displays clearly with proper formatting"
+      ],
+      "passes": true,
+      "priority": 4
+    },
+    {
+      "id": "US-005",
+      "title": "Implement Annual/Status Report presentation generator",
+      "description": "Generate Annual Report PPTX with timeline and statistics",
+      "acceptanceCriteria": [
+        "Annual Report PPTX contains: Title slide + Summary statistics slide + Timeline slides (grouped by year) + Team snapshot + Closing slide",
+        "Summary slide shows: total projects completed, team size, date range",
+        "Timeline groups projects by year (extracted from projects.json year field)",
+        "Team snapshot displays selected team members",
+        "All images and text render correctly"
+      ],
+      "passes": true,
+      "priority": 5
+    },
+    {
+      "id": "US-006",
+      "title": "Create main entry point and integrate all components",
+      "description": "Build main.py that orchestrates data extraction, CLI, and PPTX generation",
+      "acceptanceCriteria": [
+        "main.py checks if data/projects.json exists; if not, runs extraction",
+        "main.py launches interactive CLI",
+        "main.py routes user selection to appropriate PPTX generator (Portfolio/Team/Annual)",
+        "main.py saves output PPTX with format: output/<presentation-name>_<timestamp>.pptx",
+        "main.py returns file path to generated PPTX",
+        "Can regenerate different presentations without re-parsing data/projects.json"
+      ],
+      "passes": true,
+      "priority": 6
+    },
+    {
+      "id": "US-007",
+      "title": "Verify all presentation types and test edge cases",
+      "description": "Test full workflow end-to-end for all three presentation types",
+      "acceptanceCriteria": [
+        "Generate Portfolio with all 12 projects → PPTX opens in PowerPoint without errors",
+        "Generate Team Profile with subset of team (e.g., 5 members) → verify all selected members appear",
+        "Generate Annual Report → projects grouped correctly by year",
+        "Generate Portfolio with single project → works correctly",
+        "Generate PPTX, regenerate with different params → data.json reused (no re-parse)",
+        "All images display correctly in generated PPTX files",
+        "Generated files save to output/ directory with proper timestamps"
+      ],
+      "passes": true,
+      "priority": 7
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+# Ralph Progress: CMPPort PPTX Generator
+
+## Iteration 1
+
+### Current Focus: US-002 - Interactive CLI for presentation selection
+
+#### Tasks:
+- [ ] Build CLI prompt for presentation type selection
+- [ ] Build CLI for project multi-select
+- [ ] Build CLI for team member selection
+- [ ] Add title/subtitle customization prompts
+- [ ] Implement input validation
+- [ ] Return structured selection object
+
+#### Completed Stories:
+✅ **US-001**: Data extraction complete
+  - extract-site-data.py created and executed
+  - data/projects.json generated with all 12 projects (120 images total)
+  - 4 team members extracted with biographies
+  - All image paths validated on disk
+
+✅ **US-002**: Interactive CLI complete
+  - generate-pptx.py implements 4-step interactive workflow
+  - Supports presentation type selection, project/team multi-select, title/subtitle
+  - All 3 flows tested (Portfolio, Team Profile, Annual Report)
+
+✅ **US-003, US-004, US-005**: PPTX Generators complete
+  - pptx_portfolio_generator.py: Title + Projects + Closing
+  - pptx_team_generator.py: Title + Overview + Team (8 slides, tested)
+  - pptx_annual_generator.py: Title + Summary + Timeline (13 slides, tested)
+
+✅ **US-006, US-007**: Integration & Verification complete
+  - main.py orchestrates full workflow (extract → CLI → generate)
+  - End-to-end tested: all 3 presentation types generate successfully
+  - Output saved to output/ with timestamps
+  - Data reuse verified (no re-parsing on subsequent runs)
+
+#### Codebase Patterns:
+- Projects stored in 12 gallery sections (atlas, quarter, obk, trp, kbh, pryd, obkf, thaiOil, tempFactory, pierreRepair, kaoyai, boonNak)
+- Project structure: GALLERIES config in JavaScript with modal/img/counter/thumbs properties
+- Team section with biographies in HTML
+- Images stored in img/proj/{gallery-name}/ directories
+
+#### Learnings:
+(Will update as we progress)

@@ -1,7 +1,80 @@
 {
-  "agents": [],
-  "total_spawned": 0,
-  "total_completed": 0,
+  "agents": [
+    {
+      "agent_id": "ab7925662f7a118a6",
+      "agent_type": "oh-my-claudecode:executor",
+      "started_at": "2026-05-09T20:05:33.012Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-05-09T20:07:04.683Z",
+      "duration_ms": 91671
+    },
+    {
+      "agent_id": "a02496ffc5b76c995",
+      "agent_type": "oh-my-claudecode:executor",
+      "started_at": "2026-05-09T20:07:23.578Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-05-09T20:09:09.476Z",
+      "duration_ms": 105898
+    },
+    {
+      "agent_id": "a2345160cca70b00c",
+      "agent_type": "oh-my-claudecode:executor",
+      "started_at": "2026-05-09T20:09:23.801Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-05-09T20:11:19.941Z",
+      "duration_ms": 116140
+    },
+    {
+      "agent_id": "aaff09a195c91e3a2",
+      "agent_type": "oh-my-claudecode:executor",
+      "started_at": "2026-05-09T20:09:26.701Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-05-09T20:11:32.317Z",
+      "duration_ms": 125616
+    },
+    {
+      "agent_id": "aae460b366f539849",
+      "agent_type": "oh-my-claudecode:executor",
+      "started_at": "2026-05-09T20:09:30.215Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-05-09T20:12:00.108Z",
+      "duration_ms": 149893
+    },
+    {
+      "agent_id": "a6eeba4270f4e978c",
+      "agent_type": "oh-my-claudecode:executor",
+      "started_at": "2026-05-09T20:12:21.639Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-05-09T20:13:20.794Z",
+      "duration_ms": 59155
+    },
+    {
+      "agent_id": "a73253b6fbf1e47dc",
+      "agent_type": "oh-my-claudecode:architect",
+      "started_at": "2026-05-09T20:13:48.395Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-05-09T20:15:38.150Z",
+      "duration_ms": 109755
+    },
+    {
+      "agent_id": "ac1f1c047d5cf3ac3",
+      "agent_type": "oh-my-claudecode:executor",
+      "started_at": "2026-05-09T20:15:50.739Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-05-09T20:16:48.731Z",
+      "duration_ms": 57992
+    }
+  ],
+  "total_spawned": 8,
+  "total_completed": 8,
   "total_failed": 0,
-  "last_updated": "2026-05-09T11:41:06.182Z"
+  "last_updated": "2026-05-09T20:16:48.841Z"
 }

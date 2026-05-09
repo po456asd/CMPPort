@@ -1,0 +1,284 @@
+{
+  "projects": [
+    {
+      "id": "atlas",
+      "name": "Atlas Super Club Ratchada Soi 4",
+      "description": "Super Night Club / Entertainment Venue",
+      "images": [
+        "img/proj/atlas/IMG_20251209_164603.jpg",
+        "img/proj/atlas/IMG_20251209_165700.jpg",
+        "img/proj/atlas/IMG_20251210_144031.jpg",
+        "img/proj/atlas/IMG_20251218_222932.jpg",
+        "img/proj/atlas/IMG_20251219_201353.jpg",
+        "img/proj/atlas/IMG_20251223_110011.jpg",
+        "img/proj/atlas/IMG_20251223_110034.jpg",
+        "img/proj/atlas/IMG_20260505_125522.jpg",
+        "img/proj/atlas/IMG_20260505_131525.jpg",
+        "img/proj/atlas/IMG_20260505_131549.jpg",
+        "img/proj/atlas/IMG_20260505_131604.jpg",
+        "img/proj/atlas/IMG_20260505_131621.jpg",
+        "img/proj/atlas/IMG_20260505_140420.jpg",
+        "img/proj/atlas/IMG_20260505_140552.jpg",
+        "img/proj/atlas/IMG_20260505_140814.jpg",
+        "img/proj/atlas/IMG_20260505_140819.jpg",
+        "img/proj/atlas/PANO_20260505_140915.jpg"
+      ],
+      "category": "construction",
+      "year": 2023,
+      "featured": true,
+      "client": "HW Group Indonesia",
+      "role": "Design, Project Management, Construction Management & QS"
+    },
+    {
+      "id": "quarter",
+      "name": "The Quarter Hotel Ekkamai",
+      "description": "8-Storey Building + 1 Basement (Hotel)",
+      "images": [
+        "img/proj/tqhe/cr=w_600,h_300.jpg",
+        "img/proj/tqhe/IMG_20260422_135544.jpg",
+        "img/proj/tqhe/IMG_20260502_143404.jpg",
+        "img/proj/tqhe/IMG_20260502_143419.jpg",
+        "img/proj/tqhe/IMG_20260502_143515.jpg",
+        "img/proj/tqhe/IMG_20260502_143606.jpg",
+        "img/proj/tqhe/IMG_20260502_143735.jpg",
+        "img/proj/tqhe/render/124235_0.jpg",
+        "img/proj/tqhe/render/124236_0.jpg",
+        "img/proj/tqhe/render/124237_0.jpg",
+        "img/proj/tqhe/render/124238_0.jpg",
+        "img/proj/tqhe/render/124239_0.jpg",
+        "img/proj/tqhe/render/124241_0.jpg",
+        "img/proj/tqhe/render/124242_0.jpg",
+        "img/proj/tqhe/render/124243_0.jpg",
+        "img/proj/tqhe/render/124244_0.jpg",
+        "img/proj/tqhe/render/124247_0.jpg",
+        "img/proj/tqhe/render/4.jpg",
+        "img/proj/tqhe/render/8a00f133-7dab-41ba-bf33-511f118fcce6.jpg",
+        "img/proj/tqhe/render/LIFT-02.jpg",
+        "img/proj/tqhe/render/S__14049355.jpg",
+        "img/proj/tqhe/render/S__14049356.jpg",
+        "img/proj/tqhe/render/S__14049358.jpg",
+        "img/proj/tqhe/render/S__14049360.jpg",
+        "img/proj/tqhe/render/S__14049363.jpg",
+        "img/proj/tqhe/render/S__14049364.jpg",
+        "img/proj/tqhe/render/wc-01.1.jpg",
+        "img/proj/tqhe/render/wc-02.1.jpg",
+        "img/proj/tqhe/render/cr=w_600,h_300.jpg"
+      ],
+      "category": "construction",
+      "year": 2024,
+      "featured": false,
+      "client": "Urban 63 Company Limited",
+      "role": "Construction Management & Quantity Surveying"
+    },
+    {
+      "id": "obk",
+      "name": "The One Bangkok",
+      "description": "Substructure and Architectural Work",
+      "images": [
+        "img/proj/OBK/rs=w_365,h_274,cg_true-1.jpg",
+        "img/proj/OBK/1877192.jpg",
+        "img/proj/OBK/41236.jpg",
+        "img/proj/OBK/425973.jpg",
+        "img/proj/OBK/64676.jpg",
+        "img/proj/OBK/64678.jpg",
+        "img/proj/OBK/L2M 471598.jpg",
+        "img/proj/OBK/S__290668553.jpg",
+        "img/proj/OBK/S__51519499.jpg",
+        "img/proj/OBK/S__51519501.jpg",
+        "img/proj/OBK/S__51519521.jpg",
+        "img/proj/OBK/S__51519523.jpg",
+        "img/proj/OBK/S__51519524.jpg",
+        "img/proj/OBK/S__51519525.jpg",
+        "img/proj/OBK/S__51519526.jpg",
+        "img/proj/OBK/S__51519531.jpg",
+        "img/proj/OBK/S__51519534.jpg",
+        "img/proj/OBK/S__51519538.jpg",
+        "img/proj/OBK/S__51519543.jpg",
+        "img/proj/OBK/S__51519551.jpg",
+        "img/proj/OBK/S__51961899.jpg"
+      ],
+      "category": "commercial",
+      "year": 2019,
+      "featured": true,
+      "client": "Italian Thai Development Public Company Limited",
+      "role": "Contract & Commercial Management"
+    },
+    {
+      "id": "trp",
+      "name": "Teeraporn Clinic Bangkok",
+      "description": "6-Storey Medical Building",
+      "images": [
+        "img/proj/trp/trphero.jpg",
+        "img/proj/trp/117142_0.jpg",
+        "img/proj/trp/117151_0.jpg",
+        "img/proj/trp/117156_0.jpg",
+        "img/proj/trp/117194_0.jpg",
+        "img/proj/trp/117196_0.jpg",
+        "img/proj/trp/17982_0.jpg",
+        "img/proj/trp/27_0.jpg",
+        "img/proj/trp/643411.jpg",
+        "img/proj/trp/643412.jpg",
+        "img/proj/trp/646762_0.jpg",
+        "img/proj/trp/647550_0.jpg",
+        "img/proj/trp/647552_0.jpg",
+        "img/proj/trp/S__17539212_0.jpg",
+        "img/proj/trp/S__67215380_0.jpg",
+        "img/proj/trp/S__67215383_0.jpg"
+      ],
+      "category": "residential",
+      "year": 2023,
+      "featured": false,
+      "client": "Italian Thai Development Public Company Limited",
+      "role": "Internal Construction Management"
+    },
+    {
+      "id": "kbh",
+      "name": "KB Private Residence",
+      "description": "Structural Design & Building Construction",
+      "images": [
+        "img/proj/KBH/1.png",
+        "img/proj/KBH/2.png",
+        "img/proj/KBH/3.png",
+        "img/proj/KBH/4.png"
+      ],
+      "category": "residential",
+      "year": 2023,
+      "featured": true,
+      "client": "Dear Child Co., Ltd.",
+      "role": "Structural Design & Building Construction"
+    },
+    {
+      "id": "pryd",
+      "name": "Baan Parinyada Renovation Work",
+      "description": "Residential Renovation & Construction",
+      "images": [
+        "img/proj/pryd/1.png",
+        "img/proj/pryd/2.png",
+        "img/proj/pryd/3.png",
+        "img/proj/pryd/4.png",
+        "img/proj/pryd/5.png",
+        "img/proj/pryd/6.png",
+        "img/proj/pryd/7.png"
+      ],
+      "category": "residential",
+      "year": 2025,
+      "featured": false,
+      "client": "K. Kwang",
+      "role": "Renovation Works Construction"
+    },
+    {
+      "id": "obkf",
+      "name": "One Bangkok Forum",
+      "description": "Art & Cultural Multi-Purpose Hall",
+      "images": [
+        "img/proj/OBKF/1.png",
+        "img/proj/OBKF/2.png",
+        "img/proj/OBKF/3.png"
+      ],
+      "category": "commercial",
+      "year": 2021,
+      "featured": false,
+      "client": "TTS Engineering 2004 Co., Ltd.",
+      "role": "Contract & Commercial Management"
+    },
+    {
+      "id": "thaiOil",
+      "name": "Thai Oil Clean Oil Project Leam Chabang",
+      "description": "OC1 & OC2 Work Packages - Civil & Structure Works",
+      "images": [
+        "img/proj/tocop/1.png",
+        "img/proj/tocop/2.png"
+      ],
+      "category": "commercial",
+      "year": 2020,
+      "featured": false,
+      "client": "Italian Thai Development Public Company Limited",
+      "role": "Contract & Commercial Management"
+    },
+    {
+      "id": "tempFactory",
+      "name": "Frasers Temporary Factory",
+      "description": "7000m2 Clean Room Manufacturing Facility",
+      "images": [
+        "img/proj/7000m2tempf/1.png",
+        "img/proj/7000m2tempf/2.png",
+        "img/proj/7000m2tempf/7000m2tempfhero.png"
+      ],
+      "category": "construction",
+      "year": 2023,
+      "featured": false,
+      "client": "Frasers Industry / Italian Thai Development Public Company Limited",
+      "role": "Structure, Architectural & MEP Design"
+    },
+    {
+      "id": "pierreRepair",
+      "name": "Custom Department Building Rehabilitation",
+      "description": "Pier Repair & Structural Rehabilitation",
+      "images": [
+        "img/proj/pierrepair/1.png",
+        "img/proj/pierrepair/pierrepairhero.png"
+      ],
+      "category": "construction",
+      "year": 2023,
+      "featured": false,
+      "client": "Customs Department Thailand",
+      "role": "Design of Rehabilitation of Structure"
+    },
+    {
+      "id": "kaoyai",
+      "name": "Residence at Kaoyai",
+      "description": "6 Buildings Complex | 1500m2",
+      "images": [
+        "img/proj/kaoyaires/1.png",
+        "img/proj/kaoyaires/2.png",
+        "img/proj/kaoyaires/3.png",
+        "img/proj/kaoyaires/4.png",
+        "img/proj/kaoyaires/kaoyaireshero.png"
+      ],
+      "category": "residential",
+      "year": 2022,
+      "featured": false,
+      "client": "Confidential",
+      "role": "Structure Design & Building Construction"
+    },
+    {
+      "id": "boonNak",
+      "name": "Boon Nak Residence Ubon",
+      "description": "Design & Building Construction",
+      "images": [
+        "img/proj/boonnak/boonnakhero.jpg"
+      ],
+      "category": "residential",
+      "year": 2024,
+      "featured": false,
+      "client": "Boonnak Kanharin",
+      "role": "Contractor"
+    }
+  ],
+  "team": [
+    {
+      "name": "Johnny Beh",
+      "role": "Founder / CEO",
+      "bio": "30+ years construction & project management expertise. Led major developments across Asia and Middle East. PAM School of Architecture graduate. Fluent: English, Bahasa Malaysia, Mandarin."
+    },
+    {
+      "name": "Philaiwan Thathisa",
+      "role": "Finance Director",
+      "bio": "Strategic financial leadership since 2019. Ramkhamhaeng University graduate. Expertise in financial strategy, fiscal discipline, and sustainable growth. Fluent: Thai, English."
+    },
+    {
+      "name": "Worapot Kitcharenchai",
+      "role": "Chief Operating Officer",
+      "bio": "12 years specialized marketing & operations expertise. Drives innovation through data-driven strategies and streamlined project execution. Committed to scalable growth and industry leadership."
+    },
+    {
+      "name": "Clarence Sim B.H",
+      "role": "Operations Director",
+      "bio": "15+ years construction & property development. Selkirk College graduate. Expert in cost control & quality assurance. Fluent: English, Mandarin, Thai."
+    }
+  ],
+  "company": {
+    "name": "CMP Management Asia",
+    "tagline": "From Vision to Guaranteed Reality. 30+ years of construction expertise across Asia."
+  }
+}

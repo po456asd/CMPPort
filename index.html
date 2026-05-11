@@ -1836,11 +1836,7 @@
             './img/proj/atlas/IMG_20260505_140819.jpg',
             './img/proj/atlas/PANO_20260505_140915.jpg'
         ];
-        // Start with main image by finding index of IMG_20251219_201353.jpg
-        function openAtlasGallery() { galleryState.atlas = atlasImages.findIndex(img => img.includes('IMG_20251219_201353.jpg')) || 0; openGallery('atlas'); }
         function closeAtlasGallery() { closeGallery('atlas'); }
-        function atlasGalleryNext() { galleryState.atlas = (galleryState.atlas + 1) % atlasImages.length; updateGallery('atlas'); }
-        function atlasGalleryPrev() { galleryState.atlas = (galleryState.atlas - 1 + atlasImages.length) % atlasImages.length; updateGallery('atlas'); }
 
         // ============================================
         // QUARTER HOTEL GALLERY
@@ -1982,86 +1978,17 @@
             if (e.key === 'Escape') closeGallery(name);
         }
 
-        // Public API: Next/Prev for each gallery
-        function openQuarterGallery() {
-            openGallery('quarter');
-        }
-
         function closeQuarterGallery() { closeGallery('quarter'); }
-        function quarterGalleryNext() { const len = GALLERIES.quarter.images.length; galleryState.quarter = (galleryState.quarter + 1) % len; updateGallery('quarter'); }
-        function quarterGalleryPrev() { const len = GALLERIES.quarter.images.length; galleryState.quarter = (galleryState.quarter - 1 + len) % len; updateGallery('quarter'); }
-
-        // ============================================
-        // ONE BANGKOK GALLERY
-        // ============================================
-
-        function openObkGallery() { galleryState.obk = 0; openGallery('obk'); }
         function closeObkGallery() { closeGallery('obk'); }
-        function obkGalleryNext() { galleryState.obk = (galleryState.obk + 1) % obkImages.length; updateGallery('obk'); }
-        function obkGalleryPrev() { galleryState.obk = (galleryState.obk - 1 + obkImages.length) % obkImages.length; updateGallery('obk'); }
-
-        // TEERAPORN GALLERY
-
-        function openTrpGallery() { galleryState.trp = 0; openGallery('trp'); }
         function closeTrpGallery() { closeGallery('trp'); }
-        function trpGalleryNext() { galleryState.trp = (galleryState.trp + 1) % trpImages.length; updateGallery('trp'); }
-        function trpGalleryPrev() { galleryState.trp = (galleryState.trp - 1 + trpImages.length) % trpImages.length; updateGallery('trp'); }
-
-        // KB PRIVATE RESIDENCE GALLERY
-
-        function openKbhGallery() { galleryState.kbh = 0; openGallery('kbh'); }
         function closeKbhGallery() { closeGallery('kbh'); }
-        function kbhGalleryNext() { galleryState.kbh = (galleryState.kbh + 1) % kbhImages.length; updateGallery('kbh'); }
-        function kbhGalleryPrev() { galleryState.kbh = (galleryState.kbh - 1 + kbhImages.length) % kbhImages.length; updateGallery('kbh'); }
-
-        // BAAN PARINYADA GALLERY
-
-        function openPrydGallery() { galleryState.pryd = 0; openGallery('pryd'); }
         function closePrydGallery() { closeGallery('pryd'); }
-        function prydGalleryNext() { galleryState.pryd = (galleryState.pryd + 1) % prydImages.length; updateGallery('pryd'); }
-        function prydGalleryPrev() { galleryState.pryd = (galleryState.pryd - 1 + prydImages.length) % prydImages.length; updateGallery('pryd'); }
-
-        // ONE BANGKOK FORUM GALLERY
-
-        function openObkfGallery() { galleryState.obkf = 0; openGallery('obkf'); }
         function closeObkfGallery() { closeGallery('obkf'); }
-        function obkfGalleryNext() { galleryState.obkf = (galleryState.obkf + 1) % obkfImages.length; updateGallery('obkf'); }
-        function obkfGalleryPrev() { galleryState.obkf = (galleryState.obkf - 1 + obkfImages.length) % obkfImages.length; updateGallery('obkf'); }
-
-        // THAI OIL GALLERY
-
-        function openThaiOilGallery() { galleryState.thaiOil = 0; openGallery('thaiOil'); }
         function closeThaiOilGallery() { closeGallery('thaiOil'); }
-        function thaiOilGalleryNext() { galleryState.thaiOil = (galleryState.thaiOil + 1) % thaiOilImages.length; updateGallery('thaiOil'); }
-        function thaiOilGalleryPrev() { galleryState.thaiOil = (galleryState.thaiOil - 1 + thaiOilImages.length) % thaiOilImages.length; updateGallery('thaiOil'); }
-
-        // TEMP FACTORY GALLERY
-
-        function openTempFactoryGallery() { galleryState.tempFactory = 0; openGallery('tempFactory'); }
         function closeTempFactoryGallery() { closeGallery('tempFactory'); }
-        function tempFactoryGalleryNext() { galleryState.tempFactory = (galleryState.tempFactory + 1) % tempFactoryImages.length; updateGallery('tempFactory'); }
-        function tempFactoryGalleryPrev() { galleryState.tempFactory = (galleryState.tempFactory - 1 + tempFactoryImages.length) % tempFactoryImages.length; updateGallery('tempFactory'); }
-
-        // PIERRE REPAIR GALLERY
-
-        function openPierreRepairGallery() { galleryState.pierreRepair = 0; openGallery('pierreRepair'); }
         function closePierreRepairGallery() { closeGallery('pierreRepair'); }
-        function pierreRepairGalleryNext() { galleryState.pierreRepair = (galleryState.pierreRepair + 1) % pierreRepairImages.length; updateGallery('pierreRepair'); }
-        function pierreRepairGalleryPrev() { galleryState.pierreRepair = (galleryState.pierreRepair - 1 + pierreRepairImages.length) % pierreRepairImages.length; updateGallery('pierreRepair'); }
-
-        // KAOYAI GALLERY
-
-        function openKaoyaiGallery() { galleryState.kaoyai = 0; openGallery('kaoyai'); }
         function closeKaoyaiGallery() { closeGallery('kaoyai'); }
-        function kaoyaiGalleryNext() { galleryState.kaoyai = (galleryState.kaoyai + 1) % kaoyaiImages.length; updateGallery('kaoyai'); }
-        function kaoyaiGalleryPrev() { galleryState.kaoyai = (galleryState.kaoyai - 1 + kaoyaiImages.length) % kaoyaiImages.length; updateGallery('kaoyai'); }
-
-        // BOON NAK GALLERY
-
-        function openBoonNakGallery() { galleryState.boonNak = 0; openGallery('boonNak'); }
         function closeBoonNakGallery() { closeGallery('boonNak'); }
-        function boonNakGalleryNext() { galleryState.boonNak = (galleryState.boonNak + 1) % boonNakImages.length; updateGallery('boonNak'); }
-        function boonNakGalleryPrev() { galleryState.boonNak = (galleryState.boonNak - 1 + boonNakImages.length) % boonNakImages.length; updateGallery('boonNak'); }
     </script>
     <!-- Gallery core modules -->
     <script src="js/modal-core.js"></script>

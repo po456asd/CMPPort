@@ -18,7 +18,7 @@ const Modal = {
   open: (galleryName) => {
     Modal.state.visible = true;
     Modal.state.currentGallery = galleryName;
-    Modal.state.currentIndex = galleryState[galleryName] || 0;
+    Modal.state.currentIndex = galleryState[galleryName] || 0; // Defensive fallback: treat missing/falsy state as index 0
     Modal.render();
     document.addEventListener('keydown', Modal.handleKeyboard);
   },
@@ -29,6 +29,7 @@ const Modal = {
   close: () => {
     Modal.state.visible = false;
     Modal.state.currentGallery = null;
+    Modal.state.currentIndex = 0; // Reset index to avoid stale state on next open
     document.removeEventListener('keydown', Modal.handleKeyboard);
     const modal = document.getElementById('gallery-modal');
     if (modal) {
@@ -61,6 +62,7 @@ const Modal = {
 
     const config = GALLERIES[galleryName];
     const imgPath = config.images[Modal.state.currentIndex];
+    if (!imgPath) return; // Exit early if index out of range
 
     // Update modal image
     const modalImg = modal.querySelector('#modal-image');

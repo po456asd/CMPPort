@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas Gallery Test</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .pass { background-color: #d4edda; color: #155724; }
+        .fail { background-color: #f8d7da; color: #721c24; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .gallery-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; }
+        .gallery-modal.open { display: flex; }
+        .gallery-modal-inner { background: white; padding: 20px; border-radius: 8px; max-width: 800px; }
+        .gallery-image { max-width: 600px; height: auto; }
+        .gallery-btn { padding: 8px 16px; margin: 0 10px; }
+        .gallery-thumbnails-container { display: flex; gap: 5px; margin-top: 10px; overflow-x: auto; padding: 5px; }
+        .atlas-thumbnail { width: 80px; height: 80px; cursor: pointer; border: 2px solid transparent; }
+        .atlas-thumbnail.active { border-color: gold; }
+    </style>
+</head>
+<body>
+    <h1>Atlas Gallery Test Suite</h1>
+    <div id="test-results"></div>
+    <button onclick="runAllTests()">Run All Tests</button>
+
+    <!-- Gallery Modal -->
+    <div id="atlasModal" class="gallery-modal">
+        <div class="gallery-modal-inner">
+            <button onclick="closeGallery('atlas')" style="float: right;">×</button>
+            <div id="atlasImageWrapper">
+                <img id="atlasGalleryImg" src="" alt="Atlas Gallery" class="gallery-image" />
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+                <button data-gallery="atlas" data-action="prev" class="gallery-btn">← Previous</button>
+                <span id="atlasImageCounter">1 / 17</span>
+                <button data-gallery="atlas" data-action="next" class="gallery-btn">Next →</button>
+            </div>
+            <div id="atlasThumbnailsContainer" class="gallery-thumbnails-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const atlasImages = [
+            './img/1.jpg',
+            './img/2.jpg',
+            './img/3.jpg',
+            './img/4.jpg',
+            './img/5.jpg',
+            './img/6.jpg',
+            './img/7.jpg',
+            './img/8.jpg',
+            './img/9.jpg',
+            './img/10.jpg',
+            './img/11.jpg',
+            './img/12.jpg',
+            './img/13.jpg',
+            './img/14.jpg',
+            './img/15.jpg',
+            './img/16.jpg',
+            './img/17.jpg'
+        ];
+
+        const GALLERIES = {
+            atlas: {
+                modal: 'atlasModal',
+                img: 'atlasGalleryImg',
+                counter: 'atlasImageCounter',
+                thumbs: 'atlasThumbnailsContainer',
+                thumbClass: 'atlas-thumbnail',
+                images: atlasImages,
+                startIdx: 0
+            }
+        };
+
+        const galleryState = { atlas: 0 };
+        const testResults = [];
+
+        function log(test, result, details = '') {
+            testResults.push({ test, result, details });
+            const resultDiv = document.getElementById('test-results');
+            const div = document.createElement('div');
+            div.className = `test-result ${result ? 'pass' : 'fail'}`;
+            div.innerHTML = `<strong>${test}:</strong> ${result ? 'PASS' : 'FAIL'} ${details}`;
+            resultDiv.appendChild(div);
+        }
+
+        function openGallery(name) {
+            const g = GALLERIES[name];
+            const modal = document.getElementById(g.modal);
+            modal.classList.add('open');
+            renderThumbnails(name);
+            updateGallery(name);
+            modal._kbHandler = (e) => handleGalleryKeyboard(e, name);
+            document.addEventListener('keydown', modal._kbHandler);
+            modal.onclick = (e) => { if (e.target === modal) closeGallery(name); };
+        }
+
+        function closeGallery(name) {
+            const g = GALLERIES[name];
+            const modal = document.getElementById(g.modal);
+            modal.classList.remove('open');
+            if (modal._kbHandler) document.removeEventListener('keydown', modal._kbHandler);
+        }
+
+        function renderThumbnails(name) {
+            const g = GALLERIES[name];
+            const container = document.getElementById(g.thumbs);
+            container.innerHTML = '';
+            const currentIdx = galleryState[name];
+            g.images.forEach((src, idx) => {
+                const thumb = document.createElement('button');
+                thumb.className = g.thumbClass + (idx === currentIdx ? ' active' : '');
+                thumb.onclick = () => { galleryState[name] = idx; updateGallery(name); };
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Thumbnail ${idx + 1}`;
+                thumb.appendChild(img);
+                container.appendChild(thumb);
+            });
+        }
+
+        function updateGallery(name) {
+            const g = GALLERIES[name];
+            const idx = galleryState[name];
+            document.getElementById(g.img).src = g.images[idx];
+            document.getElementById(g.counter).textContent = (idx + 1) + ' / ' + g.images.length;
+            const container = document.getElementById(g.thumbs);
+            container.querySelectorAll(`.${g.thumbClass}`).forEach((t, i) => {
+                if (i === idx) t.classList.add('active');
+                else t.classList.remove('active');
+            });
+        }
+
+        function handleGalleryKeyboard(e, name) {
+            const len = GALLERIES[name].images.length;
+            if (e.key === 'ArrowRight') { galleryState[name] = (galleryState[name] + 1) % len; updateGallery(name); e.preventDefault(); }
+            if (e.key === 'ArrowLeft') { galleryState[name] = (galleryState[name] - 1 + len) % len; updateGallery(name); e.preventDefault(); }
+            if (e.key === 'Escape') closeGallery(name);
+        }
+
+        function runAllTests() {
+            document.getElementById('test-results').innerHTML = '';
+            testResults.length = 0;
+
+            openGallery('atlas');
+            const modal = document.getElementById('atlasModal');
+            log('Test 1: Modal opens', modal.classList.contains('open'), '');
+
+            const img = document.getElementById('atlasGalleryImg');
+            log('Test 2: First image shows', img.src.includes('./img/1.jpg'), `Image src: ${img.src}`);
+
+            const counter = document.getElementById('atlasImageCounter');
+            log('Test 3: Counter shows 1 / 17', counter.textContent === '1 / 17', `Counter: ${counter.textContent}`);
+
+            const thumbs = document.querySelectorAll('.atlas-thumbnail');
+            log('Test 4: Thumbnails rendered', thumbs.length === 17, `Thumbnails count: ${thumbs.length}`);
+
+            log('Test 5: First thumbnail is active', thumbs[0].classList.contains('active'), '');
+
+            const nextBtn = document.querySelector('[data-gallery="atlas"][data-action="next"]');
+            nextBtn.click();
+            log('Test 6: Next button increments', galleryState['atlas'] === 1, `Current index: ${galleryState['atlas']}`);
+
+            log('Test 7: Counter updated after next', counter.textContent === '2 / 17', `Counter: ${counter.textContent}`);
+
+            const prevBtn = document.querySelector('[data-gallery="atlas"][data-action="prev"]');
+            prevBtn.click();
+            log('Test 8: Previous button decrements', galleryState['atlas'] === 0, `Current index: ${galleryState['atlas']}`);
+
+            const thumb3 = thumbs[2];
+            thumb3.click();
+            log('Test 9: Thumbnail click jumps to image', galleryState['atlas'] === 2, `Current index: ${galleryState['atlas']}`);
+
+            galleryState['atlas'] = 0;
+            updateGallery('atlas');
+            const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+            handleGalleryKeyboard(event, 'atlas');
+            log('Test 10: ArrowRight key works', galleryState['atlas'] === 1, `Current index: ${galleryState['atlas']}`);
+
+            const eventLeft = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
+            handleGalleryKeyboard(eventLeft, 'atlas');
+            log('Test 11: ArrowLeft key works', galleryState['atlas'] === 0, `Current index: ${galleryState['atlas']}`);
+
+            handleGalleryKeyboard(new KeyboardEvent('keydown', { key: 'Escape' }), 'atlas');
+            log('Test 12: Escape closes modal', !modal.classList.contains('open'), '');
+
+            const passed = testResults.filter(r => r.result).length;
+            const total = testResults.length;
+            const summary = document.createElement('div');
+            summary.style.marginTop = '20px';
+            summary.style.fontSize = '18px';
+            summary.style.fontWeight = 'bold';
+            summary.innerHTML = `RESULTS: ${passed}/${total} tests passed`;
+            document.getElementById('test-results').appendChild(summary);
+
+            console.log(`Atlas Gallery Test: ${passed}/${total} PASS`);
+        }
+    </script>
+</body>
+</html>

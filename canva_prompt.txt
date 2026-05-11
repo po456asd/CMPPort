@@ -1,0 +1,268 @@
+
+# CANVA AI PRESENTATION GENERATOR PROMPT
+
+## THEME & STYLE
+- Theme: Dark Gold Luxury
+- Color Palette: Deep navy/charcoal background, gold/champagne accents, cream/white text
+- Typography: Elegant, professional serif fonts for titles, clean sans-serif for body
+- Layout: Luxury minimalist with generous white space
+
+## COMPANY INFORMATION
+Company Name: CMP Management Asia
+Tagline: From Vision to Guaranteed Reality. 30+ years of construction expertise across Asia.
+
+## PORTFOLIO OVERVIEW
+Total Projects: 12
+Presentation Style: One dedicated slide per project with comprehensive information
+
+---
+
+## PORTFOLIO PROJECTS (ORDER AS BELOW)
+
+
+### PROJECT 1: Atlas Super Club Ratchada Soi 4
+
+**Project Information:**
+- Name: Atlas Super Club Ratchada Soi 4
+- Category: construction
+- Year: 2023
+- Featured: Yes
+- Description: Super Night Club / Entertainment Venue
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/atlas/IMG_20251209_164603.jpg
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/atlas/IMG_20251209_165700.jpg
+  2. img/proj/atlas/IMG_20251210_144031.jpg
+  3. img/proj/atlas/IMG_20251218_222932.jpg
+  4. img/proj/atlas/IMG_20251219_201353.jpg
+  5. img/proj/atlas/IMG_20251223_110011.jpg
+
+### PROJECT 2: The Quarter Hotel Ekkamai
+
+**Project Information:**
+- Name: The Quarter Hotel Ekkamai
+- Category: construction
+- Year: 2024
+- Featured: No
+- Description: 8-Storey Building + 1 Basement (Hotel)
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/tqhe/cr=w_600,h_300.jpg
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/tqhe/IMG_20260422_135544.jpg
+  2. img/proj/tqhe/IMG_20260502_143404.jpg
+  3. img/proj/tqhe/IMG_20260502_143419.jpg
+  4. img/proj/tqhe/IMG_20260502_143515.jpg
+  5. img/proj/tqhe/IMG_20260502_143606.jpg
+
+### PROJECT 3: The One Bangkok
+
+**Project Information:**
+- Name: The One Bangkok
+- Category: commercial
+- Year: 2019
+- Featured: Yes
+- Description: Substructure and Architectural Work
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/OBK/rs=w_365,h_274,cg_true-1.jpg
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/OBK/1877192.jpg
+  2. img/proj/OBK/41236.jpg
+  3. img/proj/OBK/425973.jpg
+  4. img/proj/OBK/64676.jpg
+  5. img/proj/OBK/64678.jpg
+
+### PROJECT 4: Teeraporn Clinic Bangkok
+
+**Project Information:**
+- Name: Teeraporn Clinic Bangkok
+- Category: residential
+- Year: 2023
+- Featured: No
+- Description: 6-Storey Medical Building
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/trp/trphero.jpg
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/trp/117142_0.jpg
+  2. img/proj/trp/117151_0.jpg
+  3. img/proj/trp/117156_0.jpg
+  4. img/proj/trp/117194_0.jpg
+  5. img/proj/trp/117196_0.jpg
+
+### PROJECT 5: KB Private Residence
+
+**Project Information:**
+- Name: KB Private Residence
+- Category: residential
+- Year: 2023
+- Featured: Yes
+- Description: Structural Design & Building Construction
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/KBH/1.png
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/KBH/2.png
+  2. img/proj/KBH/3.png
+  3. img/proj/KBH/4.png
+
+### PROJECT 6: Baan Parinyada Renovation Work
+
+**Project Information:**
+- Name: Baan Parinyada Renovation Work
+- Category: residential
+- Year: 2025
+- Featured: No
+- Description: Residential Renovation & Construction
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/pryd/1.png
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/pryd/2.png
+  2. img/proj/pryd/3.png
+  3. img/proj/pryd/4.png
+  4. img/proj/pryd/5.png
+  5. img/proj/pryd/6.png
+
+### PROJECT 7: One Bangkok Forum
+
+**Project Information:**
+- Name: One Bangkok Forum
+- Category: commercial
+- Year: 2021
+- Featured: No
+- Description: Art & Cultural Multi-Purpose Hall
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/OBKF/1.png
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/OBKF/2.png
+  2. img/proj/OBKF/3.png
+
+### PROJECT 8: Thai Oil Clean Oil Project Leam Chabang
+
+**Project Information:**
+- Name: Thai Oil Clean Oil Project Leam Chabang
+- Category: commercial
+- Year: 2020
+- Featured: No
+- Description: OC1 & OC2 Work Packages - Civil & Structure Works
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/tocop/1.png
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/tocop/2.png
+
+### PROJECT 9: Frasers Temporary Factory
+
+**Project Information:**
+- Name: Frasers Temporary Factory
+- Category: construction
+- Year: 2023
+- Featured: No
+- Description: 7000m2 Clean Room Manufacturing Facility
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/7000m2tempf/1.png
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/7000m2tempf/2.png
+  2. img/proj/7000m2tempf/7000m2tempfhero.png
+
+### PROJECT 10: Custom Department Building Rehabilitation
+
+**Project Information:**
+- Name: Custom Department Building Rehabilitation
+- Category: construction
+- Year: 2023
+- Featured: No
+- Description: Pier Repair & Structural Rehabilitation
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/pierrepair/1.png
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/pierrepair/pierrepairhero.png
+
+### PROJECT 11: Residence at Kaoyai
+
+**Project Information:**
+- Name: Residence at Kaoyai
+- Category: residential
+- Year: 2022
+- Featured: No
+- Description: 6 Buildings Complex | 1500m2
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/kaoyaires/1.png
+- SUPPORTING IMAGES (5 small images in grid):
+  1. img/proj/kaoyaires/2.png
+  2. img/proj/kaoyaires/3.png
+  3. img/proj/kaoyaires/4.png
+  4. img/proj/kaoyaires/kaoyaireshero.png
+
+### PROJECT 12: Boon Nak Residence Ubon
+
+**Project Information:**
+- Name: Boon Nak Residence Ubon
+- Category: residential
+- Year: 2024
+- Featured: No
+- Description: Design & Building Construction
+
+**Images for This Project:**
+- HERO IMAGE (Large, Full Width): img/proj/boonnak/boonnakhero.jpg
+- SUPPORTING IMAGES (5 small images in grid):
+
+
+---
+
+## TEAM INFORMATION
+
+
+### Johnny Beh
+**Role:** Founder / CEO
+**Biography:** 30+ years construction & project management expertise. Led major developments across Asia and Middle East. PAM School of Architecture graduate. Fluent: English, Bahasa Malaysia, Mandarin.
+
+
+### Philaiwan Thathisa
+**Role:** Finance Director
+**Biography:** Strategic financial leadership since 2019. Ramkhamhaeng University graduate. Expertise in financial strategy, fiscal discipline, and sustainable growth. Fluent: Thai, English.
+
+
+### Worapot Kitcharenchai
+**Role:** Chief Operating Officer
+**Biography:** 12 years specialized marketing & operations expertise. Drives innovation through data-driven strategies and streamlined project execution. Committed to scalable growth and industry leadership.
+
+
+### Clarence Sim B.H
+**Role:** Operations Director
+**Biography:** 15+ years construction & property development. Selkirk College graduate. Expert in cost control & quality assurance. Fluent: English, Mandarin, Thai.
+
+
+
+---
+
+## DESIGN INSTRUCTIONS FOR CANVA
+
+**For Each Project Slide:**
+1. Dark navy/charcoal background (hex: #1a1a2e or similar)
+2. Gold accent line or border (hex: #d4af37 or similar)
+3. Place hero image prominently (top 60% of slide, full width or centered large)
+4. Display 5 supporting images in a 2-3 grid layout below hero image
+5. Include text information (name, category, year, description) with gold highlights for key terms
+6. Use cream/white text (#f5f5f5) on dark background for readability
+7. Maintain luxury aesthetic with clean spacing and elegant typography
+
+**Overall Presentation Structure:**
+1. Title slide with company name and presentation title
+2. One slide per project (as detailed above)
+3. Team members page (optional: with member photos, names, roles)
+4. Closing slide with company contact information
+
+**Color Scheme Example:**
+- Background: #1a1a2e (Dark Navy)
+- Accents: #d4af37 (Gold)
+- Text: #f5f5f5 (Cream White)
+- Highlights: #b8922d (Darker Gold)
+

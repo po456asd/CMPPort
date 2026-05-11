@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"python -m py_compile pptx_annual_generator.py pptx_team_generator.py && python -c \\\"\\nfrom pptx_annual_generator import generate_annual_pptx\\nfrom pptx_team_generator import generate_team_...",
-  "error": "Exit code 1\nTraceback (most recent call last):\r\n  File \"<string>\", line 29, in <module>\r\n    print('\\u2713 Annual generator works')\r\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\White\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp874.py\", line 19, in encode\r\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\r\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u2713' in position 0...",
-  "timestamp": "2026-05-09T20:18:18.267Z",
+  "tool_input_preview": "{\"command\":\"cd /d C:\\\\Users\\\\White\\\\OneDrive\\\\AHK\\\\CMPPort && git status --short\",\"description\":\"Check if working directory is clean\"}",
+  "error": "Exit code 1\n/usr/bin/bash: line 1: cd: too many arguments",
+  "timestamp": "2026-05-11T05:33:59.446Z",
   "retry_count": 1
 }
